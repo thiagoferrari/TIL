@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf8" />
+      <title>Página de Teste</title>
+      <script>
+
+         'use strict'; // Modo "chato" do Javascript
+
+         /*
+
+            1) Declare e inicialize um vetor com 15 elementos numéricos.
+            2) Escreva uma função que receba um vetor e retorne a soma
+               de seus elementos
+            3) Chame a função anteriormente declarada passando o vetor
+               criado no passo 1) como parâmetro e armazene o valor de
+               retorno em uma variável
+            4) Use alert() para exibir a variável do resultado
+
+         */
+
+         // 1) Declare e inicialize um vetor com 15 elementos numéricos.
+         let vetor = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+
+         // 2) Escreva uma função que receba um vetor e retorne a soma
+         //   de seus elementos
+         function somaVet(vet) {
+            let soma = 0;
+            for(let i = 0; i < vet.length; i++) {
+               soma += vet[i];
+            }
+            return soma;
+         }
+
+         // 2.1) Usando for...of
+         function somaVet2(vet) {
+            let soma = 0;
+            for(let elem of vet) {
+               soma += elem;
+            }
+            return soma;
+         }
+
+         // 3) Chame a função anteriormente declarada passando o vetor
+         //   criado no passo 1) como parâmetro e armazene o valor de
+         //   retorno em uma variável
+         let resultado = somaVet(vetor);
+
+         alert(`O resulado é ${resultado}.`);
+
+         let resultado2 = somaVet2(vetor);
+         alert(`O resultado de somaVet2() é ${resultado2}.`);
+
+      </script>
+   </head>
+   <body>
+      <!-- Isto é um comentário HTML --> 
+      <h1>Título da página</h1>
+      <p>Isto é um parágrafo.</p>
+   </body>
+</html>

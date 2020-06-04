@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Gerador de loop for</title>
+   <style>
+      /* Só se aplica a labels que NÃO TÊM o atributo "for=" */
+      label:not([for]) {
+         display: block; /* Para ficar acima dos inputs */
+      }
+      /* Só se aplica a divs que NÃO TÊM "id=" */
+      div:not([id]) {
+         /* border: 1px solid red; */
+         display: inline-block; /* Exibe as divs lado a lado */
+      }
+      input[type="radio"] {
+         margin-right: -2px; /* Sem espaçamento à direita do botão de rádio */
+      }
+      #resultado {
+         background: yellow;
+      }
+   </style>
+</head>
+<body>
+   <h1>Gerador de <em>loop for</em></h1>
+   <p>Informe os parâmetros e clique sobre o botão Gerar.</p>
+   
+   <div>
+      <label>Início</label>
+      <input id="inicio" type="number">
+   </div>
+
+   <div>
+      <label>Fim</label>
+      <input id="fim" type="number">
+   </div>
+
+   <div>
+      <label>Passo</label>
+      <input id="passo" type="number">
+   </div>
+
+   <div>
+      <!-- Todos os input radio de um mesmo grupo de 
+         opções precisam ter o mesmo atributo "name" -->
+      <input id="asc" type="radio" name="ordem" checked>
+      <label for="asc">Ascendente</label>
+      
+      <input id="desc" name="ordem" type="radio">
+      <label for="desc">Descendente</label>
+   </div>
+
+   <div>
+      <button id="gerar">Gerar</button>
+   </div>
+
+   <div id="resultado"></div>
+
+   <script>
+      'use strict'; // Modo "chato" do Javascript
+
+      // CAPTURA DOS ELEMENTOS
+      const elemInicio = document.getElementById('inicio');
+      const elemFim = document.getElementById('fim');
+      const elemPasso = document.getElementById('passo');
+
+      const elemAsc = document.querySelector('#asc');
+      const elemDesc = document.querySelector('#desc');
+
+      const elemGerar = document.querySelector('#gerar');
+      const elemResultado = document.querySelector('#resultado');
+
+      function gerar() {
+         
+         // CAPTURA DOS VALORES DOS ELEMENTOS
+         let inicio = parseInt(elemInicio.value);
+         let fim = parseInt(elemFim.value);
+         let passo = parseInt(elemPasso.value);
+
+         let asc = elemAsc.checked; // true ou false
+         
+         // VALIDAÇÕES
+         if(isNaN(inicio)) {
+            alert('O início não é um número válido!');
+            elemInicio.focus();
+            return; // Sai da função e não executa abaixo
+         }
+
+         if(isNaN(fim)) {
+            alert('O fim não é um número válido!');
+            elemFim.focus();
+            return;
+         }
+         
+         if(passo <= 0 || isNaN(passo)) {
+            alert('Passo inválido!');
+            elemPasso.focus();
+            return; 
+         }
+         
+         if(asc && inicio > fim) {
+            alert('O início não pode ser maior que o fim!');
+            elemInicio.focus();
+            return;
+         }
+
+         if((! asc) && inicio < fim) {
+            alert('O início não pode ser menor que o fim!');
+            elemInicio.focus();
+            return;
+         }
+
+         // NÃO SE ESQUEÇA DE LIMPAR A DIV DE RESULTADOS
+         // ANTES DE EXIBIR OUTRO RESULTADO!
+         elemResultado.innerText = '';
+
+         // FINALMENTE, OS LOOPS FOR
+
+         let parag;
+
+         if(asc) { // Se ascendente
+            // É possível declarar a variável contadora
+            // diretamente no início do for
+            for(let i = inicio; i <= fim; i += passo /* incremento */) {
+               // Preenche a div de resultado
+               //elemResultado.innerHTML += `<p>${i}</p>`;
+               
+               // Cria um novo elemento - SEMPRE no document!
+               parag = document.createElement('p');
+               
+               // Atribui conteúdo ao novo elemento
+               parag.innerText = i;
+               
+               // Dá um pai (elemResultado) ao novo elemento,
+               // e fica sendo o último filho dele
+               elemResultado.appendChild(parag);
+               //document.body.appendChild(parag);
+            }
+         }
+         else { // Se descendente
+            for(let i = inicio; i >= fim; i -= passo /* decremento */) {
+               // Preenche a div de resultado
+               //elemResultado.innerHTML += `<p>${i}</p>`;
+               parag = document.createElement('p');
+               parag.innerText = i;
+               elemResultado.appendChild(parag);
+            }
+         }
+
+      }
+   
+      elemGerar.addEventListener('click', gerar);
+
+   </script>
+
+</body>
+</html>

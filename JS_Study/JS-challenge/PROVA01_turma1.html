@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf8" />
+      <title>Página de Teste</title>
+      <script>
+
+         'use strict'; // Modo "chato" do Javascript
+
+         // Escreva uma função que receba o número do andar e retorne, 
+         // como string, a destinação dele.Se o andar não tiver sido 
+         // vendido ainda, retorne o valor 'À venda'. Utilize, dentro 
+         // da função, a estrutura switch.
+         function destAndar(andar) {
+            let dest;
+            switch(andar) {
+               case 27:
+               case 65:
+               case 126:
+                  dest = "Habib's";
+                  break;
+
+               case 22:
+               case 80:
+               case 99:
+                  dest = 'Magazine Luiza';
+                  break;
+
+               case 75:
+                  dest = 'Gabinete de um deputado federal';
+                  break;
+
+               case 109:
+                  dest = 'Cinemas';
+                  break;
+
+               case 9:
+               case 114:
+                  dest = 'Smart Fit';
+                  break;
+
+               case 131: // Último andar
+                  dest = 'Heliponto';
+                  break;
+
+               default:
+                  dest = 'À venda'
+            }
+            return dest;
+         }
+
+         // Fora da função, obtenha do usuário um número de andar e 
+         // retorne a ele, com alert(), a destinação do andar informado 
+         // utilizando uma chamada à função anteriormente definida. Valide 
+         // a entrada do usuário, repetindo a pergunta até que ele informe 
+         // um número válido e que não seja múltiplo de 24.
+         let a;
+         do {
+            a = parseInt(prompt('Qual andar?'));
+         } while (isNaN(a) || a % 24 == 0);
+
+         alert('A destinação para o andar informado é: ' + destAndar(a));
+
+         // Escreva outra função, que não receba nenhum argumento e retorne 
+         // um vetor com a numeração dos 125 andares do hotel. Utilize a 
+         // instrução continue para saltar os andares múltiplos de 24.
+         function numAndares() {
+            let andares = [];
+            for(let i = 1; andares.length <= 125; i++) {
+               if(i % 24 == 0) {
+                  continue;
+               }
+               andares.push(i);
+            }
+            return andares;
+         } 
+         
+         // Fora da função, chame-a e armazene seu retorno em uma variável. 
+         // Escreva um loop que percorra o vetor retornado e exiba no documento, 
+         // em ordem inversa, a numeração dos andares do superprédio, um número por linha.
+         let andares = numAndares();
+         for(let i = andares.length - 1; i >= 0; i--) {
+            document.write(andares[i] + '<br>');
+         }
+
+
+      </script>
+   </head>
+   <body>
+      <!-- Isto é um comentário HTML --> 
+      <h1>Título da página</h1>
+      <p>Isto é um parágrafo.</p>
+   </body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf8" />
+      <title>Página de Teste</title>
+      <script>
+
+         'use strict'; // Modo "chato" do Javascript
+
+         // Escreva uma função que não receba nenhum argumento e retorne um vetor 
+         // com todos os quilômetros nos quais haverá lombofaixa, no sentido 
+         // Franca – São Paulo, lembrando que o km 1 fica em São Paulo. 
+         // Utilize um laço for para construir o vetor.
+         function kmsComLombofaixa() {
+            let kms = [];
+            for(let i = 400; i >= 1; i--) {
+               if(i % 29 == 0) {
+                  kms.push(i);
+               }               
+            }
+            return kms;
+         }
+         
+         // Escreva uma segunda função, que receba o número de um quilômetro 
+         // e verifique se há algo “francano” nele.Essa função deve, em primeiro 
+         // lugar, chamar a função que retorna o vetor com os quilômetros onde 
+         // haverá pedágio e guardar seu resultado em uma variável. Em seguida, 
+         // utilizando indexOf(), verifique se o quilômetro passado como argumento 
+         // tem ou não lombofaixa. Se houver, retorne 'Lombofaixa' como resultado da função.
+         function temFrancanice(km) {
+
+            let kmsLombofaixa = kmsComLombofaixa();
+            if(kmsLombofaixa.indexOf(km) > 0) {
+               return 'Lombofaixa';
+            }
+            else {
+               
+               // Ainda dentro da segunda função, se o quilômetro passado como argumento 
+               // não tiver pedágio, utilize a estrutura switch para verificar se esse 
+               // quilômetro possui algumas das francanices previstas e retorne, se for 
+               // o caso, o nome da melhoria.Se não houver nada no quilômetro, retorne 
+               // 'Tem nada aqui não. Segue reto toda vida, meu fii.'.
+               
+               let res;
+               switch(km) {
+                  case 92:
+                  case 177:
+                  case 291:
+                  case 388:
+                     res = 'Megaloja do Magazine Luiza';
+                     break;
+
+                  case 153:
+                  case 356:
+                     res = 'Drive-thru dos Calçados Rafarilo';
+                     break;
+
+                  case 187:
+                     res = 'Posto de recarga da Viação São José';
+                     break;
+
+                  case 210:
+                     res = 'Filial da Padaria Estrela';
+                     break;
+
+                  case 314:
+                     res = 'Fábrica do Jubileu do Amendoim';
+                     break;
+
+                  case 367:
+                     res = 'Franca AcquaParque Unidade II';
+                     break;
+
+                  default:
+                     res = 'Tem nada aqui não. Segue reto toda vida, meu fii.';
+               }
+
+               return res;
+            }
+
+         }
+
+         // Fora das duas funções, obtenha do usuário um número de quilômetro e 
+         // retorne a ele, com alert(), o que existe naquele quilômetro, utilizando 
+         // uma chamada à função anteriormente definida.Valide a entrada do usuário, 
+         // repetindo a pergunta até que ele informe um número válido e que esteja 
+         // entre 1 e 400(inclusive).
+         let numKm;
+         do {
+            numKm = parseInt(prompt('Informe um km entre 1 e 400:'));
+         } while(isNaN(numKm) || numKm < 1 || numKm > 400);
+
+         alert('Existe nesse quilômetro: ' + temFrancanice(numKm));
+
+
+      </script>
+   </head>
+   <body>
+      <!-- Isto é um comentário HTML --> 
+      <h1>Título da página</h1>
+      <p>Isto é um parágrafo.</p>
+   </body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Documento Modelo</title>
+   <style>
+      body {
+         position: absolute;
+         height: 100%;
+         width: 100%;
+         margin: 0;
+         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+         font-size: 12pt;
+         line-height: 18pt;
+         color: #444;
+         background-color: lightsalmon;         
+         padding: 0;
+      }
+      input, select, button {
+         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+         font-size: 12pt;
+      }
+      button {
+         font-size: 20pt;
+         font-style: bold;
+      }
+      #container {
+         margin: 10vh 10vw;
+         background-color: rgba(255, 255, 255, 0.9);
+         padding: 40px;
+         border-radius: 20px;
+         box-shadow: 4px 4px rgba(0, 0, 0, 0.15) 
+      }
+      label {
+         display: block;
+      }
+      div div {
+         margin: 20px;
+         display: inline-block;
+      }
+      div.linha {
+         display: block;
+         text-align: center;
+      }
+      #resultado {
+         background-color: lightsalmon;
+         height: 40px;
+         border-radius: 10px;
+         box-shadow: inset 2px 2px rgba(0, 0, 0, 0.15);
+         color: white;
+         text-align: center;
+         font-size: 16px;
+         line-height: 40px;
+      }
+   </style>
+</head>
+<body>
+   <div id="container">
+      <h1>Gerador de cabeçalho</h1>
+      
+      <div>
+         <label>Localidade</label>
+         <input id="local" placeholder="Informe a localidade">
+      </div>
+
+      <div>
+         <label>Dia</label>
+         <select id="dia">
+            <option>(Selecione)</option>
+         </select>
+      </div>
+
+      <div>
+         <label>Mês</label>
+         <select id="mes">
+            <option>(Selecione)</option>
+         </select>
+      </div>
+
+      <div>
+         <label>Ano</label>
+         <select id="ano">
+            <option>(Selecione)</option>
+         </select>
+      </div>
+
+      <div id="resultado" class="linha">
+
+      </div>
+
+      <div class="linha">
+         <button id="enviar">Enviar</button>
+      </div>
+
+   </div>
+
+   <script>
+      // Liga o modo "chato" do JS
+      // Não deixa usar variáveis sem let ou var
+      'use strict'
+
+      const local = document.querySelector('#local')
+      const dia = document.querySelector('#dia')
+      const mes = document.querySelector('#mes')
+      const ano = document.querySelector('#ano')
+      const enviar = document.querySelector('#enviar')
+      const resultado = document.querySelector('#resultado')
+
+
+      // Preenche dinamicamente o select do dia
+      // com números de 1 a 31
+      for(let i = 1; i <= 31; i++) {
+         let opt = document.createElement('option')
+         opt.innerText = i
+         dia.appendChild(opt)
+      }
+
+      // Preenche dinamicamente o select do mes
+      // com números de 1 a 12
+      for(let i = 1; i <= 12; i++) {
+         let opt = document.createElement('option')
+         opt.innerText = i
+         mes.appendChild(opt)
+      }
+
+      // Preenche dinamicamente o select do ano
+      // com números de 2020 a 1920 (ordem descendente)
+      for(let i = 2020; i >= 1920; i--) {
+         let opt = document.createElement('option')
+         opt.innerText = i
+         ano.appendChild(opt)
+      }
+
+      function exibirCabecalho() {
+
+         let valido = true
+         // validações aqui
+         if (local.value.trim() == '') {
+            alert('insira uma localidade')
+            local.focus()
+            valido = false
+         } else if (dia.selectedIndex <= 0) {
+            alert('escolha um dia')
+            dia.focus()
+            valido = false
+         } else if (mes.selectedIndex <= 0) {
+            alert('escolha um mes')
+            mes.focus()
+            valido = false
+         } else if (ano.selectedIndex <= 0) {
+            alert('escolha um ano')
+            ano.focus()
+            valido = false
+         } else if ((mes.selectedIndex == 4 || mes.selectedIndex == 6 ||  mes.selectedIndex == 9 || mes.selectedIndex == 11) && dia.selectedIndex > 30) {
+            alert('O mês selecionado tem, no máximo, 30 dias.')
+            dia.focus()
+            valido = false
+         } else if(mes.selectedIndex == 2 && dia.selectedIndex > 28) {
+            alert('O mês de fevereiro tem, no máximo, 28 dias.')
+            dia.focus()
+            valido = false
+         }
+
+         if(valido) {
+            let mesExtenso
+            switch(mes.selectedIndex) {
+               case 1:
+                  mesExtenso = 'janeiro'
+                  break
+               case 2:
+                  mesExtenso = 'fevereiro'
+                  break
+               case 3:
+                  mesExtenso = 'março'
+                  break
+               case 4:
+                  mesExtenso = 'abril'
+                  break
+               case 5:
+                  mesExtenso = 'maio'
+                  break
+               case 6:
+                  mesExtenso = 'junho'
+                  break
+               case 7:
+                  mesExtenso = 'julho'
+                  break
+               case 8:
+                  mesExtenso = 'agosto'
+                  break
+               case 9:
+                  mesExtenso = 'setembro'
+                  break
+               case 10:
+                  mesExtenso = 'outubro'
+                  break
+               case 11:
+                  mesExtenso = 'novembro'
+                  break
+               default:
+                  mesExtenso = 'dezembro'
+            }
+               console.log(mesExtenso)
+            resultado.innerHTML = local.value + ', ' + dia.selectedIndex + ' de ' + mesExtenso + ' de ' + ano.value
+
+         }
+
+
+      }
+   enviar.addEventListener('click', exibirCabecalho)
+
+   </script>
+</body>
+</html>

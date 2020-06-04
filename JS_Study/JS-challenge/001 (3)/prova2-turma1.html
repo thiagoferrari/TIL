@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>PROVA 02</title>
+   <style>
+      html,
+      body {
+         position: absolute;
+         height: 100%;
+         width: 100%;
+         margin: 0;
+         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+         font-size: 12pt;
+         line-height: 18pt;
+         color: #444;
+      }
+
+      body {
+         background-image: linear-gradient(orangered 50%, indigo);
+         background-color: indigo;
+         background-repeat: no-repeat;
+         padding: 0;
+      }
+
+      section {
+         background: whitesmoke;
+         margin: 3%;
+         padding: 25px;
+         border-radius: 20px;
+         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+         display: flex;
+         flex-direction: row;
+         flex-wrap: wrap;
+         justify-content: space-around;
+      }
+
+      h1 {
+         font-size: 2rem;
+         text-align: center;
+         color: indigo;
+         width: 90%;
+      }
+
+      section div {
+         border-radius: 10px;
+         padding: 10px;
+         width: 30%;
+         max-width: 90%;
+         min-width: 250px;
+         margin: 1% 0;
+      }
+
+      section div:nth-child(even) {
+         background-color: beige;
+         border: 1px solid indigo;
+      }
+
+      section div:nth-child(odd) {
+         background-color: lavender;
+         border: 1px solid orangered;
+      }
+   </style>
+
+</head>
+
+<body>
+   <section>
+      <h1>Título da página</h1>
+   </section>
+   <script>
+      // A seção <script> precisa ser passada para a parte de baixo do arquivo
+
+      'use strict'; // Modo "chato" do Javascript
+
+      // Instrução 4
+      const calcImc = function (peso, altura) {
+         return peso / altura ** 2;
+      }
+
+      // Instrução 5
+      function faixaImc(imc) {
+         if (imc < 17) {
+            return 'Muito abaixo do peso';
+         }
+         else if (imc >= 17 && imc < 18.5) {
+            return 'Abaixo do peso';
+         }
+         else if (imc >= 18.5 && imc < 25) {
+            return 'Peso normal';
+         }
+         else if (imc >= 25 && imc < 30) {
+            return 'Acima do peso';
+         }
+         else if (imc >= 30 && imc < 35) {
+            return 'Obesidade I';
+         }
+         else if (imc >= 35 && imc < 40) {
+            return 'Obesidade II (severa)';
+         }
+         else {
+            return 'Obesidade III (mórbida)';
+         }
+      }
+
+      // Instrução 6
+      let pacientes = [];
+
+      // Instrução 7
+      let paciente1 = {
+         nome: 'Fulgêncio Fogaça',
+         sexo: 'Masculino',
+         idade: 41,
+         peso: 113,
+         altura: 1.71
+      };
+      pacientes.push(paciente1);
+
+      let paciente2 = {};
+      paciente2.nome = 'Ernestina Esteves';
+      paciente2.sexo = 'Feminino';
+      paciente2.idade = 67;
+      paciente2.peso = 84;
+      paciente2.altura = 1.71;
+      pacientes.push(paciente2);
+
+      let paciente3 = {
+         nome: 'Delcides Diniz',
+         sexo: 'Masculino',
+         idade: 35,
+         peso: 94,
+         altura: 1.83
+      };
+      pacientes.push(paciente3);
+
+      let paciente4 = {
+         nome: 'Constança Calazans',
+         sexo: 'Feminino',
+         idade: 19,
+         peso: 48,
+         altura: 1.67
+      };
+      pacientes.push(paciente4);
+
+      let paciente5 = {
+         nome: 'Belmira Bittencourt',
+         sexo: 'Feminino',
+         idade: 26,
+         peso: 61,
+         altura: 1.72
+      };
+      pacientes.push(paciente5);
+
+      let paciente6 = {
+         nome: 'Alcibíades Assumpção',
+         sexo: 'Masculino',
+         idade: 50,
+         peso: 76,
+         altura: 1.60
+      };
+      pacientes.push(paciente6);
+
+      // Instrução 8
+      const elemSection = document.querySelector('section');
+
+      for(let i = pacientes.length - 1; i >= 0; i--) {
+         let div = document.createElement('div');
+         let imc = calcImc(pacientes[i].peso, pacientes[i].altura);
+         let faixa = faixaImc(imc);
+         let info = `
+            Nome: ${pacientes[i].nome}<br>
+            Sexo: ${pacientes[i].sexo}<br>
+            Idade: ${pacientes[i].idade}<br>
+            Peso (kg): ${pacientes[i].peso}<br>
+            Altura (m): ${pacientes[i].altura}<br>
+            IMC: ${imc}<br>
+            Situação: ${faixa}
+         `;
+         div.innerHTML = info;
+         elemSection.appendChild(div);
+      }
+
+      // Instrução 9
+      const elemH1 = document.querySelector('h1');
+      elemH1.innerText = 'Relação de Pacientes';
+
+   </script>
+</body>
+
+</html>

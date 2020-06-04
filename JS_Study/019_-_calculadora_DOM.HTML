@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calc</title>
+</head>
+<body>
+    <input id="num1" type="number" value="0">
+    <select id="operador">
+        <option>(Selecione)</option>
+        <option>adicionado a</option>
+        <option>menos</option>
+        <option>multiplicado por</option>
+        <option>dividido por</option>
+        <option>elevado a</option>
+        <option>resto da divisão por</option>
+     </select>
+     <input id="num2" type="number" value="0">
+     <button id="calc">Calcular</button>
+     <div id="resultado"></div>
+</body>
+
+<script>
+    const op = document.querySelector('#operador').selectedIndex
+    console.log(op)    
+
+</script>
+</html>

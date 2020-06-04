@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf8" />
+      <title>Página de Teste</title>
+      <script>
+
+         'use strict'; // Modo "chato" do Javascript
+
+         /*
+
+            Gere um número aleatório inteiro entre 0 e 30.
+
+            Desafie o usuário a tentar adivinhar o número aleatório.
+            Repita a pergunta até que ele acerte.
+
+         */
+
+         let enigma = Math.floor(Math.random() * 30);
+         let resp;
+
+         do {
+            resp = parseInt(prompt('Qual é o número secreto (0..30)?'));
+         } while (resp != enigma);
+
+         alert('Você acertou! O número secreto era ' + enigma);
+
+      </script>
+   </head>
+   <body>
+      <!-- Isto é um comentário HTML --> 
+      <h1>Título da página</h1>
+      <p>Isto é um parágrafo.</p>
+   </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+      <!-- Ajusta a acentuação -->
+      <meta charset="utf8" />
+      <title>Página-modelo HTML</title>
+
+   </head>
+   
+   <body>
+      <h1>Título da página</h1>
+      <p>Isto é um parágrafo.</p>
+   </body>
+
+   <script type="text/javascript">
+
+      'use strict';      
+
+      //   1. Salve o conteúdo da tag H1 em uma variável.
+      let h1 = document.querySelector('h1');
+      let conteudoH1 = h1.innerText;
+
+      //   2. Troque a tag H1 por uma tag H3, mas com o mesmo conteúdo.
+      let h3 = document.createElement('h3');
+      document.body.replaceChild(h3, h1);
+      h3.innerText = conteudoH1;
+
+      //   3. Crie um parágrafo antes do parágrafo já existente. Seu ID
+      //      deve ser 'intro'. Atribua um conteúdo a ele
+      let novoP = document.createElement('p');
+      let existenteP = document.body.querySelector('p');
+      document.body.insertBefore(novoP, existenteP);
+      novoP.id = 'intro';
+      novoP.innerText = 'Parágrafo introdutório.';
+
+
+      //   4. Crie cinco parágrafos ao final do documento, utilizando um
+      //      laço for. Os IDs desses parágrafos devem ser p1, p2, p3, p4 e p5.
+      //      O conteúdo deve ser "Parágrafo 1", "Parágrafo 2", etc.
+      for(let i = 0; i < 5; i++) {
+         let p = document.createElement('p');
+         document.body.appendChild(p);
+         p.id = `p${i + 1}`;
+         p.innerText = `Parágrafo ${i + 1}`
+      }
+   
+      //   5. Remova p2.
+      // let p2 = document.getElementById('p2'); // Forma 1;
+      let p2 = document.querySelector('#p2');
+
+      document.body.removeChild(p2);
+   
+      //   6. Na posição onde estava p2, insira uma lista ordenada (ol) com três itens.
+      // Localizando o elemento na posição onde vai entrar a lista
+      let p3 = document.querySelector('#p3');
+
+      let ol = document.createElement('ol');
+      document.body.insertBefore(ol, p3);
+
+      for(let i = 0; i < 3; i++) {
+         let li = document.createElement('li');
+         ol.appendChild(li);
+         li.innerText = `Item ${i + 1}`;
+      }
+   
+      //   7. Capture todos os itens da lista ordenada com querySelectorAll()
+      //      e insira três novos parágrafos no final do documento, cada um 
+      //      com o conteúdo de um dos itens.
+
+      let todosLi = document.body.querySelectorAll('li');
+
+      for(let i = 0; i < todosLi.length; i++) {
+         let p = document.createElement('p');
+         document.body.appendChild(p);
+         p.innerText = todosLi[i].innerText;
+      }
+   
+   </script>
+
+
+</html>

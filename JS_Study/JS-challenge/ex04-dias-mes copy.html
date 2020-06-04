@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Página modelo</title>
+   <script>
+      'use strict'; // Modo "chato" do Javascript
+
+      let mes, dias;
+
+      // parseInt() é utilizado aqui porque o número do mês
+      // deve ser, necessariamente, um inteiro
+      mes = parseInt(prompt('Informe o mês (1 a 12):'));
+
+      if(isNaN(mes)) {
+         alert('O valor informado NÃO É um número válido!');
+      }
+      else if(mes < 1 || mes > 12) {
+         alert('O mês informado deve estar entre 1 e 12!')
+      }
+      else {
+         if(mes == 1 || mes == 3 || mes == 5 || mes == 7 ||
+            mes == 8 || mes == 10 || mes == 12) {
+            dias = 31;
+         }
+         else if(mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+            dias = 30;
+         }
+         else {  // Só sobrou fevereiro
+            dias = 28;
+         }
+         alert(`O mês informado tem ${dias} dias.`);
+      }
+   
+   </script>
+</head>
+<body>
+   <h1>Título da página</h1>
+   <p>Parágrafo de texto</p>  
+</body>
+</html>

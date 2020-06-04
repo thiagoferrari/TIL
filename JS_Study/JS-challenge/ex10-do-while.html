@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+   <head>
+      <meta charset="utf-8">
+      <title>Minha primeira página HTML</title>
+      <script>
+      
+         'use strict'; // Modo chato do JS
+
+         /*
+
+            Escreva um programa que permita ao usuário informar
+            quantos números quiser até que seja informado o valor 0.
+            Depois disso, exiba a soma de todos os números informados.
+            Utilize do..while.
+
+         */
+
+         let soma = 0, num = 0;
+
+         do {
+            
+            // Valida a entrada do usuário, aceitando apenas números válidos
+            do {
+               num = Number(prompt('Número a ser adicionado à soma:'));
+            } while (isNaN(num));
+            
+            soma += num;
+
+         } while (num != 0);
+
+         document.write('A soma dos números informados é ' + soma);
+                  
+      </script>
+   </head>
+
+   <body>
+      <h1>Título</h1>
+      <p>Isto é um parágrafo</p>
+   </body>
+</html>

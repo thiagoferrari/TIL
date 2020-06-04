@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+      <!-- Ajusta a acentuação -->
+      <meta charset="utf8" />
+      <title>Página-modelo HTML</title>
+
+      <script type="text/javascript">
+
+      'use strict'; // Modo "chato" do Javascript
+      
+      /*
+
+         Escreva um programa que obtenha uma string do usuário e,
+         em seguida, a exiba invertida (de trás para frente). Coloque
+         a lógica de inversão dentro de uma função. Utilize um loop for.
+
+      */
+
+      // Método 1: inversão com for
+        function inverterStr(str) {
+         let inv = '';
+         for(let i = str.length - 1; i >= 0; --i) {
+            // Inversão feita caractere a caractere
+            inv += str.charAt(i);
+         }
+         return inv;
+      }
+
+      let entrada = prompt('Informe a string a ser invertida:');
+      
+      alert(inverterStr(entrada));
+
+      // Método 2: string -> vetor -> reverse() -> string
+      // split() e join() utilizam uma string vazia como separador
+      let saida = entrada.split('').reverse().join('');
+
+      alert(saida);      
+
+      </script>
+
+   </head>
+   
+   <body>
+      <h1>Título da página</h1>
+      <p>Isto é um parágrafo.</p>
+   </body>
+
+</html>

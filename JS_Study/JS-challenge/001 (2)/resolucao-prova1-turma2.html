@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Página modelo</title>
+   <script>
+      'use strict'; // Modo "chato" do Javascript
+   
+   </script>
+</head>
+<body>
+   <h1>Cálculo de raízes de equações do 2º grau</h1>
+   
+   <label>Valor de A</label>
+   <input id="a" type="number">
+
+   <label>Valor de B</label>
+   <input id="b" type="number">
+
+   <label>Valor de C</label>
+   <input id="c" type="number">
+
+   <button id="calcular">Calcular</button>
+
+   <div id="resultado"></div>
+
+   <script>
+   
+      // Capturar os elementos HTML
+      // Poderia ser também document.getElementById('a');
+      const elemA = document.querySelector('#a');
+      const elemB = document.querySelector('#b');
+      const elemC = document.querySelector('#c');
+      const elemCalcular = document.querySelector('#calcular');
+      const elemResultado = document.querySelector('#resultado');
+
+      function calcular() {
+
+         let a = Number(elemA.value);
+         let b = Number(elemB.value);
+         let c = Number(elemC.value);
+
+         // Formas alternativas de calcular o delta em JS:
+         // let delta = b * b - 4 * a * c;
+         // let delta = Math.pow(b, 2) - 4 * a * c;
+         let delta = b ** 2 - 4 * a * c;
+         console.log('delta = ' + delta);
+
+         if (delta > 0) {
+            let x1 = (-b + Math.sqrt(delta)) / (2 * a);
+            let x2 = (-b - Math.sqrt(delta)) / (2 * a);
+            
+            elemResultado.innerText = `Raízes: x' = ${x1.toLocaleString('pt-BR')}, x" = ${x2.toLocaleString('pt-BR')}`;
+         }
+         else if (delta == 0) {
+            let x = -b / (2 * a);
+
+            elemResultado.innerText = `Raiz: x = ${x.toLocaleString('pt-BR')}`;
+         }
+         else {
+            elemResultado.innerText = 'NÃO HÁ RAÍZES REAIS POSSÍVEIS';
+         }
+      }
+
+      elemCalcular.addEventListener('click', calcular);
+
+   </script>
+
+</body>
+</html>

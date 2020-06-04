@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf8" />
+      <title>Página de Teste</title>
+      <script>
+
+         'use strict'; // Modo "chato" do Javascript
+         
+         /*
+            Peça para o usuário informar dois números (você terá que fazer
+            dois prompts) e depois, usando document.write(), escreva o resultado
+            das operações de soma, subtração, multiplicação, divisão e exponenciação
+            entre os dois números informados.
+         */
+
+         // parseInt() tenta converter uma string no valor
+         // numérico inteiro correspondente
+         let n1 = parseInt(prompt('Informe o primeiro número:'));
+         let n2 = parseInt(prompt('Informe o segundo número:'));
+
+         // Exibição da soma
+         let soma = n1 + n2;
+         // <br> força a quebra de linha no document.write()
+         document.write('A soma é ' + soma + '<br>');
+
+         // Subtração
+         let subtr = n1 - n2;
+         document.write('A diferença é ' + subtr + '<br>');
+
+         // Multiplicação
+         let mult = n1 * n2;
+         document.write('O produto é ' + mult + '<br>');
+
+         // Divisão
+         let div = n1 / n2;
+         document.write('O quociente é ' + div + '<br>');
+
+         // Exponenciação
+         let expon = n1 ** n2;
+         document.write('n1 elevado a n2 é ' + expon + '<br>');
+
+
+      </script>
+   </head>
+   <body>
+      <!-- Isto é um comentário HTML --> 
+      <h1>Título da página</h1>
+      <p>Isto é um parágrafo.</p>
+   </body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Página modelo</title>
+   <script>
+      'use strict'; // Modo "chato" do Javascript
+   
+   </script>
+</head>
+<body>
+   <h1>Cálculo de área</h1>
+   
+   <input id="medida1" type="number">
+   
+   <input id="medida2" type="number">
+   
+   <select id="forma">
+      <option>(Selecione)</option>
+      <option>Retângulo</option>
+      <option>Triângulo</option>
+      <option>Elipse</option>
+   </select>
+
+   <button id="calcular">Calcular</button>
+
+   <div id="resultado"></div>
+     
+   <script>
+   
+      // Capturar os elementos HTML
+      // Poderia ser também document.getElementById('medida1');
+      const elemMedida1 = document.querySelector('#medida1');
+      const elemMedida2 = document.querySelector('#medida2');
+      const elemForma = document.querySelector('#forma');
+      const elemCalcular = document.querySelector('#calcular');
+      const elemResultado = document.querySelector('#resultado');
+
+      function calcular() {
+         
+         // Capturando os VALORES dos elementos HTML
+         let medida1 = Number(elemMedida1.value);
+         let medida2 = Number(elemMedida2.value);
+         let forma = elemForma.selectedIndex;
+
+         let resultado;
+
+         switch(forma) {
+            case 1: // Retângulo
+               resultado = medida1 * medida2;
+               break;
+
+            case 2: // Triângulo
+               resultado = medida1 * medida2 / 2;
+               break;
+
+            case 3: // Elipse
+               // Para um cálculo mais exato: medida1 * medida2 * Math.PI
+               resultado = medida1 * medida2 * 3.1416;
+               break;
+
+            default:
+               alert('Selecione uma forma geométrica válida!');
+               forma.focus();
+         }
+
+         if(resultado != undefined) {
+            elemResultado.innerText = resultado.toLocaleString('pt-BR');
+         }
+
+      }
+
+      elemCalcular.addEventListener('click', calcular);
+      
+   </script>
+
+</body>
+</html>

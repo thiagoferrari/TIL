@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>PROVA 02</title>
+   <style>
+      html,
+      body {
+         position: absolute;
+         height: 100%;
+         width: 100%;
+         margin: 0;
+         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+         font-size: 12pt;
+         line-height: 18pt;
+         color: #444;
+      }
+
+      body {
+         background-color: maroon;
+         background-image: linear-gradient(tomato 50%, maroon);
+         background-repeat: no-repeat;
+         padding: 0;
+      }
+
+      section {
+         background: whitesmoke;
+         margin: 3%;
+         padding: 25px;
+         border-radius: 20px;
+         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+         display: flex;
+         flex-direction: column;
+         justify-content: space-around;
+      }
+
+      h1 {
+         font-size: 2rem;
+         text-align: center;
+         color: tomato;
+         text-shadow: 2px 2px 2px rgba(128, 0, 0, 0.5);
+
+      }
+
+      section div {
+         padding: 10px;
+         width: 50%;
+         max-width: 90%;
+         min-width: 250px;
+         margin: 1% auto;
+      }
+
+      div label {
+         display: block;
+      }
+
+      #botoes {
+         display: flex;
+         justify-content: space-around;
+
+      }
+
+      button {
+         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+         font-size: 12pt;
+         padding: 8px;
+         border-radius: 8px;
+         color: white;
+      }
+
+      #salvar {
+         background-color: tomato;
+      }
+
+      #visualizar {
+         background-color: maroon;
+      }
+
+      #relatorio {
+         background-color: cornsilk;
+         padding: 10px;
+         border-radius: 10px;
+      }
+
+      label {
+         color: maroon;
+      }
+
+      input {
+         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+         font-size: 12pt;
+         border-radius: 4px;
+         padding: 4px;
+         border: 1px dotted tomato;
+      }
+   </style>
+
+</head>
+
+<body>
+   <section>
+      <h1>Cadastro de pessoas</h1>
+
+      <div>
+         <label>Nome</label>
+         <input id="nome" size="50">
+      </div>
+
+      <div>
+         <label>Data de nascimento</label>
+         <input type="number" id="dia" placeholder="Dia" min="1" max="31">
+         <input type="number" id="mes" placeholder="Mês" min="1" max="12">
+         <input type="number" id="ano" placeholder="Ano" min="1910" max="2019">
+      </div>
+
+      <div id="botoes">
+         <button id="salvar">Salvar</button>
+         <button id="visualizar">Visualizar</button>
+      </div>
+
+      <div id="relatorio">
+
+   </section>
+
+   <script>
+      'use strict'; // Modo "chato" do Javascript
+
+      function calcIdade(diaHoje, mesHoje, anoHoje, diaNasc, mesNasc, anoNasc) {
+         let idade = anoHoje - anoNasc;
+
+         // E então fazemos o ajuste de acordo com o dia e o mês
+         if (mesHoje < mesNasc || (mesHoje == mesNasc && diaHoje < diaNasc)) {
+            idade--; 
+
+         }
+         return idade;
+      }
+
+      // Instrução 4
+      const faixaEtaria = function(idade) {
+         if(idade <= 12) {
+            return 'Criança';
+         }
+         else if(idade > 12 && idade < 18) {
+            return 'Adolescente';
+         }
+         else if(idade >= 18 && idade < 60) {
+            return 'Adulto(a)';
+         }
+         else {
+            return 'Idoso(a)';
+         }
+      }
+
+      // Instrução 5
+      const elemNome = document.querySelector('#nome');
+      const elemDia = document.querySelector('#dia');
+      const elemMes = document.querySelector('#mes');
+      const elemAno = document.querySelector('#ano');
+      const elemSalvar = document.querySelector('#salvar');
+      const elemVisualizar = document.querySelector('#visualizar');
+      const elemRelatorio = document.querySelector('#relatorio');
+
+      // Instrução 6
+      const pessoas = [];
+
+      // Instrução 7
+      function salvar() {
+         let nome = elemNome.value;
+         let dia = parseInt(elemDia.value);
+         let mes = parseInt(elemMes.value);
+         let ano = parseInt(elemAno.value);
+
+         // Validações
+         if(nome.trim() == '') {
+            alert('Informe o nome!');
+            elemNome.focus();
+            return;
+         }
+         if(isNaN(dia)) {
+            alert('Informe o dia do nascimento!');
+            elemDia.focus();
+            return;
+         }
+         if(isNaN(mes)) {
+            alert('Informe o mês do nascimento!');
+            elemMes.focus();
+            return;
+         }
+         if(isNaN(ano)) {
+            alert('Informe o ano do nascimento!');
+            elemAno.focus();
+            return;
+         }
+
+         let pessoa = {
+            nome: nome,
+            dia: dia,
+            mes: mes,
+            ano: ano
+         };
+
+         pessoas.push(pessoa);
+
+         elemNome.value = '';
+         elemDia.value = '';
+         elemMes.value = '';
+         elemAno.value = '';
+
+         elemNome.focus();
+
+      }
+      elemSalvar.addEventListener('click', salvar);
+
+      // Instrução 8
+      function visualizar() {
+         for(let p of pessoas) {
+            let idade = calcIdade(11, 12, 2019, p.dia, p.mes, p.ano);
+            let faixa = faixaEtaria(idade);
+            let info = `
+               Nome: ${p.nome}<br>
+               Data de nascimento: ${p.dia}/${p.mes}/${p.ano}<br>
+               Idade: ${idade}<br>
+               Faixa etária: ${faixa}
+            `;
+            
+            // Instrução 9
+            let parag = document.createElement('p');
+            parag.innerHTML = info;
+            elemRelatorio.appendChild(parag);
+
+            let traco = document.createElement('hr');
+            elemRelatorio.appendChild(traco);
+         }
+      }
+      elemVisualizar.addEventListener('click', visualizar)
+
+   </script>
+
+</body>
+
+</html>

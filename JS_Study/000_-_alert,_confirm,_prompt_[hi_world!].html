@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Olá, mundo!</title>
+   <style>
+      h1 {
+         font-family: "Comic Sans", "Trebuchet MS", Arial, sans;
+         color: blue;
+      }
+      p {
+         text-align: center; /* Centraliza a linha */
+         font-weight: bold;
+      }
+      body {
+         background-color:tan;
+      }
+   </style>
+   <script>
+      //alert('Olá, usuário!')
+
+      // prompt(): capta entrada de dados do usuário
+      let nome = prompt('Qual é o seu nome?')
+
+      // Exibe uma mensagem em uma caixa de diálogo
+      alert('Olá, ' + nome + '!') // Não precisa de ;
+
+      // Exibe uma mensagem no início da página
+      document.write('Seja bem-vindo(a), ' + nome + '!')
+      
+      /* Exibe uma mensagem no console Javascript
+         do navegador (tecla F12) */
+      console.log('Será que ' + nome + ' vai descobrir esta mensagem?')
+   </script>
+</head>
+<body>
+   <!-- Isto é um comentário 
+      em HTML -->
+   <h1>Minha primeira página HTML</h1>
+   <p>Olá, mundo!</p>
+</body>
+</html>

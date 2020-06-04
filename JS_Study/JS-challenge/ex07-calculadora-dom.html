@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Página modelo</title>
+   </head>
+<body>
+   <h1>Calculadora universal</h1>
+      
+   <input id="num1" type="number" step="0.1" value="0">
+   
+   <select id="operador">
+      <option>(Selecione)</option>
+      <option>adicionado a</option>
+      <option>menos</option>
+      <option>multiplicado por</option>
+      <option>dividido por</option>
+      <option>elevado a</option>
+      <option>resto da divisão por</option>
+   </select>
+   
+   <input id="num2" type="number" step="0.1" value="0">
+   
+   <button id="calc">Calcular</button>
+
+   <div id="resultado"></div>
+
+   <script>
+
+      const elem_num1 = document.getElementById('num1');
+      const elem_num2 = document.getElementById('num2');
+      const elem_operador = document.getElementById('operador');
+      const elem_resultado = document.getElementById('resultado');
+      const elem_calc = document.getElementById('calc');
+
+      function calcular() {
+
+         // value vem como string, mesmo quando type="number"
+         let num1 = Number(elem_num1.value);
+         let num2 = Number(elem_num2.value);
+
+         // selectedIndex é a ORDEM da opção selecionada
+         // (contagem começa em 0)
+         let op = elem_operador.selectedIndex;
+      
+         let resultado;
+
+         switch(op) {
+            case 1:
+               resultado = num1 + num2;
+               break;
+            
+            case 2:
+               resultado = num1 - num2;
+               break;
+
+            case 3:
+               resultado = num1 * num2;
+               break;
+
+            case 4:
+               resultado = num1 / num2;
+               break;
+
+            case 5:
+               resultado = num1 ** num2;
+               break;
+
+            case 6:
+               resultado = num1 % num2;
+               break;
+
+            default:
+               alert('Selecione uma operação válida!');
+               elem_operador.focus();
+         }
+         
+         if (resultado != undefined) {
+            // Resultado aparece na div
+            // toLocaleString('pt-BR'): exibe o separador
+            // decimal como vírgula
+            elem_resultado.innerText = resultado.toLocaleString('pt-BR');
+         }
+      }
+
+      elem_calc.addEventListener('click', calcular);
+
+      elem_num1.focus();
+      elem_num1.select();
+
+   </script>
+
+</body>
+</html>

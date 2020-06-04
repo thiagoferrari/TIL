@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Página modelo</title>
+</head>
+<body>
+   <h1>Mês</h1>
+   <p>Escolha o mês:</p>
+
+   <select id="mes">
+      <option>(Selecione)</option>
+   </select>
+   
+   <div id="resultado"></div>
+   
+   <script>
+      'use strict'; // Modo "chato" do Javascript
+
+      /*
+
+         No documento HTML, coloque um elemento <select> (veja ex07) tendo
+         como opções os números de 1 a 12, e uma <div> de resultado.
+
+         Em JS, escreva uma função que receba um número entre 1 e 12 e retorne
+         o nome do mês correspondente (janeiro, fevereiro, etc.)
+
+         Escreva outra função que leia qual o valor selecionado no <select> e 
+         efetue uma chamada à função anterior, passando esse valor como parâmetro
+         e capturando o resultado. Escreva o resultado na <div>.
+
+         Finalmente, associe a segunda função ao evento 'change' do <select>.
+
+      */
+
+      // Captura dos elementos
+      let elemMes = document.querySelector('#mes');
+      let elemResultado = document.querySelector('#resultado');
+
+      // Criação das <option> do <select>
+      let opt;
+
+      for(let i = 1; i <= 12; i++) {
+         opt = document.createElement('option');
+         opt.innerText = i;
+         elemMes.appendChild(opt);
+      }
+
+      // Função que recebe 1 argumento e tem valor de retorno
+      function nomeMes(numMes) {
+         const nomesMeses = [
+            'Janeiro', 'Fevereiro', 'Março', 
+            'Abril', 'Maio', 'Junho',
+            'Julho', 'Agosto', 'Setembro',
+            'Outubro', 'Novembro', 'Dezembro'
+         ];
+         // Descontando 1 porque vetores começam no índice 0
+         return nomesMeses[numMes - 1];
+      }
+
+      // Função que não recebe argumentos nem tem valor de retorno
+      function selectMudou() {
+         
+         elemResultado.innerText = '';
+
+         let valorSel = elemMes.selectedIndex; // Índice da opção selecionada
+
+         if(valorSel == 0) { // (Selecione)
+            alert('Opção inválida!');
+         }
+         else {
+            let textoMes = nomeMes(valorSel); // Chamada à função anterior
+            elemResultado.innerText = textoMes;
+         }
+      }
+
+      elemMes.addEventListener('change', selectMudou);
+   
+   </script> 
+
+</body>
+</html>

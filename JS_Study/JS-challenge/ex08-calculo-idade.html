@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Página modelo</title>
+   <style>
+      div {
+         /* border: 1px dotted red; */
+         /* Elemento de bloco passa se comportar como
+            elemento em-linha */
+         display: inline-block;
+      }
+      label {
+         /* Elemento em-linha passa a se comportar como
+            elemento de bloco */ 
+         display: block; 
+      }
+      #resultado {
+         display: block;
+      }
+   </style>
+</head>
+<body>
+   <h1>Cálculo de idade</h1>
+   <p>Informe sua data de nascimento e calcularemos sua idade em anos.</p>
+   
+   <div>
+      <label>Dia</label>
+      <input id="dia" type="number" value="1" min="1" max="31">
+   </div>
+
+   <div>
+      <label>Mês</label>
+      <input id="mes" type="number" value="1" min="1" max="12">
+   </div>
+   
+   <div>
+      <label>Ano</label>
+      <input id="ano" type="number" value="1900" min="1900" max="2019">
+   </div>
+
+   <div>
+      <button id="calcular">Calcular</button>
+   </div>
+
+   <div id="resultado"></div>
+
+   <script>
+         
+      'use strict'; // Modo "chato" do Javascript
+
+      //const elDia = document.getElementById('dia');
+      
+      // querySelector() com argumento iniciado com #
+      // equivale a getElementById()
+      const elDia = document.querySelector('#dia');
+      const elMes = document.querySelector('#mes');
+      const elAno = document.querySelector('#ano');
+
+      const elCalcular = document.querySelector('#calcular');
+
+      const elResultado = document.querySelector('#resultado');
+
+      function calcular() {
+         let diaNasc = Number(elDia.value);
+         let mesNasc = Number(elMes.value);
+         let anoNasc = Number(elAno.value);
+
+         // Data e hora atuais do computador
+         let agora = new Date(Date.now());
+
+         let diaHoje = agora.getDate(); // Isola o dia
+         let mesHoje = agora.getMonth() + 1; // Isola o mês (janeiro é 0)
+         let anoHoje = agora.getFullYear() // Isola o ano
+
+         console.log(agora);
+         console.log(diaHoje);
+         console.log(mesHoje);
+         console.log(anoHoje);
+
+         // Começamos fazendo a subtração simples dos anos
+         let idade = anoHoje - anoNasc;
+
+         // E então fazemos o ajuste de acordo com o
+         // dia e o mês
+         if(mesHoje < mesNasc || (mesHoje == mesNasc && diaHoje < diaNasc)) {
+            idade--; // idade = idade - 1
+
+         }
+         elResultado.innerText = `Sua idade em anos: ${idade}.`;
+      
+      }
+      
+      elCalcular.addEventListener('click', calcular);
+
+   </script>
+</body>
+</html>

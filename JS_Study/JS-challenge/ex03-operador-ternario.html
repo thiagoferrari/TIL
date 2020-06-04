@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Página modelo</title>
+   <script>
+      'use strict'; // Modo "chato" do Javascript
+
+      /*
+
+         Peça ao usuário para informar dois números, os quais devem
+         ser diferentes entre si. Emita uma mensagem de erro caso
+         os dois números sejam iguais.
+
+         Utilize o operador ternário para determinar qual dos
+         dois números é maior e informe ao usuário.
+
+         Em seguida, peça ao usuário para informar sua nota na prova
+         (0 a 10). Utilizando o operador ternário, determine se ele foi
+         aprovado (nota igual ou superior a 6) ou reprovado. Informe o
+         resultado ao usuário.
+         
+      */
+
+      let num1, num2, maior;
+
+      // Como os números não precisam ser inteiros, pode-se usar
+      // o conversor Number
+      num1 = Number(prompt('Informe o primeiro número:'));
+      num2 = Number(prompt('Informe o segundo número:'));
+
+      if(isNaN(num1) || isNaN(num2)) {
+         alert('Pelo menos um dos valores informados NÃO É um número!');
+      }
+      else if(num1 == num2) {
+         alert('Os dois números devem ser diferentes entre si!');
+      }
+      else {
+         // Determinando o maior número com o operador ternário
+         maior = num1 > num2 ? num1 : num2;
+         alert(`O maior dos números informados é ${maior}.`);
+      }
+
+      let nota, resultado;
+
+      nota = Number(prompt('Informe sua nota na prova (0 a 10):'));
+
+      if(isNaN(nota)) {
+         alert('O valor informado NÃO É um número válido!');
+      }
+      else if(nota < 0 || nota > 10) {
+         alert('A nota informada deve estar na faixa entre 0 e 10!');
+      }
+      else {
+         // Resultado determinado pelo operador ternário
+         resultado = nota >= 6 ? 'APROVADO(A)' : 'REPROVADO(A)';
+         alert(`De acordo com sua nota na prova, você está ${resultado}.`);
+      }
+
+   </script>
+</head>
+<body>
+   <h1>Título da página</h1>
+   <p>Parágrafo de texto</p>  
+</body>
+</html>

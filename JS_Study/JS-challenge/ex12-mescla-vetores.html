@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf8" />
+      <title>Página de Teste</title>
+      <script>
+
+         'use strict'; // Modo "chato" do Javascript
+
+      /*
+         Crie dois vetores, um com números e outro com strings, contendo 10
+         elementos cada um. Monte um terceiro vetor,
+         intercalando os elementos do primeiro e do segundo vetor. O primeiro
+         vetor deve ser percorrido na ordem ascendente e o segundo em ordem
+         descendente.
+      */
+     
+      let vet1 = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+      let vet2 = ['Jurema', 'Ivanislei', 'Hermenegildo', 'Gelda', 'Fabiédson', 
+         'Elismara', 'Denisvander', 'Cleusdete', 'Brenaldo', 'Asdrúbal'];
+      let vet3 = [];
+
+      // Solução usando o comprimento do vetor
+      let tam = vet2.length;
+
+      for(let i = 0; i < vet2.length; i++) {
+         vet3.push(vet1[i]);
+         vet3.push(vet2[tam - i - 1]);
+      }
+
+      console.log(vet3);
+
+      let vet4 = [];
+
+      // Solução usando DUAS variáveis de controle
+      for(let i = 0, j = vet2.length - 1; i < vet2.length && j >= 0; i++, j--) {
+         vet4.push(vet1[i]);
+         vet4.push(vet2[j]);
+      }
+
+      console.log(vet4);
+
+      </script>
+   </head>
+   <body>
+      <!-- Isto é um comentário HTML --> 
+      <h1>Título da página</h1>
+      <p>Isto é um parágrafo.</p>
+   </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principals Atributtes</title>
+</head>
+<body>
+    <h1>Principals Atributtes</h1>
+
+accept-charset: define which charset will be used by the form. press control+U to see HTML source code:
+    <form accept-charset="utf-8"></form>
+<br>
+autocomplete: when we define the autocomplete attribute as we use the fields in a form the browser will start to suggest values for what we are typing, based on values that were typed previously. press control+U to see HTML source code:
+<form autocomplete="on">
+    <input type="text" name="email">
+</form>
+<br>
+action: specifies where the form data will be sent. It will usually be a page link on the server
+<form action="http://www.nosso-servidor.com.br/cadastro/usuario.php"></form>
+<br>
+method: Specifies the HTTP method that will be used for the submission (get or post):
+<form action="http://www.nosso-servidor.com.br/cadastro/usuario.php" method="post"></form>
+<br>
+enctype(only works for POST type methods): Specifies when form data needs to be encoded before it is sent to the server.
+<form action="http://www.nosso-servidor.com.br/cadastro/usuario.php" method="post" enctype="multipart/form-data"></form>
+<br>
+required: used when informing the browser that an element of the form is mandatory. exclusive use with input, select and textarea elements.
+<form method="post" action="" >
+    <label for="nome">Nome: </label><input id="nome" type=text required name=nome>
+    <input type=submit value="OK">
+</form>
+<br>
+type=”email”: no input means setting the field to receive a valid email address. (does not check if the email entered exists), but if the format is correct.
+<form method="post" action="">
+    <label for="email">E-mail: </label><input id="email" type=email required name=email>
+    <input type=submit value="OK">
+    </form>
+<br>
+pattern: Using the 'pattern' attribute you can require the user to enter values in a pattern made with regular expression, that is, what is typed in the compo input must satisfy the regular expression created by the developer.
+<form>
+    <label>Telefone: <input required name="tel" pattern="\([0-9]{2}\)[\s][0-9]{5}-[0-9]{4}"></label> (xx) xxxx-xxxx
+    <input type=submit value=Enviar>
+   </form>
+<br>
+novalidate: specifies that form elements should not be validated when submitted even if they have 'required', type with 'email', 'url', etc.
+<form action=" " novalidate="novalidate">
+    <label>nome: <input name="nome" required></label>
+    <label>email: <input name="email" type="email" required></label>
+    <input type="submit" name="action" value="Enviar">
+  </form>
+  <br>
+  target: As with the <b>'< a >'</b> tag, the target indicates where the target page will open.
+  <form target="_blank"></form>
+<br>
+<input list="browsers" name="browser">
+  <datalist id="browsers">
+    <option value="Internet Explorer">
+    <option value="Firefox">
+    <option value="Chrome">
+    <option value="Opera">
+    <option value="Safari">
+  </datalist>
+
+</body>
+</html>

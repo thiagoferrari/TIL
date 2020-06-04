@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf8" />
+      <title>Página de Teste</title>
+      <script>
+
+         'use strict'; // Modo "chato" do Javascript
+
+         /*
+            Utilizando um loop for, calcule a somatória
+            de todos os números entre 1 e 1000.
+         */
+         
+         let soma = 0; // Importante inicializar em 0
+         
+         for(let x = 1; x <= 1000; x++) {
+            soma += x; // Igual a soma = soma + x;
+         }
+
+         document.write(`A soma é ${soma}.`);
+
+         // Traço separador
+         document.write('<hr>');
+
+         soma = 0;
+
+         for(let x = 1000; x > 0; x--) {
+            soma += x;
+         }
+
+         document.write(`A soma (cálculo decrescente) é ${soma}.`);
+
+      </script>
+   </head>
+   <body>
+      <!-- Isto é um comentário HTML --> 
+      <h1>Título da página</h1>
+      <p>Isto é um parágrafo.</p>
+   </body>
+</html>

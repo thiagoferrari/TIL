@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf8" />
+      <title>Página de Teste</title>
+      <script>
+
+         'use strict'; // Modo "chato" do Javascript
+
+         /*
+
+            Peça ao usuário para informar dois números (que podem ser reais)
+            e um operador matemático. Efetue a operação e mostre o resultado
+            dela.
+
+            Operações matemáticas permitidas:
+            + -> adição
+            - -> subtração
+            *, x ou X -> multiplicação
+            / ou : -> divisão
+            %: resto da divisão (módulo)
+
+            Lembre-se de que a divisão por 0 (zero) é uma operação inválida e
+            não deve ser permitida!
+
+         */
+
+         // parseFloat(): lê uma string e TENTA converter para um valor numérico com
+         // casas decimais. Entende o ponto (.) como separador decimal
+         
+         // Entrada dos dois números reais
+         let n1 = parseFloat(prompt('Primeiro número (use ponto como separador decimal): '));
+         let n2 = parseFloat(prompt('Segundo número (use ponto como separador decimal:'));
+
+         // Entrada do operador
+         let op = prompt('Informe o operador aritmético (+, -, *, x, X, /, : ou %):');
+
+         let res; // Resultado
+
+         // Seleção do operador via if... else if... else
+         if(op == '+') {
+            res = n1 + n2;
+         }
+         else if(op == '-') {
+            res = n1 - n2;
+         }
+         else if(op == '*' || op == 'x' || op == 'X') {
+            res = n1 * n2;
+         }
+         else if(op == '/' || op == ':') {
+            if (n2 == 0) {
+               alert('Não é possível dividir por zero!');
+            }
+            else {
+               res = n1 / n2;
+            }
+         }
+         else if(op == '%') {
+            res = n1 % n2;
+         }
+         else {
+            alert('Este não é um operador válido');
+         }
+
+         document.write(`O resultado de ${n1} ${op} ${n2} é igual a ${res}.`);
+
+      </script>
+   </head>
+   <body>
+      <!-- Isto é um comentário HTML --> 
+      <h1>Título da página</h1>
+      <p>Isto é um parágrafo.</p>
+   </body>
+</html>

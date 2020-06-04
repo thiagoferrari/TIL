@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+      <!-- Ajusta a acentuação -->
+      <meta charset="utf8" />
+      <title>Página-modelo HTML</title>
+
+      <style>
+         
+         table {
+            border-collapse: collapse;
+         }
+
+         td {
+            border: 1px solid black;
+         }
+
+      </style>
+
+   </head>
+   
+   <body>
+      <h1 id="cabec">Título da página</h1>
+      <p>Isto é um parágrafo.</p>
+      <p>Isto é um parágrafo.</p>
+      <p>Isto é um parágrafo.</p>
+      <p>Isto é um parágrafo.</p>
+
+      <table>
+         <tr>
+            <td>
+               34
+            </td>
+            <td>
+               81
+            </td>
+            <td>
+               17
+            </td>
+         </tr>
+         <tr>
+            <td>
+               maçãs
+            </td>
+            <td>
+               bananas
+            </td>
+            <td>
+               peras
+            </td>
+         </tr>
+      </table>
+
+   </body>
+
+   <script type="text/javascript">
+ 
+      'use strict';
+      
+      /*
+
+         1. Altere o texto do cabeçalho para "Estoque de frutas"
+         2. Coloque textos explicativos em todos os parágrafos
+         3. Some a quantidade de frutas da primeira linha e informe
+            em um alert()
+         4. Passe o nome das frutas da segunda linha para maiúsculas   
+
+      */
+
+      // 1. Altere o texto do cabeçalho para "Estoque de frutas"
+      
+      let h1 = document.body.querySelector('h1');
+      // Alternativa a querySelector('h1'): getElementsByTagName('h1')[0]
+      h1.innerText = 'Estoque de frutas';
+
+      // 2. Coloque textos explicativos em todos os parágrafos
+
+      let parags = document.body.querySelectorAll('p');
+      // Alternativa a querySelectorAll('p'): getElementsByTagName('p')
+
+      parags[0].innerText = 'Isto é um exemplo de manipulação de DOM.';
+      parags[1].innerText = 'O texto desses parágrafos foi alterado via Javascript.';
+      parags[2].innerText = 'A tabela abaixo também será manipulada via Javascript.';
+      parags[3].innerText = 'FIM DAS EXPLICAÇÕES.';
+
+      // 3. Some a quantidade de frutas da primeira linha e informe em um alert()
+      let soma = 0;
+
+      // Encontrando a tabela
+      let tabela = document.body.querySelector('table');
+
+      // Encontrando as linhas da tabela
+      let linhasTab = tabela.querySelectorAll('tr');
+
+      // Somando os elementos da primeira linha da tabela
+      for(let i = 0; i < linhasTab[0].children.length; i++) {
+         soma += parseInt(linhasTab[0].children[i].innerText);
+      }
+      alert(`Total de frutas: ${soma}`);
+
+      // Outra forma de fazer a soma
+      soma = 0;
+      let celsLin1 = linhasTab[0].querySelectorAll('td');
+
+      for(let i = 0; i < celsLin1.length; i++) {
+         soma += parseInt(celsLin1[i].innerText);
+      }
+      alert(`Total de frutas: ${soma}`);
+
+      // 4. Passe o nome das frutas da segunda linha para maiúsculas
+      for(let i = 0; i < linhasTab[1].children.length; i++) {
+         linhasTab[1].children[i].innerText = linhasTab[1].children[i].innerText.toUpperCase();
+      }
+
+   </script>
+
+
+</html>
