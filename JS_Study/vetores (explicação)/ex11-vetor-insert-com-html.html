@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    input, div, button {
+        display: block;
+        margin-bottom: 10px;
+        font-family: 'Segoe UI';
+    }
+</style>
+<body>
+    <input type="number">
+    <button>insere!</button>
+    <div>12</div>
+</body>
+<script>
+    // Liga o modo "chato" do JS
+    // Não deixa usar variáveis sem cons ou var
+    'use strict'
+
+       /*
+       Na parte HTML, coloque um input numérico com seu label, um botão
+       "Inserir" e uma div para exibir os resultados.
+       
+       */
+
+       /*
+       Na parte JS, declare um vetor vazio.
+       Na função associada ao botão, verifique se o valor informado no 
+       input é um número. Caso positivo, insira este número EM ORDEM 
+       CRESCENTE dentro do vetor (lembre-se de que o usuário poderá
+       inserir quantos números quiser dentro do vetor, e que pode já
+       haver outros números no vetor inseridos anteriormente). Ignore 
+       números repetidos.
+
+       */
+    const query_body = document.querySelector('body')
+    const query_input = document.querySelector('input')
+    const query_botao = document.querySelector('button')
+    const query_div = document.querySelectorAll('div')
+
+    let vet = []
+    let valido = true
+
+    query_input.focus()
+    function func_botao() {
+    let num = parseFloat(query_input.value)
+
+        if (isNaN(num)) {
+            alert('este não é um número!')
+            query_input.focus()
+            valido = false
+
+        } else if (query_input.value.trim() == '') {
+            alert('este não é um número!')
+            query_input.focus()
+            valido = false
+
+       // } else if (query_div.innerHTML.trim() == '') {
+        //        query_div.innerHTML = query_input.value
+        
+        } else {
+            let i = 0
+            let num_array = parseFloat(query_div[i].innerText)
+            
+            for (i = 0; i < query_div.length; i++) {
+                if (num > num_array) {
+                    num_novo = document.createElement('div')
+                    num_novo.innerText = num_array
+                    body.appendChild(num_novo)
+
+            }
+                console.log(query_div[i].innerText)
+                
+               // splice(2, 0, 'caqui')
+          //  vet.push(num)
+         //   console.log(vet)
+
+            }
+  
+        }
+    }
+       /*
+       Para colocar o número no local correto, você deverá percorrer
+       o vetor com um loop for, verificando se o número que já está na
+       posição é menor ou maior que o número que está sendo inserido.
+       Quando encontrar um número MENOR do que o que será inserido,
+       você terá encontrado a posição correta para inserir em ordem.
+       Faça a inserção com splice() e saia do loop com break.
+       A cada inserção, exiba os elementos do vetor dentro da div de 
+       resultados.
+       */
+
+       query_botao.addEventListener('click', func_botao)
+
+ </script>
+</html>
