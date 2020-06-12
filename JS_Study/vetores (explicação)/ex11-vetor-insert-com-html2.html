@@ -15,11 +15,7 @@
 <body>
     <input type="number">
     <button>insere!</button>
-    <div id="numeros">
-        <div id="elementos">
-            <div id="elemento"></div>
-        </div>
-    </div>
+    <div id="elementos">0,2</div>
     
 </body>
 <script>
@@ -43,26 +39,18 @@
        números repetidos.
 
        */
-    const query_body = document.querySelector('body')
+    const query_elementos = document.querySelector('#elementos')
     const query_input = document.querySelector('input')
     const query_botao = document.querySelector('button')
 
-
-
-    let cache
+    let vet = []
     let valido = true
 
     query_input.focus()
     function func_botao() {
+    let novo_elem = parseFloat(query_input.value)
 
-            const num_input = parseFloat(query_input.value)
-            const query_elementos = document.querySelector('#elementos')
-            const query_elemento = document.querySelectorAll('#elemento')
-            const query_numeros = document.querySelector('#numeros')
-            const cache = query_elementos
-
-
-        if (isNaN(num_input)) {
+        if (isNaN(novo_elem)) {
             alert('este não é um número!')
             query_input.focus()
             valido = false
@@ -72,43 +60,27 @@
             query_input.focus()
             valido = false
 
-        } else if (query_elemento[0].innerHTML == '') {
-            query_elemento[0].innerHTML = query_input.value
- 
+        } else if (query_elementos.innerHTML == '') {
+            query_elementos.innerHTML = query_input.value
 
         } else {
+            let atuais_elem = []
+            atuais_elem.push(query_elementos.innerHTML)
+            atuais_elem.push(123)
 
-           
-            //remove elementos
-            query_elementos.remove();
+
+
+
+            console.log(atuais_elem.join(';'))
+
             
-            //criar div para insert em nova ordem
-            let div = document.createElement('div')
-            div.id = 'elementos'
-            query_numeros.appendChild(div)
 
-            //pegar essa nova div vazia e cria outra dentro :
-            let query_elementos = document.querySelector('#elementos')
-            let new_value = document.createElement('div')
-            new_value.id = 'elemento'
-            query_elementos.appendChild(new_value)
+                 // splice(2, 0, 'caqui')   
 
-            //console.log(cache.children[0].innerHTML)
-          /*  //console.log(cache.children.length)
-            let case1 = true
-           for (let i = 0; cache.children.length > i; i++) {
-               let num_atual = parseFloat(cache.children[0].innerHTML)
-                if (num_input < num_atual && case1 == true) {
-
-                    new_value.innerHTML = num_input
-                    query_numeros.appendChild(new_value)
-                    case1 = false
-                
-                }*/
-            }
         }
+  
+    }
 
-    
 
 
 
