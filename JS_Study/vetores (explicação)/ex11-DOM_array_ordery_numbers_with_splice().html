@@ -15,7 +15,7 @@
 <body>
     <input type="number">
     <button>insere!</button>
-    <div id="elementos">0,2</div>
+    <div id="elementos"></div>
     
 </body>
 <script>
@@ -45,8 +45,8 @@
 
     let vet = []
     let valido = true
-
     query_input.focus()
+
     function func_botao() {
     let novo_elem = parseFloat(query_input.value)
 
@@ -61,40 +61,33 @@
             valido = false
 
         } else if (query_elementos.innerHTML == '') {
-            query_elementos.innerHTML = query_input.value
+            query_elementos.innerHTML = parseFloat(query_input.value)
+            vet.push(query_input.value)
 
         } else {
-            let atuais_elem = []
-            atuais_elem.push(query_elementos.innerHTML)
-            atuais_elem.push(123)
+            let max = vet.length
+            console.log(max)
 
+            for (let i = 0; max > i; i++) {
+                if (novo_elem == vet[i]) {
+                    break
 
+                } else if (novo_elem < vet[i]) {
+                    vet.splice(i, 0, novo_elem)
+                    break
 
+                } else if (vet[max-1] < novo_elem) {
+                    vet.splice(max, 0, novo_elem)
+                    break
+                }
+               
+            }
 
-            console.log(atuais_elem.join(';'))
-
-            
-
-                 // splice(2, 0, 'caqui')   
+            query_elementos.innerHTML = vet.join('; ')
 
         }
   
     }
-
-
-
-
-
-       /*
-       Para colocar o número no local correto, você deverá percorrer
-       o vetor com um loop for, verificando se o número que já está na
-       posição é menor ou maior que o número que está sendo inserido.
-       Quando encontrar um número MENOR do que o que será inserido,
-       você terá encontrado a posição correta para inserir em ordem.
-       Faça a inserção com splice() e saia do loop com break.
-       A cada inserção, exiba os elementos do vetor dentro da div de 
-       resultados.
-       */
 
        query_botao.addEventListener('click', func_botao)
 

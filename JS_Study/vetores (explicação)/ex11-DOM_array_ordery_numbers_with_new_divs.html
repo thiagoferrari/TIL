@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    input, div, button {
+        display: block;
+        margin-bottom: 10px;
+        font-family: 'Segoe UI';
+    }
+</style>
+<body>
+    <input type="number" placeholder="para decimal use ponto">
+    <button>insere!</button>
+    <div id="numeros">
+        <div id="elementos">
+            <div id="elemento">123</div>
+        </div>
+    </div>
+    
+</body>
+<script>
+    // Liga o modo "chato" do JS
+    // Não deixa usar variáveis sem cons ou var
+    'use strict'
+
+       /*
+       Na parte HTML, coloque um input numérico com seu label, um botão
+       "Inserir" e uma div para exibir os resultados.
+       
+       */
+
+       /*
+       Na parte JS, declare um vetor vazio.
+       Na função associada ao botão, verifique se o valor informado no 
+       input é um número. Caso positivo, insira este número EM ORDEM 
+       CRESCENTE dentro do vetor (lembre-se de que o usuário poderá
+       inserir quantos números quiser dentro do vetor, e que pode já
+       haver outros números no vetor inseridos anteriormente). Ignore 
+       números repetidos.
+       */
+      
+    const query_body = document.querySelector('body')
+    const query_input = document.querySelector('input')
+    const query_botao = document.querySelector('button')
+
+
+
+    let cache
+    let valido = true
+
+    query_input.focus()
+    function func_botao() {
+
+            const num_input = parseFloat(query_input.value)
+            const query_elemento = document.querySelectorAll('#elemento')
+            const query_numeros = document.querySelector('#numeros')
+
+
+        if (isNaN(num_input)) {
+            alert('este não é um número!')
+            query_input.focus()
+            valido = false
+
+        } else if (query_input.value.trim() == '') {
+            alert('este não é um número!')
+            query_input.focus()
+            valido = false
+
+        } else if (query_elemento[0].innerHTML == '') {
+            query_elemento[0].innerHTML = query_input.value
+ 
+
+        } else {
+
+            //salvar elementos em cache, pois seram removidos, para depois receber inserção organizada
+            let query_elementos = document.querySelector('#elementos')
+            const cache = query_elementos
+
+            //remove elementos
+            query_elementos.remove()
+            
+            //criar div #elementos para insert em nova ordem
+            let div_elementos = document.createElement('div')
+            div_elementos.id = 'elementos'
+            query_numeros.appendChild(div_elementos)
+
+            query_elementos = document.querySelector('#elementos')
+            let num_atual
+            let primeiro_elem = parseFloat(cache.children[0].innerHTML)
+
+            let var_aux1
+
+            if (num_input < primeiro_elem) {
+                var_aux1 = true
+            } else {
+                var_aux1 = false
+            }
+
+            function insere_num_input() {
+                let div1_elemento = document.createElement('div')
+                    div1_elemento.id = 'elemento'
+                    div1_elemento.innerHTML = num_input
+                    query_elementos.appendChild(div1_elemento)
+            }
+
+            function insere_num_atual() {
+                let div2_elemento = document.createElement('div')
+                    div2_elemento.id = 'elemento'
+                    div2_elemento.innerHTML = num_atual
+                    query_elementos.appendChild(div2_elemento)
+            }
+
+            
+            for (let i = 0; cache.children.length > i; i++) {
+                num_atual = parseFloat(cache.children[i].innerHTML)
+
+                let max = cache.children.length
+
+                // if para ver se o valor no input é menor do que o 1º item já existente:
+                if (num_input < primeiro_elem && var_aux1 == true) {
+
+                    insere_num_input()
+
+                    insere_num_atual()
+
+                    var_aux1 = false
+
+
+                // if para ver se o valor no input é maior que o ultimo numero já existente:
+                } else if (cache.children[max-1].innerHTML == num_atual && num_atual < num_input) {
+                    insere_num_atual()
+
+                    insere_num_input()
+
+                // if para ver se o valor no input maior atual e menor que o próx., se sim inserir ao meio
+                } else if (num_input > num_atual && num_input < parseFloat(cache.children[i+1].innerHTML)) {
+
+                    insere_num_atual()
+
+                    insere_num_input()
+
+                } else {
+                   
+                    insere_num_atual()
+                    
+                }
+            }
+        }   
+    }
+       query_botao.addEventListener('click', func_botao)
+
+ </script>
+</html>
