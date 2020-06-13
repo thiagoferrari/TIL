@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>PROVA 02</title>
+   <style>
+      html,
+      body {
+         position: absolute;
+         height: 100%;
+         width: 100%;
+         margin: 0;
+         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+         font-size: 12pt;
+         line-height: 18pt;
+         color: #444;
+      }
+
+      body {
+         background-color: maroon;
+         background-image: linear-gradient(tomato 50%, maroon);
+         background-repeat: no-repeat;
+         padding: 0;
+      }
+
+      section {
+         background: whitesmoke;
+         margin: 3%;
+         padding: 25px;
+         border-radius: 20px;
+         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+         display: flex;
+         flex-direction: column;
+         justify-content: space-around;
+      }
+
+      h1 {
+         font-size: 2rem;
+         text-align: center;
+         color: tomato;
+         text-shadow: 2px 2px 2px rgba(128, 0, 0, 0.5);
+
+      }
+
+      section div {
+         padding: 10px;
+         width: 50%;
+         max-width: 90%;
+         min-width: 250px;
+         margin: 1% auto;
+      }
+
+      div label {
+         display: block;
+      }
+
+      #botoes {
+         display: flex;
+         justify-content: space-around;
+
+      }
+
+      button {
+         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+         font-size: 12pt;
+         padding: 8px;
+         border-radius: 8px;
+         color: white;
+      }
+
+      #salvar {
+         background-color: tomato;
+      }
+
+      #visualizar {
+         background-color: maroon;
+      }
+
+      #relatorio {
+         background-color: cornsilk;
+         padding: 10px;
+         border-radius: 10px;
+      }
+
+      label {
+         color: maroon;
+      }
+
+      input {
+         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+         font-size: 12pt;
+         border-radius: 4px;
+         padding: 4px;
+         border: 1px dotted tomato;
+      }
+   </style>
+
+</head>
+
+<body>
+   <section>
+      <h1>Cadastro de pessoas</h1>
+
+      <div>
+         <label>Nome</label>
+         <input id="nome" size="50">
+      </div>
+
+      <div>
+         <label>Data de nascimento</label>
+         <input type="number" id="dia" placeholder="Dia" min="1" max="31">
+         <input type="number" id="mes" placeholder="Mês" min="1" max="12">
+         <input type="number" id="ano" placeholder="Ano" min="1910" max="2019">
+      </div>
+
+      <div id="botoes">
+         <button id="salvar">Salvar</button>
+         <button id="visualizar">Visualizar</button>
+      </div>
+
+      <div id="relatorio">
+
+   </section>
+
+</body>
+<script>
+
+    const user_faixa = document.queryString()
+
+</script>
+</html>
