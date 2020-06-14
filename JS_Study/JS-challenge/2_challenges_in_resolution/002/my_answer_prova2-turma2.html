@@ -106,14 +106,14 @@
 
       <div>
          <label>Nome</label>
-         <input id="nome" size="50">
+         <input id="nome" size="50" value="thiago">
       </div>
 
       <div>
          <label>Data de nascimento</label>
-         <input type="number" id="dia" placeholder="Dia" min="1" max="31">
-         <input type="number" id="mes" placeholder="Mês" min="1" max="12">
-         <input type="number" id="ano" placeholder="Ano" min="1910" max="2019">
+         <input type="number" id="dia" placeholder="Dia" min="1" max="31" value="4">
+         <input type="number" id="mes" placeholder="Mês" min="1" max="12" value="10">
+         <input type="number" id="ano" placeholder="Ano" min="1910" max="2020" value="2000">
       </div>
 
       <div id="botoes">
@@ -128,7 +128,87 @@
 </body>
 <script>
 
-    const user_faixa = document.queryString()
+   //select de elementos
+   const dom_nome = document.querySelector(`#nome`)
+   const dom_dia = document.querySelector(`#dia`)
+   const dom_mes = document.querySelector(`#mes`)
+   const dom_ano = document.querySelector(`#ano`)
+   const dom_salv = document.querySelector(`#salvar`)
+   const dom_visu = document.querySelector(`#visualizar`)
+   const dom_rel = document.querySelector(`#relatorio`)
 
+   //funcao que retorna idade
+   function calcIdade(dataNasc){
+      let dataAtual = new Date();
+      let anoAtual = dataAtual.getFullYear();
+      let anoNascParts = dataNasc.split('/');
+      let diaNasc =anoNascParts[0];
+      let mesNasc =anoNascParts[1];
+      let anoNasc =anoNascParts[2];
+      let idade = anoAtual - anoNasc;
+      let mesAtual = dataAtual.getMonth() + 1;
+      //Se mes atual for menor que o nascimento, nao fez aniversario ainda;  
+      if(mesAtual < mesNasc){
+      idade--; 
+      } else {
+      //Se estiver no mes do nascimento, verificar o dia
+         if(mesAtual == mesNasc){ 
+            if(new Date().getDate() < diaNasc ){ 
+            //Se a data atual for menor que o dia de nascimento ele ainda nao fez aniversario
+            idade--; 
+            }
+         }
+      } 
+      return idade; 
+   }
+
+   //se tudo ok let variaveis e prosseguimento no codigo:
+   let nome = dom_nome.innerHTML
+   let dia = dom_dia.value
+   let mes = dom_mes.value
+   let ano = dom_ano.value
+   let rel = dom_rel.innerHTML
+
+   // unindo e obtendo nascimento
+   let dom_nasc = dia + `/` + mes + `/` + ano
+   idade = calcIdade(dom_nasc)
+
+   function btn_salvar() {
+      //validacao abaixo
+      if (dom_nome.innerHTML.trim = ``) {
+         alert(`insira um nome valido`)
+      } else if (isNaN(dom_dia.innerHTML)) {
+         alert(`insira um dia valido`)
+      } else if (isNaN(dom_mes.innerHTML)) {
+         alert(`insira um mes valido`)
+      } else if (isNaN(dom_ano.innerHTML)) {
+         alert(`insira um ano valido`)
+      } else if (idade < 0) {
+         alert(`data de nascimento invalida`)
+      } else {
+
+         let faixa
+         switch (idade) {
+            case (idade < 12):
+               faixa = `Criança`
+               break;
+            
+            case (idade < 18):
+               faixa = `Adolescente`
+               break;
+
+            case (idade < 59):
+               faixa = `Adulto`
+               break;
+
+            default:
+
+               break;
+      
+         }        
+      }
+   }
+
+   dom_salv.addEventListener(`click`, btn_salvar)
 </script>
 </html>
