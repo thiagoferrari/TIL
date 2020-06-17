@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<!--- WAY WITH function expression --->
+<body>
+   <input type="text" id="text1">
+   <button id="text11">button1</button>
+
+
+<script>
+   let input1 = document.querySelector('input#text1')
+   let button1 = document.querySelector('button#text11')
+
+   button1.onclick = function() {
+   alert('test 1 if button be clicked: ' + input1.value)
+   }
+
+</script>
+
+</br>
+</br>
+
+
+<!---  WAY WITH addEventListener() --->
+
+   <input type="text" id="text2">
+   <button id="text22">button2</button>
+   <script>
+   let input2 = document.querySelector('input#text2')
+   let button2 = document.querySelector('button#text22')
+
+      function after_click() {
+         alert('test 2 if button be clicked: ' + input2.value)
+      }
+
+   button2.addEventListener('click', after_click)
+   </script>
+
+</body>
+</html>
