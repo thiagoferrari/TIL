@@ -128,15 +128,6 @@
 </body>
 <script>
 
-   //select de elementos
-   const dom_nome = document.querySelector(`#nome`)
-   const dom_dia = document.querySelector(`#dia`)
-   const dom_mes = document.querySelector(`#mes`)
-   const dom_ano = document.querySelector(`#ano`)
-   const dom_salv = document.querySelector(`#salvar`)
-   const dom_visu = document.querySelector(`#visualizar`)
-   const dom_rel = document.querySelector(`#relatorio`)
-
    //funcao que retorna idade
    function calcIdade(dataNasc){
       let dataAtual = new Date();
@@ -162,53 +153,75 @@
       return idade; 
    }
 
-   //se tudo ok let variaveis e prosseguimento no codigo:
-   let nome = dom_nome.innerHTML
-   let dia = dom_dia.value
-   let mes = dom_mes.value
-   let ano = dom_ano.value
-   let rel = dom_rel.innerHTML
-
-   // unindo e obtendo nascimento
-   let dom_nasc = dia + `/` + mes + `/` + ano
-   idade = calcIdade(dom_nasc)
-
    function btn_salvar() {
+
+   //select de elementos
+   const dom_nome = document.querySelector(`#nome`)
+   const dom_dia = document.querySelector(`#dia`)
+   const dom_mes = document.querySelector(`#mes`)
+   const dom_ano = document.querySelector(`#ano`)
+
+      //se tudo ok let variaveis e prosseguimento no codigo:
+      let nome = dom_nome.value
+      let dia = parseInt(dom_dia.value)
+      let mes = parseInt(dom_mes.value)
+      let ano = parseInt(dom_ano.value)
+
+      // unindo e obtendo nascimento
+      let dom_nasc = dia + `/` + mes + `/` + ano
+      idade = calcIdade(dom_nasc)
+
       //validacao abaixo
-      if (dom_nome.innerHTML.trim = ``) {
+      if (dom_nome.value.trim() == '') {
          alert(`insira um nome valido`)
-      } else if (isNaN(dom_dia.innerHTML)) {
+         dom_nome.focus()
+      } else if (isNaN(dia) || dia > 31 || dia < 1) {
          alert(`insira um dia valido`)
-      } else if (isNaN(dom_mes.innerHTML)) {
+         dom_dia.focus()
+      } else if (isNaN(mes) || mes > 12 || mes < 1) {
          alert(`insira um mes valido`)
-      } else if (isNaN(dom_ano.innerHTML)) {
+         dom_mes.focus
+      } else if (isNaN(ano) || ano > 2020 || ano < 1) {
          alert(`insira um ano valido`)
+         dom_ano.focus()
       } else if (idade < 0) {
          alert(`data de nascimento invalida`)
       } else {
 
-         let faixa
-         switch (idade) {
-            case (idade < 12):
-               faixa = `Criança`
-               break;
-            
-            case (idade < 18):
-               faixa = `Adolescente`
-               break;
+         //calc de faixa de idade
+         var faixa
+         if (idade < 12) {
+            faixa = `Criança`
 
-            case (idade < 59):
-               faixa = `Adulto`
-               break;
+         } else if (idade < 18) {
+            faixa = `Adolescente`
 
-            default:
+         } else if (idade < 59) {
+            faixa = `Adulto`
 
-               break;
-      
-         }        
-      }
+         } else if (idade > 58) {
+            faixa = 'Idoso(a)'
+
+         }
+
+      }        
+
    }
 
+   function btn_visu () {
+      console.log(faixa)
+   }
+
+   const dom_rel = document.querySelector(`#relatorio`)
+   const rel = dom_rel.innerHTML
+
+
+
+   const dom_salv = document.querySelector(`#salvar`)
    dom_salv.addEventListener(`click`, btn_salvar)
+
+   const dom_visu = document.querySelector(`#visualizar`)
+   dom_visu.addEventListener(`click`, btn_visu)
+
 </script>
 </html>

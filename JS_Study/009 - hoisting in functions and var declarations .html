@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+/*
+
+The difference is that functionOne is a function expression and so only defined when that line is reached, whereas functionTwo is a function declaration and is defined as soon as its surrounding function or script is executed (due to hoisting).
+
+For example, a function expression:
+
+// TypeError: functionOne is not a function
+functionOne();
+
+var functionOne = function() {
+  console.log("Hello!");
+};
+
+----------------------
+And, a function declaration:
+
+// Outputs: "Hello!"
+functionTwo();
+
+function functionTwo() {
+  console.log("Hello!");
+}
+
+----------------------
+Historically, function declarations defined within blocks were handled inconsistently between browsers. Strict mode (introduced in ES5) resolved this by scoping function declarations to their enclosing block.
+
+'use strict';    
+{ // note this block!
+  function functionThree() {
+    console.log("Hello!");
+  }
+}
+functionThree(); // ReferenceError
+
+*/
+
+
+</script>
+</html>
