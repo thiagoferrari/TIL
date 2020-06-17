@@ -92,6 +92,11 @@ shift() SEMPRE retorna um elemento do INÍCIO de um vetor
       frutas.splice(2, 0, 'caqui')
       console.log('frutas => ', frutas)
 
+      // O SPLICE ADICIONA NO LUGAR QUE PASSEI NO PRIMEIRO PARÂMETRO
+      // ARRAY ANTES:  ["jabuticaba", "laranja", "mamão", "melancia", "banana", "cajamanga"]
+      // ARRAY DEPOIS: ["jabuticaba", "laranja", "caqui", "mamão", "melancia", "banana", "cajamanga"]
+
+
       numeros.splice(4, 0, -8, -3, -81)
       console.log('numeros => ', numeros)
 
@@ -175,7 +180,6 @@ shift() SEMPRE retorna um elemento do INÍCIO de um vetor
       for(let f of frutas) {
          console.log(f)
       }
-
 
    </script>
 </head>
