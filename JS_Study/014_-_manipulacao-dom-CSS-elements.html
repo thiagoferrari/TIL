@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+body {background-color: aqua;}    
+</style>
+
+<body>
+    <ul id="lista">
+        <li>item1</li>
+        <li>item2</li>
+        <li>item3</li>
+        <li>item4</li>
+        <li>item5</li>
+        <li>item6</li>
+        <li>item7</li>
+        <li>item8</li>
+    </ul>
+
+    <button class="tes">REPLACE CHILD ONE</button>
+</body>
+
+<script>
+    // pegar texto primeiro item
+    const dom_lista = document.querySelectorAll('li')
+    const dom_button = document.querySelector('button')
+
+    dom_button.onclick = function () {
+        dom_lista[0].innerHTML = 'teste'
+
+        for (let i in dom_lista) {
+            if (i % 2 == 0) {
+                dom_lista[i].style.textDecoration = 'line-through'
+            }
+        }
+    }
+
+    // getComputedStyle é uma funçaõ que tras tudo de css sobre a tag selecionada!
+    const estiloBody = getComputedStyle(document.body)
+    const backcolorbody = estiloBody.backgroundColor
+    console.log(backcolorbody)
+
+    
+
+</script>    
+</html>
+
