@@ -23,6 +23,47 @@
 
       */
 
+      const dom_body = document.querySelector('body')
+
+      let input = document.createElement('input')
+      input.type = 'Number'
+      dom_body.appendChild(input)
+
+      let br = document.createElement('br')
+      dom_body.appendChild(br)
+
+      let button = document.createElement('button')
+      button.innerHTML = 'INSERT PARAGRAPHS!'
+      dom_body.appendChild(button)
+      
+
+      const dom_button = document.querySelector('button')
+
+      dom_button.onclick = function() {
+         const dom_input = document.querySelector('input')
+         const var_input = parseInt(dom_input.value)
+
+         if (isNaN(var_input)) {
+            alert('insert a valid number')
+         } else if (var_input < 0) {
+            create_p(var_input * -1)
+         } else {
+            create_p(var_input)
+         }
+      }
+
+      function create_p(num_p) {
+         
+         for (let i = 1; i <= num_p; i++) {
+            let p = document.createElement('p')
+            p.innerHTML = i
+            dom_body.appendChild(p)
+         }
+
+      }
+
+
+
          
    </script>  
 </body>

@@ -6,14 +6,47 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <title>Página modelo</title>
+
+
+   <body>
+      <h1>Título da página</h1>
+      <p>Parágrafo de texto</p>
+   </body>
+
+   
+
    <script>
       'use strict'; // Modo "chato" do Javascript
-
+      
+      //fazer for para inserir todos elemntos com appendchild
       /*
 
          Escreva uma função que receba um argumento booleano e
          um argumento de resto.
+      */
 
+      
+      let radio_mult = document.createElement('input')
+      radio_mult.type = 'radio'
+      radio_mult.style.id = 'mult'
+
+      let label_mult = document.createElement('label')
+      label_mult.for = 'mult'
+
+      let radio_soma = document.createElement('input')
+      radio_soma.type = 'radio'
+      radio_soma.style.id = 'soma'
+
+      let label_soma = document.createElement('label')
+      label_soma.for = 'soma'
+
+
+
+      const dom_body = document.querySelector('body')
+
+
+
+      /*
          Se o primeiro argumento for true, os números do argumento
          de resto serão multiplicados entre si.
 
@@ -27,9 +60,6 @@
    </script>
 </head>
 
-<body>
-   <h1>Título da página</h1>
-   <p>Parágrafo de texto</p>
-</body>
+
 
 </html>
