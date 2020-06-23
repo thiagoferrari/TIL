@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>PROVA 02</title>
+   <style>
+      html,
+      body {
+         position: absolute;
+         height: 100%;
+         width: 100%;
+         margin: 0;
+         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+         font-size: 12pt;
+         line-height: 18pt;
+         color: #444;
+      }
+
+      body {
+         background-image: linear-gradient(orangered 50%, indigo);
+         background-color: indigo;
+         background-repeat: no-repeat;
+         padding: 0;
+      }
+
+      section {
+         background: whitesmoke;
+         margin: 3%;
+         padding: 25px;
+         border-radius: 20px;
+         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+         display: flex;
+         flex-direction: row;
+         flex-wrap: wrap;
+         justify-content: space-around;
+      }
+
+      h1 {
+         font-size: 2rem;
+         text-align: center;
+         color: indigo;
+         width: 90%;
+      }
+
+      section div {
+         border-radius: 10px;
+         padding: 10px;
+         width: 30%;
+         max-width: 90%;
+         min-width: 250px;
+         margin: 1% 0;
+      }
+
+      section div:nth-child(even) {
+         background-color: beige;
+         border: 1px solid indigo;
+      }
+
+      section div:nth-child(odd) {
+         background-color: lavender;
+         border: 1px solid orangered;
+      }
+   </style>
+
+</head>
+
+<body>
+   <section>
+      <h1>Título da página</h1>
+   </section>
+   <script>
+      /*
+      4. Escreva uma expressão de função que receba o peso e a altura de uma pessoa e retorne o respectivo Índice de Massa Corporal (valor_imc), que é calculado pela fórmula peso / (altura)2.
+      */
+
+      const obter_valor_imc = function (peso, altura) {
+         return (peso / ((altura) ** 2));
+         
+      }
+
+      /*
+
+      5. Declare uma função que receba o valor do valor_imc como argumento e retorne a situação do paciente, conforme Tabela 2.
+
+
+      */
+      
+      function obter_tipo_imc(valor_imc) {
+         if (valor_imc < 17) {
+            msg_valor_imc = 'Muito abaixo do peso'
+         } else if (valor_imc < 18.49) {
+            msg_valor_imc = 'Abaixo do peso'
+         } else if (valor_imc < 24.99) {
+            msg_valor_imc = 'Peso normal'
+         } else if (valor_imc < 29.99) {
+            msg_valor_imc = 'Acima do peso'
+         } else if (valor_imc < 34.99) {
+            msg_valor_imc = 'Obesidade I'
+         } else if (valor_imc < 39.99) {
+            msg_valor_imc = 'Obesidade II (severa)'
+         } else if (valor_imc > 40) {
+            msg_valor_imc = 'Obesidade III (mórbida)'
+         }
+
+         return msg_valor_imc
+      }
+      
+      /*
+      6. Declare um vetor vazio.
+
+      */
+      
+      let vetor = []
+      
+      /*
+
+      7. Utilize os dados da Tabela 1 para criar um objeto correspondente a cada linha da tabela. Cada objeto criado deve ser colocado no vetor declarado no item 6.
+
+*/
+      let paciente1 = {
+         nome: 'Fulgêncio Fogaça',
+         sexo: 'Masculino',
+         idade: 41,
+         peso: 113,
+         altura: 1.71
+      }
+
+      let paciente2 = {
+         nome: 'Ernestina Esteves',
+         sexo: 'Feminino',
+         idade: 67,
+         peso: 84,
+         altura: 1.62
+      }
+
+      vetor = [paciente1,paciente2]
+
+/*
+
+      8. Percorra o vetor de objetos em ordem inversa. A cada iteração, crie um novo elemento do tipo div e nele coloque os dados correspondentes ao paciente, um por linha. Note que o valor correspondente ao valor_imc do paciente deve ser calculado fazendo-se chamada à função criada no item 4. De modo semelhante, a situação do paciente deve ser determinada por meio de chamada à função declarada no item 5. Em seguida, acrescente a div à lista de elementos filhos do elemento section, ainda dentro do loop.
+*/
+
+      for(let i = vetor.length - 1; i >= 0; i--) {
+         let div = document.createElement('div')
+         
+      }
+
+
+/*
+
+      9. Altere o texto do cabeçalho do documento (elemento h1) para “Relação de pacientes”.
+      */
+   </script>
+</body>
+
+</html>

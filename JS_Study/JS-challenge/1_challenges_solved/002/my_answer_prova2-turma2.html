@@ -128,38 +128,68 @@
 </body>
 <script>
 
+   'use strict'
+
+   let idade
+   let click_btn_salvar = 'false'
+   let vet = []
+
+
    //funcao que retorna idade
-   function calcIdade(dataNasc){
+   function calcIdade(dataNasc) {
       let dataAtual = new Date();
       let anoAtual = dataAtual.getFullYear();
       let anoNascParts = dataNasc.split('/');
-      let diaNasc =anoNascParts[0];
-      let mesNasc =anoNascParts[1];
-      let anoNasc =anoNascParts[2];
+      let diaNasc = anoNascParts[0];
+      let mesNasc = anoNascParts[1];
+      let anoNasc = anoNascParts[2];
       let idade = anoAtual - anoNasc;
       let mesAtual = dataAtual.getMonth() + 1;
       //Se mes atual for menor que o nascimento, nao fez aniversario ainda;  
-      if(mesAtual < mesNasc){
-      idade--; 
+      if (mesAtual < mesNasc) {
+         idade--;
       } else {
-      //Se estiver no mes do nascimento, verificar o dia
-         if(mesAtual == mesNasc){ 
-            if(new Date().getDate() < diaNasc ){ 
-            //Se a data atual for menor que o dia de nascimento ele ainda nao fez aniversario
-            idade--; 
+         //Se estiver no mes do nascimento, verificar o dia
+         if (mesAtual == mesNasc) {
+            if (new Date().getDate() < diaNasc) {
+               //Se a data atual for menor que o dia de nascimento ele ainda nao fez aniversario
+               idade--;
             }
          }
-      } 
-      return idade; 
+      }
+      return idade;
    }
 
-   function btn_salvar() {
 
-   //select de elementos
-   const dom_nome = document.querySelector(`#nome`)
-   const dom_dia = document.querySelector(`#dia`)
-   const dom_mes = document.querySelector(`#mes`)
-   const dom_ano = document.querySelector(`#ano`)
+
+
+      //calc de faixa de idade
+      function obter_faixa(idade) {
+      if (idade < 12) {
+         return `Criança`
+
+      } else if (idade < 18) {
+         return `Adolescente`
+
+      } else if (idade < 59) {
+         return `Adulto`
+
+      } else if (idade > 58) {
+         return 'Idoso(a)'
+
+      }
+   }
+
+
+
+
+   function btn_salvar() {
+      click_btn_salvar = 'true'
+      //select de elementos
+      const dom_nome = document.querySelector(`#nome`)
+      const dom_dia = document.querySelector(`#dia`)
+      const dom_mes = document.querySelector(`#mes`)
+      const dom_ano = document.querySelector(`#ano`)
 
       //se tudo ok let variaveis e prosseguimento no codigo:
       let nome = dom_nome.value
@@ -171,7 +201,7 @@
       let dom_nasc = dia + `/` + mes + `/` + ano
       idade = calcIdade(dom_nasc)
 
-      //validacao abaixo
+      //validacao abaixo dos dias e nome
       if (dom_nome.value.trim() == '') {
          alert(`insira um nome valido`)
          dom_nome.focus()
@@ -187,35 +217,32 @@
       } else if (idade < 0) {
          alert(`data de nascimento invalida`)
       } else {
+         vet = [nome,dom_nasc,idade,obter_faixa(idade)]
+      }
 
-         //calc de faixa de idade
-         var faixa
-         if (idade < 12) {
-            faixa = `Criança`
+   }
 
-         } else if (idade < 18) {
-            faixa = `Adolescente`
 
-         } else if (idade < 59) {
-            faixa = `Adulto`
+   function btn_visu() {
+      if (click_btn_salvar == 'false') {
 
-         } else if (idade > 58) {
-            faixa = 'Idoso(a)'
+         alert('clique primeiramente no botão de Salvar, depois visualizar')
+      } else {
 
+         for (let i = 0; i < vet.length; i++) {
+            let div = document.createElement('div')
+            div.innerHTML = vet[i]
+            dom_rel.appendChild(div)
          }
-
-      }        
-
+         let hr = document.createElement('hr')
+         dom_rel.appendChild(hr)
+      }
    }
 
-   function btn_visu () {
-      console.log(faixa)
-   }
+
 
    const dom_rel = document.querySelector(`#relatorio`)
    const rel = dom_rel.innerHTML
-
-
 
    const dom_salv = document.querySelector(`#salvar`)
    dom_salv.addEventListener(`click`, btn_salvar)
@@ -224,4 +251,5 @@
    dom_visu.addEventListener(`click`, btn_visu)
 
 </script>
+
 </html>
