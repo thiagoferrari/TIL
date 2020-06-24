@@ -82,44 +82,39 @@
       }
 
       /*
-
       5. Declare uma função que receba o valor do valor_imc como argumento e retorne a situação do paciente, conforme Tabela 2.
-
-
       */
       
       function obter_tipo_imc(valor_imc) {
-         if (valor_imc < 17) {
-            msg_valor_imc = 'Muito abaixo do peso'
-         } else if (valor_imc < 18.49) {
-            msg_valor_imc = 'Abaixo do peso'
-         } else if (valor_imc < 24.99) {
-            msg_valor_imc = 'Peso normal'
-         } else if (valor_imc < 29.99) {
-            msg_valor_imc = 'Acima do peso'
-         } else if (valor_imc < 34.99) {
-            msg_valor_imc = 'Obesidade I'
-         } else if (valor_imc < 39.99) {
-            msg_valor_imc = 'Obesidade II (severa)'
-         } else if (valor_imc > 40) {
-            msg_valor_imc = 'Obesidade III (mórbida)'
+         if (valor_imc <= 17) {
+            tipo_imc = 'Muito abaixo do peso'
+         } else if (valor_imc <= 18.49) {
+            tipo_imc = 'Abaixo do peso'
+         } else if (valor_imc <= 24.99) {
+            tipo_imc = 'Peso normal'
+         } else if (valor_imc <= 29.99) {
+            tipo_imc = 'Acima do peso'
+         } else if (valor_imc <= 34.99) {
+            tipo_imc = 'Obesidade I'
+         } else if (valor_imc <= 39.99) {
+            tipo_imc = 'Obesidade II (severa)'
+         } else if (valor_imc >= 40) {
+            tipo_imc = 'Obesidade III (mórbida)'
          }
 
-         return msg_valor_imc
+         return tipo_imc
       }
       
       /*
       6. Declare um vetor vazio.
-
       */
       
       let vetor = []
       
       /*
-
       7. Utilize os dados da Tabela 1 para criar um objeto correspondente a cada linha da tabela. Cada objeto criado deve ser colocado no vetor declarado no item 6.
+      */
 
-*/
       let paciente1 = {
          nome: 'Fulgêncio Fogaça',
          sexo: 'Masculino',
@@ -136,23 +131,95 @@
          altura: 1.62
       }
 
-      vetor = [paciente1,paciente2]
+      let paciente3 = {
+         nome: 'Delcides Diniz ',
+         sexo: 'Masculino',
+         idade: 35,
+         peso: 94,
+         altura: 1.83
+      }
+
+      let paciente4 = {
+         nome: 'Constança Calazans',
+         sexo: 'Feminino',
+         idade: 19,
+         peso: 48,
+         altura: 1.67
+      }
+
+      let paciente5 = {
+         nome: 'Belmira Bittencourt',
+         sexo: 'Feminino',
+         idade: 26,
+         peso: 61,
+         altura: 1.72
+      }
+
+      let paciente6 = {
+         nome: 'Alcibíades Assumpçã',
+         sexo: 'Masculino',
+         idade: 50,
+         peso: 76,
+         altura: 1.60
+      }
+
+      vetor = [paciente1,paciente2,paciente3,paciente4,paciente5,paciente6]
 
 /*
 
       8. Percorra o vetor de objetos em ordem inversa. A cada iteração, crie um novo elemento do tipo div e nele coloque os dados correspondentes ao paciente, um por linha. Note que o valor correspondente ao valor_imc do paciente deve ser calculado fazendo-se chamada à função criada no item 4. De modo semelhante, a situação do paciente deve ser determinada por meio de chamada à função declarada no item 5. Em seguida, acrescente a div à lista de elementos filhos do elemento section, ainda dentro do loop.
 */
 
-      for(let i = vetor.length - 1; i >= 0; i--) {
-         let div = document.createElement('div')
-         
+      const dom_section = document.querySelector('section')
+      for (let i = vetor.length - 1; i >= 0; i--) {
+         let pai = document.createElement('div')
+
+         let nome = document.createElement('label')
+         nome.innerText = 'nome: ' + vetor[i].nome
+         nome.style.display = 'block'
+         pai.appendChild(nome)
+
+         let sexo = document.createElement('label')
+         sexo.innerText = 'sexo: ' + vetor[i].sexo
+         sexo.style.display = 'block'
+         pai.appendChild(sexo)
+
+         let idade = document.createElement('label')
+         idade.innerText = 'idade: ' + vetor[i].idade
+         idade.style.display = 'block'
+         pai.appendChild(idade)
+
+         let peso = document.createElement('label')
+         peso.innerText = 'peso: ' + vetor[i].peso
+         peso.style.display = 'block'
+         pai.appendChild(peso)
+
+         let altura = document.createElement('label')
+         altura.innerText = 'altura: ' + vetor[i].altura
+         altura.style.display = 'block'
+         pai.appendChild(altura)
+
+         let valor_imc = document.createElement('label')
+         valor_imc.innerHTML = 'valor imc: ' + obter_valor_imc(vetor[i].peso, vetor[i].altura) 
+         valor_imc.style.display = 'block'
+         pai.appendChild(valor_imc)
+
+         let tipo_imc = document.createElement('label')
+         tipo_imc.innerHTML = 'tipo imc: ' + obter_tipo_imc(obter_valor_imc(vetor[i].peso, vetor[i].altura))
+         tipo_imc.style.display = 'block'
+         pai.appendChild(tipo_imc)
+
+         dom_section.appendChild(pai)
+
       }
 
 
-/*
-
+      /*
       9. Altere o texto do cabeçalho do documento (elemento h1) para “Relação de pacientes”.
       */
+
+      const cabec = document.querySelector('h1')
+      cabec.innerHTML = 'Relação de pacientes'
    </script>
 </body>
 

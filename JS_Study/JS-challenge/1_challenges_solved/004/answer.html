@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>answer</title>
+</head>
+
+<style>
+    body,
+    input,
+    select,
+    button,
+    div {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: block;
+        margin-top: 10px;
+    }
+</style>
+
+<body>
+</body>
+
+<script>
+    'use strict'
+
+    //function de appendChilds, para facilitar o processo de adição de filhos!
+    function appendChilds(elem_pai, ...elem_filhos) {
+        for (let i = 0; elem_filhos.length > i; i++) {
+            elem_pai.appendChild(elem_filhos[i])
+        }
+    }
+
+    //pegando body para futura adição..
+    const dom_body = document.querySelector('body')
+
+
+    document.write('INSIRA ALTURA-LARGURA E CALCULE A ÁREA')
+
+
+    /*No documento HTML, coloque dois elementos input, os quais devem aceitar apenas números.
+Nesses inputs, o usuário irá informar as duas medidas da forma geométrica.
+• Coloque, também, um elemento select com as options necessárias para que o usuário escolha
+qual o tipo de forma geométrica da qual deseja calcular a área.*/
+
+    const input_altu = document.createElement('input')
+    input_altu.placeholder = 'insira a altu. da forma'
+    input_altu.type = 'number'
+    input_altu.id = 'input_altu'
+
+    const input_larg = document.createElement('input')
+    input_larg.placeholder = 'insira a larg. da forma'
+    input_larg.type = 'number'
+    input_larg.id = 'input_larg'
+
+    const select_formas = document.createElement('select')
+    const opt_quad = document.createElement('option')
+    opt_quad.innerHTML = 'retangulo'
+    opt_quad.id = 'opt_quad'
+
+    const opt_tria = document.createElement('option')
+    opt_tria.innerHTML = 'triangulo'
+    opt_tria.id = 'opt_tria'
+
+    const opt_elip = document.createElement('option')
+    opt_elip.innerHTML = 'elipse'
+    opt_elip.id = 'opt_elip'
+
+    appendChilds(select_formas, opt_quad, opt_tria, opt_elip)
+
+    /*
+    • Coloque um elemento button, que acionará a função Javascript que efetuará o cálculo da área.
+    • Por fim, coloque uma div para exibir o resultado do cálculo.
+    
+    */
+
+    const but_calc = document.createElement('button')
+    but_calc.innerHTML = 'Calular Área!'
+
+    const div_resul = document.createElement('div')
+    div_resul.innerHTML = 'Resultado: '
+
+
+    appendChilds(dom_body, input_altu, input_larg, select_formas, but_calc, div_resul)
+
+    /*
+    • Crie uma área script antes da tag </body>. Dentro dessa área, escreva o código
+    Javascript necessário para processar os dados de entrada e fornecer ao usuário o resultado
+    
+    
+    
+    */
+
+
+    // ---------- VALIDAÇÃO E INSERÇÃO -----------
+
+    const dom_resul = document.querySelector('button')
+
+
+    dom_resul.onclick = function () {
+
+        const dom_div_resul = document.querySelector('div')
+        const dom_input_altu = parseFloat(document.querySelector('#input_altu').value)
+        const dom_input_larg = parseFloat(document.querySelector('#input_larg').value)
+        const dom_form = document.querySelector('select').selectedIndex
+        const pi = 3.1416
+
+        if ((isNaN(dom_input_altu)) || (isNaN(dom_input_larg))) {
+            alert('algum número não é válido')
+        } else {
+            let result
+            switch (dom_form) {
+                case 2:
+                    result = dom_input_larg * dom_input_altu * pi;
+                    break;
+                case 1:
+                    result = (dom_input_larg * dom_input_altu) / 2;
+                    break;
+                case 0:
+                    result = dom_input_larg * dom_input_altu;
+                    break;
+            }
+            div_resul.innerHTML = 'Resultado: ' + result
+
+        }
+    }
+
+    /*
+    esperado. Utilize a estrutura switch...case para determinar qual forma geométrica foi
+    selecionada e efetuar o cálculo de área adequado a ela.
+    • A atribuição da função de cálculo ao elemento button deve ser feita utilizando-se apenas código
+    Javascript, sem alterar o código HTML.*/
+</script>
+
+</html>
