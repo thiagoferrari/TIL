@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   
+</body>
+
+<script>
+
+   /* EXEMPLE 0: WITHOUT PARAMS*/
+   /* SIMPLE FORM */
+
+   /*var say_hello = function () {
+      console.log("Hello, are you ok?")
+   }
+   say_hello()*/
+
+
+   /* USING ARROW FUNCTION */
+   var say_hello = () => console.log("Hello, are you ok?")
+   say_hello()
+
+
+
+
+   /* EXEMPLE 1: USING 1 PARAMS */
+   /* SIMPLE FORM */
+   /*var count_words = function (quote) {
+         return quote.split(' ').length
+   }
+   console.log(count_words(`Thiago Ferrari`))*/
+
+
+   /* USING ARROW FUNCTION */
+   var count_words = quote => quote.split(' ').length
+
+   console.log(count_words(`Thiago Ferrari`))
+   
+
+
+
+
+   /* EXEMPLE 2: USING 2 OR MORE PARAMS */
+   /* SIMPLE FORM */
+   /*var soma = function (num1, num2) {
+         return num1 + num2
+   }
+   console.log(soma(5,5))*/
+
+
+   /* USING ARROW FUNCTION */
+   var soma = (num1, num2) => num1+num2
+   console.log(soma(5,5))
+
+   
+   
+
+
+
+   /* MORE EXEMPLES */
+   /* SIMPLE FORM */
+/*   var object_user = function (id, nome) {
+      return {
+         id: id,
+         nome: nome
+      }
+   }
+
+   console.log(object_user('458', 'thiago ferrari'))*/
+
+   var object_user = (id, nome) => ({id: id, nome: nome})
+ /* here the JS sot undestand that {id: id, nome: nome} it is one object, so need stay {id: id, nome: nome} beteween () */
+
+   console.log(object_user('458', 'thiago ferrari'))
+
+
+
+
+</script>
+</html>
