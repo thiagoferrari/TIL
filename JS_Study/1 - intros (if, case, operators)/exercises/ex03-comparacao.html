@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Documento Modelo</title>
+   <script>
+      // Liga o modo "chato" do JS
+      // Não deixa usar variáveis sem let ou var
+      'use strict'
+
+      /*
+
+         Peça ao usuário para informar dois números
+         inteiros (use dois prompt()).
+
+         Informe ao usuário se:
+         * o primeiro número é maior que o segundo; ou
+         * o segundo número é maior que o primeiro; ou
+         * os dois números são iguais.
+
+      */
+
+      let n1 = parseInt(prompt('Digite um número:'))
+
+      if(isNaN(n1)) {
+         alert('O NÚMERO DIGITADO É INVÁLIDO')
+      }
+      else {
+         let n2 = parseInt(prompt('Digite outro número: '))
+         
+         if(isNaN(n2)) {
+            alert('O NÚMERO DIGITADO É INVÁLIDO')
+         }
+         else {
+            if(n1 > n2) {
+               alert('O primeiro número é maior que o segundo.')
+            }
+            else if (n2 > n1) {
+               alert('O segundo número é maior que o primeiro.')
+            }
+            else {
+               alert('Os dois números são iguais.')
+            }
+         }
+      }
+
+   </script>
+</head>
+<body>
+   <h1>Título do documento</h1>
+   <p>Parágrafo de texto</p>
+</body>
+</html>

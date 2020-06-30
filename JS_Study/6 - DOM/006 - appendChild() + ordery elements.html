@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Documento Modelo</title>
+   
+</head>
+<body>
+   <h1>Título do documento</h1>
+   <div>
+      Conteúdo
+      <span id="refer">Span de texto</span>
+   </div>
+   <script>
+      // Liga o modo "chato" do JS
+      // Não deixa usar variáveis sem let ou var
+      'use strict'
+
+      // appendChild() sempre acrescenta os 
+      // novos filhos AO FINAL do pai
+
+      let conteudo = document.querySelector('div')
+      conteudo.style.backgroundColor = 'lightblue'
+      conteudo.style.padding = '20px'
+
+      let parag1 = document.createElement('p')
+      parag1.innerText = 'Isto é um parágrafo.'
+      parag1.style.backgroundColor = 'yellow'
+      conteudo.appendChild(parag1)
+
+      let traco = document.createElement('hr')
+      traco.style.borderColor = 'red'
+      traco.style.borderWidth = '3px'
+      conteudo.appendChild(traco)
+
+      let naoformat = document.createElement('pre')
+      naoformat.innerHTML = 'alert("Olá")'
+      //conteudo.appendChild(naoformat)
+
+      // Inserindo o elemento ANTES de outro
+      // insertBefore() precisa saber de duas
+      // coisas (na ordem, respetivamente)
+      // 1. novo elemento a ser inserido
+      // 2. elemento já existente que servirá
+      // de referência onde será inserido o
+      // novo elemento
+      //conteudo.insertBefore(naoformat, traco)
+
+      let r = document.querySelector('#refer')
+      conteudo.insertBefore(naoformat, r)
+
+      // Lista de países
+      // 1. Argentina
+      // 2. Brasil
+      // 3. Chile
+      // 4. Colômbia
+      // 5. Equador
+
+      // Colocando um elemento como o primeiro
+      // elemento de seu pai: prepend()
+      let div2 = document.createElement('div')
+      div2.innerText = 'PRIMEIRÃO!!'
+      div2.style.backgroundColor = 'lightgreen'
+      conteudo.prepend(div2)
+
+   </script>
+</body>
+</html>

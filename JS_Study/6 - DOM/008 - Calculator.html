@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Documento Modelo</title>
+   <style>
+      div {
+         margin: 10px 0;
+      }
+      label {
+         display: block;
+      }
+      #resultado {
+         width: 300px;
+         height: 25px;
+         border: 1px solid blue;
+         text-align: right;
+         padding: 2px;
+      }
+      .erro { /* ponto inicial significa que se trata de uma classe */
+         color: red;
+         visibility: hidden; /* Escondido */
+      }
+   </style>
+   
+</head>
+<body>
+   <h1>Calculadora DOM</h1>
+   
+   <div>
+      <label>Primeiro número</label>
+      <input type="number" id="num1" step="0.01">
+      <div id="erro-num1" class="erro">Informe um primeiro número válido.</div>
+   </div>
+
+   <div>
+      <label>Operação</label>
+      <select id="op">
+         <option>(Selecione)</option>
+         <option>Somado a</option>
+         <option>Subtraído de</option>
+         <option>Multiplicado por</option>
+         <option>Dividido por</option>
+         <option>Elevado a</option>
+         <option>Resto da divisão por</option>
+      </select>
+   </div>
+
+   <div>
+      <label>Segundo número</label>
+      <input type="number" id="num2" step="0.01">
+      <div id="erro-num2" class="erro">Informe um segundo número válido.</div>
+   </div>
+
+   <div id="resultado"></div>
+
+   <div>
+      <button id="calcular">Calcular</button>
+   </div>
+   
+   <script>
+      // Liga o modo "chato" do JS
+      // Não deixa usar variáveis sem let ou var
+      'use strict'
+
+      /* 
+
+         Monte um formulário com os seguintes campos:
+         * Primeiro número (input numérico)
+         * Operação aritmética (select, com as opções de soma, subtração,
+            multiplicação, divisão, potenciação e resto da divisão)
+         * Segundo número (input numérico)
+         * Div para exibição do resultado da operação aritmética
+         * Botão "calcular"
+
+         Validações:
+         * Os campos de número devem estar preenchidos e com números válidos
+         * Deve ter sido selecionada uma operação artimética válida
+
+      */
+
+      // 1) Captura dos elementos
+      const num1 = document.getElementById('num1')
+      const erroNum1 = document.getElementById('erro-num1')
+      const op = document.getElementById('op')
+      
+      const num2 = document.querySelector('#num2')
+      const resultado = document.querySelector('#resultado')
+      const calcular = document.querySelector('#calcular')
+
+      function efetuar() {
+      
+         // 2) Validação do formulário
+
+         // Esconde todas as mensagem de erro
+         erroNum1.style.visibility = 'hidden'
+
+         let valNum1 = parseFloat(num1.value) // poderia ter sido parseFloat() tb
+         let valNum2 = parseFloat(num2.value)
+         let valido = true
+         
+         console.log({valNum1}, num1.value)
+
+         if(isNaN(valNum1)) {
+            alert('Informe um primeiro número válido.')
+            num1.focus()
+            erroNum1.style.visibility = 'visible'
+            valido = false
+         }
+         else if(op.selectedIndex <= 0) {
+            alert('Selecione uma operação válida.')
+            op.focus()
+            valido = false
+         }
+         else if (isNaN(valNum2)) {
+            alert('Informe um segundo número válido.')
+            num2.focus()
+            valido = false
+         }
+         else if(valNum2 == 0 && (op.selectedIndex == 4 || op.selectedIndex == 6)) {
+            alert('Não é possível efetuar divisão por zero.')
+            num2.focus()
+            valido = false
+         }
+
+         if(valido) {
+            let res
+
+            switch(op.selectedIndex) {
+               case 1: // Adição
+                  res = valNum1 + valNum2
+                  break
+
+               case 2: // Subtração
+                  res = valNum1 - valNum2
+                  break
+
+               case 3: // Multiplicação
+                  res = valNum1 * valNum2
+                  break
+
+               case 4: // Divisão
+                  res = valNum1 / valNum2
+                  break
+
+               case 5: // Potenciação
+                  res = valNum1 ** valNum2 // Ou: Math.pow(valNum1, valNum2)
+                  break
+               
+               case 6: // Resto da divisão
+                  res = valNum1 % valNum2
+
+            }
+
+            // Formatar separador de casas decimais para o 
+            // uso do português brasileiro
+            resultado.innerText = res.toLocaleString('pt-BR')
+            
+         }
+
+      }
+
+      function limpaResultado() {
+         resultado.innerText = ''
+      }
+
+      calcular.addEventListener('click', efetuar)
+      
+      // Quando sai do input ou com os botões de spin
+      num1.addEventListener('change', limpaResultado) 
+      // Efeito imediato no pressionamento de teclas
+      num1.addEventListener('keydown', limpaResultado)
+      
+      op.addEventListener('change', limpaResultado)
+      
+      num2.addEventListener('change', limpaResultado)
+      num2.addEventListener('keydown', limpaResultado)
+
+   </script>
+</body>
+</html>

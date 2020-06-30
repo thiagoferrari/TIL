@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Documento Modelo</title>
+   <script>
+      // Liga o modo "chato" do JS
+      // Não deixa usar variáveis sem let ou var
+      'use strict'
+
+
+      // 1) WHILE --------------------------------------------------
+      let x = 0
+      while(x < 100) {
+         document.write(x + '<br>')
+         x++     
+      }
+
+      document.write('<hr>')
+
+      // 2) DO..WHILE --------------------------------------------------
+      let y = 0
+      do {
+         document.write(y + '<br>')
+         y++
+      } while(y < 100)
+
+      document.write('<hr>')
+
+      // 3) FOR --------------------------------------------------
+      //let z
+      for(let z = 0; z < 100; z++) {
+         document.write(z + '<br>')
+      }
+      // console.log('z agora vale ' + z)
+      
+
+      // For simples de contagem de 1 a 10
+      for(let i = 1; i <= 10; i++) {
+         document.write(i + '<br>')
+      }
+
+      // Traço separador: horizontal rule
+      document.write('<hr>')
+
+      // For contagem regressiva 10 a 1
+      for(let i = 10; i >= 1; i--) {
+         document.write(i + '<br>')
+      }
+
+      document.write('<hr>')
+
+      // For que não anda de 1 em 1
+      let x
+      for(x = 1; x <= 30; x += 2) {
+         document.write(x + '<br>')
+      }
+      document.write('O valor de x é ' + x)
+
+      document.write('<hr>')
+
+      // For reverso de 5 em 5
+      for(let i = 50; i >= 1; i -= 5) {
+         document.write(i + '<br>')
+      }
+    
+
+   </script>
+</head>
+<body>
+   <h1>Título do documento</h1>
+   <p>Parágrafo de texto</p>
+</body>
+</html>

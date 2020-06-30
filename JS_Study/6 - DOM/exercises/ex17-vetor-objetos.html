@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Página modelo</title>
+   <style>
+      body {
+         background-image: linear-gradient(royalblue,indigo);
+         background-color: indigo;
+         background-repeat: no-repeat;
+      }
+      section {
+         background: white;
+         width: 70%;
+         margin: 50px auto;
+         height: auto;
+         padding: 20px;
+         border-radius: 20px;
+         box-shadow: 5px 5px 10px #888;
+      }
+      h1 {
+         text-shadow: 2px 2px 2px #888;
+      }
+      div {
+         padding: 20px;
+      }
+      label {
+         display: block;
+      }
+      button {
+         padding: 10px;
+      }
+      #visualizar {
+         background: mediumblue;
+         color: white;
+         
+      }
+      #relatorio {
+         background:moccasin;
+         padding: 20px;
+         border-radius: 10px;
+         clear: both;
+      }
+   </style>
+   
+</head>
+<body>
+   <section>
+      <h1>Cadastro de produtos</h1>
+      
+      <div>
+         <label>Nome do produto</label>
+         <input id="nomeProd" size="50">
+      </div>
+
+      <div>
+         <label>Quantidade</label>
+         <input id="quantidade" type="number">
+      </div>
+
+      <div>
+         <label>Preço unitário</label>
+         <input id="precoUnit" type="number" step="0.01">
+      </div>
+
+      <div>
+         <button id="salvar">Salvar</button>
+      </div>
+
+      <div>
+         <button id="visualizar">Visualizar</button>
+      </div>
+
+      <div id="relatorio">
+         
+      </div>
+   </section>   
+
+   <script>
+      'use strict'; // Modo "chato" do Javascript
+
+      /*
+      
+         1) Capture os elementos do HTML com getElementById() ou querySelector().
+
+         2) Declare um vetor vazio.
+
+         3) Crie uma função que leia o conteúdo dos input e crie um objeto para armazenar
+            as informações coletadas. Esse objeto deve ser acrescentado ao vetor criado
+            no passo 2. Após isso, limpe os inputs e ponha o foco no primeiro deles.
+            Essa função deve ser atribuída ao evento 'click' do botão Salvar.
+
+         4) Crie outra função. Limpe o conteúdo da div de relatório, e em seguida percorra 
+            o vetor criado no passo 2 e, para cada elemento dentro dele, exibir o nome do 
+            produto, a quantidade, o valor unitário e o valor total, dentro da div de relatório.
+            Para exibir essas informações, crie um elemento <p> para cada produto.
+            Essa função deve ser atribuída ao evento 'click' do botão visualizar.
+
+      */
+
+      // 1) Capture os elementos do HTML com getElementById() ou querySelector().
+      const nomeProd = document.querySelector('#nomeProd')
+      const quantidade = document.querySelector('#quantidade')
+      const precoUnit = document.querySelector('#precoUnit')
+      const salvar = document.querySelector('#salvar')
+      const visualizar = document.querySelector('#visualizar')
+      const relatorio = document.querySelector('#relatorio')
+
+      // 2) Declare um vetor vazio.
+      let vet = []
+
+      /*
+         3) Crie uma função que leia o conteúdo dos input e crie um objeto para armazenar
+            as informações coletadas. Esse objeto deve ser acrescentado ao vetor criado
+            no passo 2. Após isso, limpe os inputs e ponha o foco no primeiro deles.
+            Essa função deve ser atribuída ao evento 'click' do botão Salvar.
+      */
+
+      function coletaDados() {
+
+         let valido = true
+         
+         if(nomeProd.value.trim() == '') {
+            alert('Informe o nome do produto.')
+            nomeProd.focus()
+            valido = false
+         }
+         else if(isNaN(quantidade.value) || quantidade.value <= 0) {
+            alert('Informe uma quantidade válida.')
+            quantidade.focus()
+            valido = false
+         }
+         else if(isNaN(precoUnit.value) || precoUnit.value <= 0) {
+            alert('Informe um preço unitário válido.')
+            precoUnit.focus()
+            valido = false
+         }
+
+         if(valido) {
+            // Objeto vazio
+            let produto = {}
+            produto.nomeProd = nomeProd.value
+            produto.quantidade = Number(quantidade.value)
+            produto.precoUnit = Number(precoUnit.value)
+
+            // Outra forma de fazer - mesmo resultado
+            /*
+            let produto = {
+               nomeProd: nomeProd.value,
+               quantidade: Number(quantidade.value),
+               precoUnit: Number(precoUnit.value)
+            }
+            */
+
+            // Colocando o objeto dentro do vetor criado no passo 2
+            vet.push(produto)
+
+            // Limpar os inputs
+            nomeProd.value = ''
+            quantidade.value = ''
+            precoUnit.value = ''
+
+            nomeProd.focus()
+         }
+
+      }
+
+      salvar.addEventListener('click', coletaDados)
+
+      /*
+         4) Crie outra função. Limpe o conteúdo da div de relatório, e em seguida percorra 
+            o vetor criado no passo 2 e, para cada elemento dentro dele, exibir o nome do 
+            produto, a quantidade, o valor unitário e o valor total, dentro da div de relatório.
+            Para exibir essas informações, crie um elemento <p> para cada produto.
+            Essa função deve ser atribuída ao evento 'click' do botão visualizar.
+      */
+      function exibirRelatorio() {
+         
+         // Limpando o conteúdo da div de relatório
+         relatorio.innerText = ''
+
+         // Percorrendo o vetor de objetos
+         for(let i = 0; i < vet.length; i++) {
+            
+            // Criação de um novo parágrafo
+            let parag = document.createElement('p')
+            
+            // Montagem do conteúdo do parágrafo
+            parag.innerHTML = ''
+            parag.innerHTML += 'Produto: ' + vet[i].nomeProd + '<br>'
+            // Padronizando a quantidade de casas decimais após a vírgula
+            parag.innerHTML += 'Quantidade: ' + vet[i].quantidade.toLocaleString('pt-BR', { maximumSignificantDigits : 2 }) + '<br>'
+            parag.innerHTML += 'Preço unitário: ' + vet[i].precoUnit.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) + '<br>'
+            parag.innerHTML += 'Preço total: ' + (vet[i].quantidade * vet[i].precoUnit).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })            
+
+            // Coloca o parágrafo dentro da div de relatório
+            relatorio.appendChild(parag)
+         }
+      }
+
+      visualizar.addEventListener('click', exibirRelatorio)
+
+   </script>
+</body>
+</html>

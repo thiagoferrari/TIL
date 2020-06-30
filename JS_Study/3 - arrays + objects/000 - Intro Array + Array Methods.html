@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="utf8" />
+   <title>Página de Teste</title>
+   <script>
+
+      'use strict'; // Modo "chato" do Javascript
+
+      // Criando um vetor com valores
+      let frutas = ['maçã', 'banana', 'pera', 'mamão'];
+      let carros = Array('Fusca', 'Brasília', 'Opala', 'Variant', 'Maverick');
+      let mistureba = [19, 'cachorro', undefined, -12.4, null, true];
+
+      // Criando vetores vazios
+      let vazio1 = [];
+      let vazio2 = Array();
+
+      // Quantos elementos há no vetor? length
+      document.write('frutas: ' + frutas.length + '<br>');
+      document.write('carros: ' + carros.length + '<br>');
+      document.write('mistureba: ' + mistureba.length + '<br>');
+      document.write('vazio1: ' + vazio1.length + '<br>');
+      document.write('vazio2: ' + vazio2.length + '<br>');
+
+      document.write('<hr>');
+
+      // Listando todos os elementos de um vetor
+      for (let i = 0; i < carros.length; ++i) {
+         document.write(carros[i] + '<br>');
+      }
+
+      // Acessando diretamente o TERCEIRO elemento de carros
+      document.write('O terceiro elemento do vetor carros é ' + carros[2] + '<br>');
+
+      // Acessando diretamente o PRIMEIRO elemento de carros
+      document.write('O primeiro elemento do vetor carros é ' + carros[0]);
+
+      document.write('<hr>');
+
+      // Listando todos os elementos na ordem inversa
+      for (let j = carros.length - 1; j >= 0; --j) {
+         document.write(carros[j] + '<br>');
+      }
+
+      document.write('<hr>');
+
+      /*------- Acrescentando um elemento ao final do vetor: push() */
+      carros.push('Fiat 147');
+      vazio1.push(7);
+
+      console.log(carros);
+      console.log(vazio1);
+
+      document.write('<hr>');
+
+      /*------- Retirando um elemento da última posição: pop() */
+      let ultimo = carros.pop();
+      document.write('O último carro da fila ERA ' + ultimo + '<br>');
+
+      /*------- Retirando um elemento da primeira posição: shift() */
+      let primeiro = carros.shift();
+      document.write('O primeiro elemento da fila ERA ' + primeiro + '<br>');
+
+      /*------- Acrescentando um elemento na primeira posição: unshift() */
+      carros.unshift('Lamborghini');
+      document.write('O novo primeiro elemento da fila é ' + carros[0] + '<br>');
+
+      /*------- Acrescentando um elemento em uma posição específica: splice() */
+
+      // PARA USAR splice() informe os parâmetros:
+      // 1º parâmetro: a posição desejada
+      // 2º parâmetro: quantos elementos queremos apagar
+      // 3º parâmetro: o que queremos que seja inserido
+
+      // Novo carro na primeira posição
+      carros.splice(0, 0, 'Alpha Romeo');
+
+      // Novo carro na QUARTA posição
+      carros.splice(3, 0, 'Delorean');
+
+      console.log(carros);
+
+      document.write('<hr>');
+
+      // Procurando a posição de um elemento dentro do vetor: indexOf()
+      document.write('A posição do Fusca na fila é ' + carros.indexOf('Fusca') + '<br>');
+      document.write('A posição do Lamborghini na fila é ' + carros.indexOf('Lamborghini') + '<br>');
+      document.write('A posição da Ferrari na fila é ' + carros.indexOf('Ferrari') + ' (por enquanto não tem)<br>');
+
+
+      // Acrecentando ferrari na primeira posição:
+      carros.splice(carros.indexOf('Alpha Romeo'), 0, 'Ferrari')
+
+      console.log('Estado final da fila de carros:');
+      console.log(carros);
+
+      /*------- Copiando matriz com slice (semelhante ao substr do oracle)*/
+      let numbers = [1, 2, 3, 4, 5];
+      let newNumbers = numbers.slice();
+      newNumbers[0] = 99;
+      console.log(numbers)
+      console.log(newNumbers)
+
+
+      var colors = ['red','green','blue','yellow','purple'];
+      var rgb = colors.slice(0,3); 
+      console.log(rgb); // ["red", "green", "blue"]
+
+
+   </script>
+</head>
+
+<body>
+   <!-- Isto é um comentário HTML -->
+   <h1>Título da página</h1>
+   <p>Isto é um parágrafo.</p>
+</body>
+
+</html>

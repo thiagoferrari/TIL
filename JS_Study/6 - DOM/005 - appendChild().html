@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Documento Modelo</title>
+   <style>
+      body {
+         background: lightgreen;
+      }
+   </style>
+</head>
+<body>
+   <h1>Título do documento</h1>
+   <p>Parágrafo de texto</p>
+   <script>
+      // Liga o modo "chato" do JS
+      // Não deixa usar variáveis sem let ou var
+      'use strict'
+
+      // Cria um novo documento.
+      // *APENAS O DOCUMENTO* pode criar novos elementos.
+      let div1 = document.createElement('div')
+      div1.innerText = 'DIV1'
+      div1.id = 'div-1'
+      div1.style.backgroundColor = 'yellow'
+
+      // Atribuindo um pai ao novo elemento. O pai será body.
+      document.body.appendChild(div1)
+
+      // Criando uma lista ordenada
+      let lista = document.createElement('ol')
+      lista.style.backgroundColor = 'lightblue'
+
+      // Colocando na hierarquia como filho de div1
+      div1.appendChild(lista)
+
+      // Criar itens de lista
+      for(let i = 1; i <= 5; i++) {
+         let item = document.createElement('li')
+         item.id = 'item-' + i
+         item.innerText = 'Item ' + i
+         lista.appendChild(item)
+      }
+
+      let i4 = document.querySelector('#item-4')
+      
+      i4.innerText = 'Outra coisa'
+
+      // Criando um novo elemento que será filho
+      // do elemento p preexistente
+
+      let negrito = document.createElement('strong')
+      negrito.innerText = ' dinâmico'
+
+      // Captura o PRIMEIRO elemento do tipo
+      // que houver no documento
+      let parag = document.querySelector('p')
+      parag.appendChild(negrito)
+
+      // RESUMÃO
+      // 1. Para criar um elemento novo,
+      // createElement() no DOCUMENT
+      
+      // 2. Qualquer outro elemento do documento
+      // pode ser o PAI do novo elemento
+      
+      // 2.1 Se o pai for body, é possível
+      // referenciá-lo com document.body
+      
+      // 2.2 Se o pai já estiver referenciado
+      // em uma variável, pode-se utilizá-la
+      
+      // 2.3 Em último caso, o elemento pai
+      // precisa ser previamente capturado com
+      // getElementById(), querySelector() ou
+      // outro método semelhante.
+
+   </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Documento Modelo</title>
+  
+</head>
+<body>
+   <h1>Título do documento</h1>
+   <p>Parágrafo de texto</p>
+   <div>
+      <p>Parágrafo filho da div</p>
+   </div>
+   <ul>
+      <li id="item1">Item 1</li>
+      <li id="item2">Item 2</li>
+      <li id="item3">Item 3</li>
+      <li id="item4">Item 4</li>
+   </ul>
+   <script>
+      // Liga o modo "chato" do JS
+      // Não deixa usar variáveis sem let ou var
+      'use strict'
+
+      /* // 1) Capturando o pai do elemento a ser excluído - 
+      // nesse caso não precisa
+      // porque o body é diretamente acessível
+      // via document.body
+
+      // 2) Capturar o elemento a ser excluído
+      let parag = document.querySelector('p')
+
+      // 3) Pedir para o pai remover o filho
+      document.body.removeChild(parag) */
+
+      // 1) Capturando o pai o 2º parágrafo
+      let container = document.querySelector('div')
+      
+      // 2) Capturando o 2º parágrafo
+      // Buscando apenas dentro do elemento div da variável container
+      let paragInterno = container.querySelector('p')
+
+      // 3) Pedir para o pai eliminar o filho
+      container.removeChild(paragInterno)
+
+      /******************************************************/
+      // Para eliminar o terceiro item da lista, os passos clássicos seriam:
+      // 1) Capturar o pai do elemento (ul)
+      // 2) Capturar o item de lista a ser excluído
+      // 3) Pedir para o pai remover o filho
+
+      // ATALHO: o filho pode pedir para o pai matá-lo
+      // 1) Captura apenas o filho
+      
+      // Captura por id
+      let item3 = document.querySelector('#item3')
+
+      // Se não tivesse id
+
+      // Método 1 de captura sem id
+      //let item3 = document.getElementsbyTagName('li')[2] // SEMPRE retorna um vetor, precisamos isolar apenas o 3º elemento (índice 2)
+
+      // Método 2 de captura sem id
+      // let item3 = document.querySelectorAll('li')[2] // SEMPRE retorna um vetor, precisamos isolar apenas o 3º elemento (índice 2)
+
+      // 2) O filho pede para o seu pai (parentNode) eliminá-lo
+      item3.parentNode.removeChild(item3)
+
+   </script>   
+</body>
+</html>

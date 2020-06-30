@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+      <!-- Ajusta a acentuação -->
+      <meta charset="utf8" />
+      <title>Página-modelo HTML</title>
+
+      <script type="text/javascript">
+
+      'use strict';
+
+      /*
+         
+         * Crie um objeto obj1 que representa um cão com as seguintes propriedades
+            e preencha os valores:
+            - nome
+            - raça
+            - cor
+            - sexo
+            - nome do pai (nome da propriedade com espaços)
+            - nome da mãe (nome da propriedade com espaços)
+
+         * Declare um segundo objeto, fazendo:
+            //let obj2 = obj1;
+            let obj2 = Object.assign({}, obj1);
+
+
+         * Troque os dados das propriedades de obj2.
+
+         * Exiba os dois objetos no console. O que aconteceu? 
+
+      */
+
+      let obj1 = {
+         nome: 'Mel',
+         raça: 'Shih Tzu',
+         cor: 'Branco e caramelo',
+         sexo: 'F',
+         'nome do pai': 'Floquinho',
+         'nome da mãe': 'Nina'
+      };
+
+      /*
+         IMPORTANTE: a atribuição de um objeto a outro NÃO
+         cria uma cópia do objeto, apenas dá ao objeto original
+         um segundo nome (REFERÊNCIA). Por isso, ao alterarmos
+         as propriedades do "segundo" objeto, estaremos alterando,
+         na verdade, as propriedades do ÚNICO objeto existente,
+         agora conhecido por dois nomes diferentes.
+      */
+      // let obj2 = obj1;
+
+      // Para conseguirmos uma CÓPIA do objeto, devemos adotar
+      // uma outra abordagem:
+      let obj2 = Object.assign({}, obj1);
+
+      obj2.nome = 'Felps';
+      obj2.raça = 'Maltês';
+      obj2.cor = 'Branco';
+      obj2.sexo = 'M';
+      obj2['nome do pai'] = 'Totó';
+      obj2['nome da mãe'] = 'Lola';
+
+      // Com atribuição, os dois objetos serão iguais.
+      // Com Object.assign(), os dois objetos serão diferentes.
+      console.log(obj1);
+      console.log(obj2);
+            
+      </script>
+
+   </head>
+   
+   <body>
+      <h1>Título da página</h1>
+      <p>Isto é um parágrafo.</p>
+   </body>
+
+</html>

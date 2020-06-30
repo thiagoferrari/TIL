@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Documento Modelo</title>
+   <style>
+      div {
+         height: 100px;
+         width: 100px;
+         background-color: lightgoldenrodyellow;
+         color: black;
+         font-size: 40px;
+         font-style: bold;
+         border: 3px solid tomato;
+         text-align: center;
+         line-height: 100px; /* Igual à altura para centralização vertical */
+         display: inline-block;
+         margin: 0 25px 25px 0; /* Sentido ponteiros do relógio iniciando no topo */
+         border-radius: 50px;
+         cursor: pointer;
+      }
+
+   </style>
+</head>
+<body>
+   <h1>Clique para remover um elemento</h1>
+   <p>
+      <input id="teste">
+   </p>
+   <script>
+      // Liga o modo "chato" do JS
+      // Não deixa usar variáveis sem let ou var
+      'use strict'
+
+      // 1) Criar elementos para popular o documento
+
+     // Criar 12 divs
+     for(let i = 1; i <= 12; i++) {
+        let div = document.createElement('div')
+        div.innerHTML = i
+        
+        // A mesma função será atribuída ao click de
+        // TODAS as div
+        div.addEventListener('click', apagaEl)
+
+        document.body.appendChild(div)
+     }
+
+     function apagaEl(evento) {
+         console.log(evento)
+         let elemento = evento.target
+         elemento.parentNode.removeChild(elemento)
+     } 
+
+     function digitado(evento) {
+        console.log(evento)
+        if(evento.key == 'x') {
+           alert('Você digitou um x.')
+        }
+     }
+
+     let teste = document.querySelector('#teste')
+     teste.addEventListener('keydown', digitado)
+
+   </script>
+</body>
+</html>
