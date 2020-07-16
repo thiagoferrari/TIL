@@ -72,7 +72,7 @@ console.log('I will only contain unique or distinct letter'.length); // 45
 
 let sentence = new Set('I will only contain unique or distinct letter');
 
-console.log( sentence.size); // 17
+console.log(sentence.size); // 17
 
 for(letter of sentence){
   console.log(letter)

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<!-- saved from url=(0075)file:///C:/Users/Thiago%20Ferrari/Downloads/respostaprova-substitutiva.html -->
+<html lang="pt-br"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>PROVA 02</title>
+   <style>
+      * {
+         font-family: 'Calibri', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+         font-size: 12pt;
+      }
+
+      html,
+      body {
+         position: absolute;
+         height: 100%;
+         width: 100%;
+         margin: 0;
+         line-height: 18pt;
+         color: #444;
+      }
+
+      body {
+         background-color: darkred;
+         background-image: linear-gradient(salmon, darkred);
+         background-repeat: no-repeat;
+         padding: 0;
+      }
+
+      section {
+         background: whitesmoke;
+         margin: 2% 10%;
+         padding: 25px;
+         border-radius: 20px;
+         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+         display: flex;
+         flex-direction: column;
+         justify-content: space-around;
+      }
+
+      h1 {
+         font-size: 2rem;
+         text-align: center;
+         color: darkred;
+         text-shadow: 2px 2px 2px rgba(139, 0, 0, 0.5);
+
+      }
+
+      section>div {
+         padding: 10px;
+         width: 50%;
+         max-width: 90%;
+         min-width: 250px;
+         margin: 1% auto;
+      }
+
+      section div {
+         margin: 0.5% auto;
+      }
+
+      div label {
+         display: block;
+      }
+
+      #botoes {
+         display: flex;
+         justify-content: space-around;
+         margin-top: 30px;
+      }
+
+      button {
+         padding: 8px;
+         border-radius: 8px;
+         color: darkred;
+         background: salmon;
+      }
+
+      #sumario {
+         background-color: cornsilk;
+         padding: 10px;
+         border-radius: 10px;
+      }
+
+      label {
+         color: darkred;
+      }
+
+      input {
+         border-radius: 4px;
+         padding: 4px;
+         border: 1px dotted salmon;
+      }
+
+      span {
+         font-weight: bold;
+         color: darkred;
+      }
+   </style>
+
+</head>
+
+<body>
+   <section>
+      <h1>Cadastro de veículos</h1>
+
+      <div id="cadastro">
+         <div>
+            <label>Marca</label>
+            <input id="marca" size="40">
+         </div>
+
+         <div>
+            <label>Modelo</label>
+            <input id="modelo" size="40">
+         </div>
+
+         <div>
+            <label>(N)acional ou (I)mportado?</label>
+            <input id="nacImp" maisrecentelength="1" size="5">
+         </div>
+
+         <div>
+            <label>Ano de fabricação</label>
+            <input id="anoFab" type="number" maisantigo="1900" maisrecente="2020">
+         </div>
+
+         <div id="botoes">
+            <button id="salvar">Salvar</button>
+         </div>
+      </div>
+
+      <div id="sumario">
+         <div>Nacionais: <span id="qtdeNacionais">0</span></div>
+         <div>Importados: <span id="qtdeImportados">1</span></div>
+         <div>Mais antigo: <span id="maisAntigo">1999</span></div>
+         <div>Mais recente: <span id="maisRecente">1999</span></div>
+      </div>
+
+   </section>
+
+
+<script>
+   'use strict'; // Modo "chato" do Javascript
+
+   //Atendendo item 3
+   const marca = document.querySelector('#marca')
+   const modelo = document.querySelector('#modelo')
+   const nacImp = document.querySelector('#nacImp')
+   const anoFab = document.querySelector('#anoFab')
+   const salvar = document.querySelector('#salvar')
+   const sumario = document.querySelector('#sumario')
+   const qtdeNacionais = document.querySelector('#qtdeNacionais')
+   const qtdeImportados = document.querySelector('#qtdeImportados')
+   const dom_maisAntigo = document.querySelector('#maisAntigo')
+   const dom_maisRecente = document.querySelector('#maisRecente')
+
+
+   //Atendendo item 4
+   let argumentos = function (marca_p, modelo_p, nac_imp_p, fab) {
+      let verifica = true
+      if (marca_p == '' || modelo_p == '') {
+         verifica = false
+      } else if (nac_imp_p != 'N' && nac_imp_p != 'I') {
+         verifica = false
+      } else if (fab < 1900 || fab > 2020) {
+         verifica = false
+      }
+      return verifica
+   }
+
+   //Atendendo item 5
+   let vet = []
+
+
+   //Atendendo item 6
+   salvar.onclick = function () {
+      let retorno = argumentos(marca.value.trim(), modelo.value.trim(), nacImp.value, parseInt(anoFab.value))
+
+      if (retorno == true) {
+         let obj = {
+            marca: marca.value.trim(),
+            modelo: modelo.value.trim(),
+            nac_imp: nacImp.value,
+            anoFab: parseInt(anoFab.value)
+         }
+
+         vet.push(obj)
+
+
+         // let em valores que serao usados depois
+         let imp = 0
+         let nac = 0
+
+         let maisRecente = 1900
+         let maisAntigo = 2020
+
+         for (let i of vet) {
+            if (i.nac_imp == 'I') {
+               imp = imp + 1
+            } else if (i.nac_imp == 'N') {
+               nac = nac + 1
+            }
+
+
+
+            if (i.anoFab > maisRecente) {
+               maisRecente = i.anoFab
+            }
+
+            if (i.anoFab < maisAntigo) {
+               maisAntigo = i.anoFab
+            }
+         }
+
+
+         qtdeNacionais.innerHTML = nac
+         qtdeImportados.innerHTML = imp
+         dom_maisAntigo.innerHTML = maisAntigo
+         dom_maisRecente.innerHTML = maisRecente
+
+         marca.value = ''
+         modelo.value = ''
+         nacImp.value = ''
+         anoFab.value = ''
+      }
+   }
+
+
+
+</script>
+
+</body></html>
