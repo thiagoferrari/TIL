@@ -39,26 +39,31 @@
 
 
     // TRABALHANDO COM PROMISSES
-    const betterdev = 'gustavo'
 
-    function who_is_better_callback(callback, error_callback) {
-        if (betterdev != 'daiane' && betterdev != 'gabriel') {
-            error_callback({
-                name: 'this is wrong',
-                message: betterdev + '? really'
+    const melhordev = 'papleguas'
+
+    const melhor = new Promise((resolve, reject) => {
+        if (melhordev != 'thiago' && melhordev != 'silas') {
+            reject({
+                name: 'Algo está errado!',
+                message: melhordev + '? Relamente'
             })
         } else {
-            callback({
-                name: betterdev,
-                message: 'CDFS are the best!'
+            resolve({
+                name: 'melhordev',
+                message: 'A parada é javascript!'
             })
         }
+    })
 
-    }
+melhor
+.then((result) => {
+    console.log(result.name + '? Yeah!' + result.message)
+})
+.catch((error) => {
+    console.log(error.name + '  ' + error.message)
+})
 
-    who_is_better_callback()
-        .this(console.log('teste com this'))
-        .catch(console.log('teste com catch'))
 
 </script>
 
