@@ -1,3 +1,7 @@
+// Map x forEach
+//forEach: percorrer um array e executar um determinado bloco de código para cada item
+//Map: iterar um array original e gerar um novo array a partir de funcao recebida no callback
+
 // COUNT EACH OF EACH WORD IN ARRAY
 
 let fruits = ['abacaxi', 'morango', 'laranja', 'caju', 'melancia', 'limão', 'abacate', 'framboesa', 'maçã']
