@@ -1,17 +1,12 @@
 // HERANÇAS: quando uma classe é extendida
 
 class DispMovel {
-    constructor(modelo, ano, marca) {
+    constructor(modelo, marca) {
         this.modelo = modelo
-        this.ano = ano
-        this.marca = marca
         this.ligado = false
+
     }
 
-    bateria() {
-        if (this.ano > 2015) { return console.log('bateria boa') }
-        console.log('bateria ruim')
-    }
 
     ligar() {
         if (this.ligado == true) return 'dispositivo já ligado'
@@ -28,7 +23,6 @@ class DispMovel {
 Celular1 = new DispMovel('A50', '2005', 'Siemens')
 
 console.log(Celular1)
-console.log(Celular1.bateria())
 
 
 
@@ -36,6 +30,7 @@ console.log(Celular1.bateria())
 class Smartphone extends DispMovel {
 
     constructor(modelo, cor) {
+        //this.modelo = modelo NÃO FAÇO ISSO, NESTE CASO CHAMO O SUPER
         super(modelo) // aqui eu chamei do super(classe pai), a propriedade nome
         this.cor = cor
 
