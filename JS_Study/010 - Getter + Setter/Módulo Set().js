@@ -1,21 +1,21 @@
 /*  primeiramente Pense que os set como uma matriz sem elementos repetidos. Nada entra nela para repetir */
 
-let arrayOne=['1','2','1','2']
+let arrayOne = ['1', '2', '1', '2']
 
 console.log(arrayOne)
 // ['1','2','1','2']
- 
-let setOne= new Set(arrayOne) 
 
-for(elem of setOne){
-  console.log(elem)
+let setOne = new Set(arrayOne)
+
+for (elem of setOne) {
+    console.log(elem)
 }
 //'1'
 //'2'
 
 
 // Another way of doing
-let setTwo= [...new Set(arrayOne)]
+let setTwo = [...new Set(arrayOne)]
 
 console.log(setTwo)
 // ["1" ,"2"]
@@ -50,14 +50,14 @@ fruits.delete('apple');
 console.log(fruits.has('apple')); // false
 
 fruits.forEach(fruit => {
-  console.log(`I love eating ${fruit}!`);
+    console.log(`I love eating ${fruit}!`);
 });
 
 // 'I love eating banana!'
 // 'I love eating kiwi!'
 // 'I love eating orange!'
 
- fruits.clear();
+fruits.clear();
 console.log(fruits.size); // 0
 
 
@@ -74,8 +74,8 @@ let sentence = new Set('I will only contain unique or distinct letter');
 
 console.log(sentence.size); // 17
 
-for(letter of sentence){
-  console.log(letter)
+for (letter of sentence) {
+    console.log(letter)
 }
 
 
@@ -138,8 +138,8 @@ function difference(setA, setB) {
 
 //Examples
 var setA = new Set([1, 2, 3, 4]);
-var    setB = new Set([2, 3]);
-var   setC = new Set([3, 4, 5, 6]);
+var setB = new Set([2, 3]);
+var setC = new Set([3, 4, 5, 6]);
 
 union(setA, setC); // => Set [1, 2, 3, 4, 5, 6]
 intersection(setA, setC); // => Set [3, 4]
