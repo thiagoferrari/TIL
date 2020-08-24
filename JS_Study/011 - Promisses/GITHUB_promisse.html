@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
+
 </body>
 <script>
     /*objetivo de Requisições AJAX: obter dados atualizados de um server
@@ -16,12 +18,12 @@
     // vamos trabalhar com uma promisse que pega dados do github:
 
     const minhapromise = function () {
-        return new Promise(function(resolve, reject){
+        return new Promise(function (resolve, reject) {
             var xhr = new XMLHttpRequest()
             xhr.open('GET', 'https://api.github.com/users/diego3g')
             xhr.send(null)
 
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) { // 4 significa que houve resposta da API
                     if (xhr.status === 200) { //200 é código retornado se tudo der certo
                         resolve(JSON.parse(xhr.responseText))
@@ -30,15 +32,16 @@
                     }
                 }
             }
-        }) 
+        })
     }
 
     minhapromise()
-    .then(function(response) {
-        console.log(response)
-    })
-    .catch(function (error) {
-        console.warn(error);
-    })
+        .then(function (response) {
+            console.log(response)
+        })
+        .catch(function (error) {
+            console.warn(error);
+        })
 </script>
+
 </html>

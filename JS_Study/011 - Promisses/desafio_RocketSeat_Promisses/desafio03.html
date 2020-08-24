@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" name="user">
+    <button>Adicionar</button>
+</body>
+
+<script>
+
+    const btn = document.querySelector('button')
+
+    btn.onclick = () => {
+        const input = document.querySelector('input').value
+
+        const minhapromise = function () {
+            return new Promise(function (resolve, reject) {
+                var xhr = new XMLHttpRequest()
+                xhr.open('GET', `https://api.github.com/users/${input}/repos`)
+                xhr.send(null)
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) { // 4 significa que houve resposta da API
+                        if (xhr.status === 200) { //200 é código retornado se tudo der certo
+                            for (let array of JSON.parse(xhr.responseText)) {
+                                console.log(array.name)
+                            }
+                            
+                        } else {
+                            console.log('antes')
+
+                            reject('Erro na requisição')
+                        }
+                    }
+                }
+            })
+        }
+
+        minhapromise()
+            .catch(function (error) {
+                console.warn(error);
+            })
+    }
+
+
+
+</script>
+
+</html>

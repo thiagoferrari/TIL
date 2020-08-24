@@ -132,7 +132,7 @@
          <div>Menor idade: <span id="menorIdade">0</span></div>
          <div>Média de idade: <span id="mediaIdade">0</span></div>
       </div>
-      
+
    </section>
    <script>
       /*
@@ -141,7 +141,7 @@
 */
 
 
-      
+
       const qtdeHomens = document.querySelector('#qtdeHomens');
       const qtdeMulheres = document.querySelector('#qtdeMulheres');
       const maiorIdade = document.querySelector('#maiorIdade');
@@ -158,7 +158,7 @@
       A função deve emitir uma mensagem de erro ao usuário e retornar o valor false caso qualquer um desses testes falhe. Se tudo estiver certo, a função deve retornar true.
       */
 
-      let verifica = function(nome, sexo, idade) {
+      let verifica = function (nome, sexo, idade) {
          if (nome.value.trim() == '') {
             return false
 
@@ -207,15 +207,15 @@
 
       salvar.onclick = () => {
 
-      let nome = document.querySelector('#nome')
-      let sexo = document.querySelector('#sexo')
-      let idade = document.querySelector('#idade')
-      let salvar = document.querySelector('#salvar')
+         let nome = document.querySelector('#nome')
+         let sexo = document.querySelector('#sexo')
+         let idade = document.querySelector('#idade')
+         let salvar = document.querySelector('#salvar')
 
          console.log(verifica(nome, sexo, idade))
 
          if (verifica(nome, sexo, idade) == true) {
-            
+
             obj = {
                nome: nome.value,
                sexo: sexo.value,
@@ -240,11 +240,11 @@
 
             media_idades = total_idades / vet.length
 
-                  qtdeHomens.  = num_homens
-      qtdeMulheres.innerHTML = num_mulheres
-      maiorIdade.innerHTML = maior_idade
-      menorIdade.innerHTML = menor_idade
-      mediaIdade.innerHTML = media_idades
+            qtdeHomens.innerHTML = num_homens
+            qtdeMulheres.innerHTML = num_mulheres
+            maiorIdade.innerHTML = maior_idade
+            menorIdade.innerHTML = menor_idade
+            mediaIdade.innerHTML = media_idades
 
          }
       }
