@@ -3,7 +3,7 @@
 async function main() {
     //USANDO ASYNC E AWAIT
     try {
-        if (await getResultado(5) > 10) {
+        if (await getResultado(3) > 10) {
             console.log('o valor que retornou é maior que 10')
             if (await getResultado(3) < 10) {
                 console.log('o valor é menor que 10')
