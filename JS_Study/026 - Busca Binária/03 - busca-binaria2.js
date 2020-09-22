@@ -3,6 +3,9 @@
 
 let comp = 0 //comp é uma variável para contar o numero de comparações
 
+// IMPLEMENTAÇÃO ITERATIVA ABAIXO:
+// na iteração em while o dado é encontrado !
+
 function buscaBinaria(lista, valorBusca, fnComp) {
     let inicio = 0
     let fim = lista.length - 1
