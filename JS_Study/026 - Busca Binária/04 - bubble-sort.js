@@ -27,7 +27,9 @@ function bubbleSort(vetor) {
                 trocas++
                 totalTrocas++
             }
+
         }
+        console.log('trocas :>> ', trocas);
 
     } while (trocas > 0)
     // Exibindo as estatísticas
