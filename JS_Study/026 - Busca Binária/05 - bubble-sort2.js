@@ -34,7 +34,6 @@ function bubbleSort(vetor, fnComp) {
                 trocas++
                 totalTrocas++
 
-
             }
 
         }
@@ -48,11 +47,6 @@ function bubbleSort(vetor, fnComp) {
 }
 
 const candidatos = require('./dados/candidatos-2018')
-
-/*
-for(let prop in candidatos[0]) {
-    console.log(prop)
-}*/
 
 bubbleSort(['T', 'H', 'I', 'A', 'G', 'O'], (a, b) => a > b)
 
