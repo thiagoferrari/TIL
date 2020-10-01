@@ -61,7 +61,7 @@ console.log(buscaBinaria(nums, 66, (elPos, busca) => {
 // Termina a execução sem passar pelas linhas abaixo
 //process.exit(0) // 0 = saindo ok, sem erros
 
-let listaNomes = require('./dados/lista-nomes')
+let listaNomes = require('../dados/lista-nomes')
 
 console.time('FAUSTO')
 console.log(buscaBinaria(listaNomes, 'FAUSTO', comparaNome))

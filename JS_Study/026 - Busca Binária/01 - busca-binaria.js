@@ -29,7 +29,7 @@ function buscaBinaria(lista, valorBuscado) {
 
 }
 
-let vetorNomes = require('./dados/vetor-nomes')
+let vetorNomes = require('../dados/vetor-nomes')
 
 console.time('FAUSTO')
 console.log(buscaBinaria(vetorNomes, 'FAUSTO'))
