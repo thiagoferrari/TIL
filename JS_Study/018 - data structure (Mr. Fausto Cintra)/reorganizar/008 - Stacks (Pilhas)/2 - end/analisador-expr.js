@@ -9,7 +9,10 @@ const Stack = require('./lib/Stack2')
 let analisador = new Stack()
 
 let expr = '6 + { 8 / [3 - (9 * 2)] + (4 * 3)}'
+
+// experssão que dará erro:
 //let expr = '6 + { 8 / [3 - (9 * 2)] + (4 * 3)} + [3 * (2 -'
+
 let info
 
 for(let i = 0; i < expr.length; i++) {
@@ -26,6 +29,9 @@ for(let i = 0; i < expr.length; i++) {
             analisador.push({pos: i, tipo: 'PA'})
             //console.log(analisador)
             break
+
+
+
         case '}':
             info = analisador.pop()
             // info não pode ser vazio e seu tipo deve ser CH  

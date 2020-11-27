@@ -1,0 +1,16 @@
+PILHA FUNCIONA O SEGUINTE:
+/*
+    Estrutura de dados Pilha
+    Funcionamento: LIFO = Last In, First Out
+    (o último a entrar é o primeiro a sair)
+*/
+
+
+FILA FUNCIONA O SEGUINTE:
+/*
+    Funcionamento: as funções/dados são chamados a partir da ordem de chegada!
+
+    Estrutura de dados Fila
+    Funcionamento: FIFO (First In, First Out)
+    (o primeiro que entra é o primeiro que sai)
+*/

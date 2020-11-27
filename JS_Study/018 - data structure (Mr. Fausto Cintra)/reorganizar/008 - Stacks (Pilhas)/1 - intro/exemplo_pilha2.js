@@ -1,4 +1,4 @@
-const Stack = require('./lib/Stack2')
+const Stack = require('./lib/Stack')
 
 let pilha = new Stack()
 
@@ -31,7 +31,7 @@ console.log(pilha)
 console.log('Último elemento:', pilha.peek())
 console.log('Tamanho: ', pilha.size())
 
-//pilha.unshift(3)
+//pilha.unshift(3) // não funciona porque pilha é um objeto.    
 
 let x = pilha.pop()
 console.log('x: ', x)
