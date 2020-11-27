@@ -8,14 +8,14 @@ let passadas = 0, comparacoes = 0, trocas = 0
 */
 function quickSort(vetor, fnComp, inicio = 0, fim = vetor.length - 1) {
     //console.log({vetor, inicio, fim})
-    if(fim > inicio) {  // Garante que haja, PELO MENOS, DOIS elementos para ordenar
+    if (fim > inicio) {  // Garante que haja, PELO MENOS, DOIS elementos para ordenar
         passadas++
         let posDiv = inicio - 1
         let posPivot = fim
-        for(let i = inicio; i < fim; i++) {
+        for (let i = inicio; i < fim; i++) {
             comparacoes++
             //if(vetor[i] < vetor[posPivot]) {
-            if(fnComp(vetor[posPivot], vetor[i])) {     // Parâmetros invertidos
+            if (fnComp(vetor[posPivot], vetor[i])) {     // Parâmetros invertidos
                 posDiv++
                 [vetor[i], vetor[posDiv]] = [vetor[posDiv], vetor[i]]
                 trocas++
@@ -30,29 +30,29 @@ function quickSort(vetor, fnComp, inicio = 0, fim = vetor.length - 1) {
     }
 }
 
-/*
-let nums = [90, 81, 72, 63, 54, 45, 36, 27, 18, 9]
-quickSort(nums)
+
+let nums = ['g', 'b', 'á', 'a']
+quickSort(nums, (a, b) => a > b)
 console.log(nums)
-console.log({passadas, comparacoes, trocas})
-*/
+//console.log({ passadas, comparacoes, trocas })
 
 
-const candidatos = require('./dados/candidatos-2018')
-console.time('Teste candidatos')
-//quickSort(candidatos, (a, b) => a.NM_CANDIDATO > b.NM_CANDIDATO)
 
-quickSort(candidatos, (a, b) => {
-    // Ordenação considerando primeiro NR_CANDIDATO e depois NM_CANDIDATO
-    if(a.NR_CANDIDATO == b.NR_CANDIDATO) {
-        if(a.NM_CANDIDATO > b.NM_CANDIDATO) return true
-        else return false
-    }
-    else if(a.NR_CANDIDATO > b.NR_CANDIDATO) return true
-    else return false
-})
+// const candidatos = require('./dados/candidatos-2018')
+// console.time('Teste candidatos')
+// //quickSort(candidatos, (a, b) => a.NM_CANDIDATO > b.NM_CANDIDATO)
 
-console.timeEnd('Teste candidatos')
-console.log(candidatos)
-console.log('Memória usada (MB):', process.memoryUsage().heapUsed / 1024 / 1024)
-console.log({passadas, comparacoes, trocas})
+// quickSort(candidatos, (a, b) => {
+//     // Ordenação considerando primeiro NR_CANDIDATO e depois NM_CANDIDATO
+//     if(a.NR_CANDIDATO == b.NR_CANDIDATO) {
+//         if(a.NM_CANDIDATO > b.NM_CANDIDATO) return true
+//         else return false
+//     }
+//     else if(a.NR_CANDIDATO > b.NR_CANDIDATO) return true
+//     else return false
+// })
+
+// console.timeEnd('Teste candidatos')
+// console.log(candidatos)
+// console.log('Memória usada (MB):', process.memoryUsage().heapUsed / 1024 / 1024)
+// console.log({passadas, comparacoes, trocas})
