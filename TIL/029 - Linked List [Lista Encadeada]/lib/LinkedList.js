@@ -1,6 +1,12 @@
 /*
     Estrutura de dados Lista Encadeada
+    -Este código tem um ponto fraco:
+        quando se for preciso inserir um nodo no fim da lista,
+        o algorítmo vai percorrer todos nodos até chegar no último e dar um push..
+    *Portanto existe a lista duplamente encadeada, onde o existe ponteiro
+        para o nodo anterior e o sucessor. (isso permite percorrer de forma inversa!)
 */
+
 class Node {
     constructor(value) {
         this.data = value   // Armazenamento
@@ -148,7 +154,7 @@ module.exports = class LinkedList {
             // Exemplo de loop for controlando mais de uma variável
             let nodePos, i
             for (nodePos = this.head, i = 0; i < position; nodePos = nodePos.next, i++) {
-                // Não faz nada. Esse loop serve apenas para localizar o nodo da posição
+                // Não faz nada. Esse loop serve só p/ rodar e localizar o nodo da posição
             }
             return nodePos.data
         }
@@ -157,8 +163,10 @@ module.exports = class LinkedList {
     // Retorna a posição da primeira ocorrência do valor dentro da lista, ou
     // -1 caso não exista
     indexOf(value) {
+        // obs:                              nodePos é null quando chegamos ao fim
         for (let nodePos = this.head, i = 0; nodePos != null; nodePos = nodePos.next, i++) {
-            if (nodePos.data === value) return i // Valor encontrado na posição i
+            // Se valor encontrado na posição i seja igual ao parâmetro
+            if (nodePos.data === value) return i
         }
         return -1   // Valor não encontrado
     }
