@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    /* encadeamento de Promises:
+    ** Uma Promise em seu return cria uma nova Promise:
+    */
+
+    const promessa = new Promise(function (resolve, reject) {
+        let condicao = true
+        if (condicao) {
+            // vamos colocar um setTimeout no meio da promise (depois de 1 segundo)
+            setTimeout(() => {
+                resolve('Thiago') // isso será jogado para dentro do .then()
+            }, 1000);
+        } else {
+            reject(Error('um erro ocorreu na promisse'))
+        }
+    })
+
+
+    promessa.then(function (resolucao) { // resolucao veio de resolve()
+        return 'fui para a promise 2' // isso vai como parâm. valRepassado2:
+    })
+    .then(function (valRepassado2) {
+            console.log(valRepassado2)
+            return 'fui para a promise 3' // isso vai como parâm. valRepassado3:
+    })
+    .then(function (valRepassado3) {
+            console.log(valRepassado3)
+    })
+
+</script>
+
+</html>

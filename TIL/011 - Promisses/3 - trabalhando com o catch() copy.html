@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /*
+    ** Catch é usado quando reject é acionado,
+            ou seja, quando der erro na Promise:
+    */
+
+    const promessa = new Promise(function (resolve, reject) {
+        let condicao = false
+        if (condicao) {
+            resolve('consegui passar pelo resolve') // isso vai para dentro do .then()
+        } else {
+            reject('infelizmente passei pelo reject') // isso vai para dentro do .catch()
+        }
+    })
+
+
+    promessa
+        .then(function (resolucao) { // resolucao veio de resolve()
+            console.log(resolucao)
+        })
+        .catch(function (erros) { // erros veio de reject()
+            console.log(`mensagem de erro: ${erros}`)
+        })
+
+
+</script>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /*
+    ** Promise.all retornará uma nova promisse assim que todas dentro dela
+        forem resolvidas ou pelo menos uma rejeitada. A resposta é um array
+        com as respostas de cada promise.
+    */
+
+    // criando várias Promisses:
+
+    const login = new Promise(
+        function (resolve) {
+            setTimeout(() => {
+                resolve('Login Efetuado!')
+            }, 1000);
+        })
+
+    const dados = new Promise(
+        function (resolve) {
+            setTimeout(() => {
+                resolve('Dados Carregados')
+            }, 1000);
+
+        }
+    )
+
+    const token = new Promise(
+        function (resolve) {
+            setTimeout(() => {
+                resolve('token realizado!')
+            }, 1000);
+        })
+
+    const tudoCarregado = Promise.all([login, dados, token])
+
+    // mostrando que Promise.all cria uma nova promise:
+    tudoCarregado.then(
+        respostas => {
+            console.log(respostas) //array com respostas
+        })
+
+</script>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /*
+    ** Promise.race retornará uma nova Promise assim que a primeira
+    Promise for resolvida ou rejeitada. Essa nova Promise terá a
+    resposta da primeira resolvida.
+    */
+
+// criando várias Promisses:
+    
+const login = new Promise(
+        function (resolve) {
+            setTimeout(() => {
+                resolve('Login Efetuado!')
+            }, 1000);
+        })
+
+    const dados = new Promise(
+        function (resolve) {
+            setTimeout(() => {
+                resolve('Dados Carregados')
+            }, 500);
+
+        }
+    )
+
+    const token = new Promise(
+        function (resolve) {
+            setTimeout(() => {
+                resolve('token realizado!')
+            }, 150);
+        })
+
+    const carregouPrimeiro = Promise.race([login, dados, token])
+
+    // mostrando que Promise.race cria uma nova promise:
+    carregouPrimeiro.then(
+        resposta => {
+            console.log(resposta) //resposta da vencedora
+        })
+
+
+</script>
+
+</html>

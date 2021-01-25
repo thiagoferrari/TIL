@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /*
+    ** Também tem como no 2º parametro do then() processamos o reject()
+    */
+
+    const promessa = new Promise(function (resolve, reject) {
+        let condicao = false
+        if (condicao) {
+            resolve('consegui passar pelo resolve') // isso vai para dentro do .then()
+        } else {
+            reject('infelizmente passei pelo reject') // isso vai para dentro do .catch()
+        }
+    })
+
+    promessa
+        .then(function (msgResolve) { console.log(msgResolve) }, // 1º param. da função (resolve)
+            function (msgReject) { console.log(msgReject) }) // 2º param. da função (reject)
+
+</script>
+
+</html>
