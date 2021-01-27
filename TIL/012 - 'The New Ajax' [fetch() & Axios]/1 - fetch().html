@@ -11,17 +11,17 @@
 
 </body>
 <script>
-/**
- * Atualmente para substituir o AJAX usamos o fetch.
- * ele permite fazer requisições HTTP através do método fetch()
- * Esse método retorna a resolução de uma Promise
- * e assim podemos usar o then() com a resposta
- * essa resposta sempre será um objeto do tipo response
- */
+    /**
+     * Atualmente para substituir o AJAX usamos o fetch.
+     * ele permite fazer requisições HTTP através do método fetch()
+     * Esse método retorna a resolução de uma Promise
+     * e assim podemos usar o then() com a resposta
+     * essa resposta sempre será um objeto do tipo response (não é Promise)
+     */
 
- const doc = fetch('/doc.txt')
+    const doc = fetch('./doc.txt')
 
- console.log(doc);
+    console.log('doc: ', doc) // resultado retornado pelo fetch (Promise) + Response
 
 </script>
 

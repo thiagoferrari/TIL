@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /**
+     * aqui vamos estudar em cima do Response, um dos retornos do fetch()
+     * vamos ver os objetos que ele retorna:
+     */
+
+    const doc = fetch('./doc.txt')
+
+    console.log('doc: ', doc) // resultado retornado pelo fetch (Promise) + Response
+
+    doc.then(resolucao => {
+        return resolucao.text() // usar .text() nos retorna uma Promise
+    }) // nessa Promise retornada vamos fazer then :
+        .then(corpo => {
+            document.querySelector('body').innerHTML = corpo
+        })
+
+</script>
+
+</html>
