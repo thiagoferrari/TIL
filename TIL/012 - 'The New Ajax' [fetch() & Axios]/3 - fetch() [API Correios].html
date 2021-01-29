@@ -20,9 +20,9 @@
 
     console.log('cep: ', cep) // resultado retornado pelo fetch (Promise) + Response
 
-    cep.then(resolucao => {
+    cep.then(response => {
         
-        return resolucao.text() // usar .text() nos retorna uma Promise
+        return response.text() // usar .text() nos retorna uma Promise
     }) // nessa Promise retornada vamos fazer then :
         .then(corpo => {
             document.querySelector('body').innerHTML = corpo

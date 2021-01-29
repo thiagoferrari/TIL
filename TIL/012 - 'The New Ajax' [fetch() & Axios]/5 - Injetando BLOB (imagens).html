@@ -8,23 +8,21 @@
 </head>
 
 <body>
-
+<img src="" alt="" class="blobImportado">
 </body>
 <script>
     /**
      * aqui vamos estudar em cima do Response, um dos retornos do fetch()
      * vamos ver os objetos que ele retorna:
-     */
+     */ 
 
-    const html = fetch('./htmlExemplo.html')
+const imagem = fetch('./imagem.png')
 
-    html.then(response => {
-        return response.text() // usar .text() nos retorna uma Promise
-    }) // nessa Promise retornada vamos fazer then :
-        .then(corpo => {
-            document.querySelector('body').innerHTML = corpo
-        })
-
+imagem.then(response => response.blob())
+.then(body => {
+    const blobUrl = URL.createObjectURL(body)
+    document.querySelector('.blobImportado').src = blobUrl
+})
 </script>
 
 </html>

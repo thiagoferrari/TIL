@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /**
+     * Ainda trabalhando com o objeto Response:
+     * 
+     * Motivo de usarmos o clone:
+     * Quando aplicamos o text, json, blob em cima do Response ele é bloqueado^ para
+     *  outro text, json, blob, etc. Para isso não ocorrer podemos cloná-lo antes:
+     * 
+     * ^se você ver em 
+     */
+
+    const cep = fetch('http://viacep.com.br/ws/01001000/json/')
+
+    cep.then(response => {
+        const response2 = response.clone(); // clonando..
+
+        response.text().then(text => {
+            console.log('text :>> ', text);
+        })
+
+        response2.json().then(json => {
+            console.log('json :>> ', json);
+        })
+
+        console.log('response :>> ', response);
+    })
+    .then(body => {
+        console.log('body :>> ', body);
+    })
+
+
+</script>
+
+</html>

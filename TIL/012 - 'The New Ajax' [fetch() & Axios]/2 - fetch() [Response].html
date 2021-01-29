@@ -20,8 +20,8 @@
 
     console.log('doc: ', doc) // resultado retornado pelo fetch (Promise) + Response
 
-    doc.then(resolucao => {
-        return resolucao.text() // usar .text() nos retorna uma Promise
+    doc.then(Response => {
+        return Response.text() // usar .text() nos retorna uma Promise
     }) // nessa Promise retornada vamos fazer then :
         .then(corpo => {
             document.querySelector('body').innerHTML = corpo
