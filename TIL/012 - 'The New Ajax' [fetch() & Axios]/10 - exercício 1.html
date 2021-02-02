@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    body {
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+</style>
+
+<body>
+
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">xxxxx-XXX</span>
+        <input type="text" class="form-control" placeholder="CEP" aria-describedby="basic-addon1">
+    </div>
+
+    <button type="button" class="btn btn-default btn-lg">
+        Buscar CEP!
+    </button>
+
+    <div class="resultado"></div>
+</body>
+
+<script>
+    const buscador = document.querySelector('button')
+    buscador.onclick = () => {
+        let cep = parseFloat(document.querySelector('input').value)
+        BuscaCEP(cep)
+    }
+
+    function BuscaCEP(cepPassado) {
+        let resultado = fetch(`https://viacep.com.br/ws/${cepPassado}/json/`)
+        resultado.then(response => {
+            response.text()
+                .then(texto => {
+                    document.querySelector('.resultado').innerHTML = texto
+                })
+        })
+    }
+</script>
+
+</html>

@@ -18,7 +18,7 @@
      * Quando aplicamos o text, json, blob em cima do Response ele é bloqueado^ para
      *  outro text, json, blob, etc. Para isso não ocorrer podemos cloná-lo antes:
      * 
-     * ^se você ver em 
+     * ^se você ver em bodyUsed ele estará true se já foi tranformado por text, json, blob, etc.
      */
 
     const cep = fetch('http://viacep.com.br/ws/01001000/json/')

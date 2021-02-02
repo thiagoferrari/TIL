@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // Analisando o atributo Header de Response:
+    // response.url vem a URL requisitada
+    // response.type retorna a 'permissão da requisição', explicação abaixo:
+
+    const cep = fetch('https://viacep.com.br/ws/14406587/json/') // API PÚBLICA*
+
+    cep.then(response => {
+        console.log(response.url)
+        console.log(response.type) // aqui retorna cors [requisição para servidor externo permitida]
+    })
+
+    const docLocal = fetch('./doc.txt')
+    docLocal.then(response => {
+        console.log(response.type) // aqui retorna basic [requisição para servidor interno]
+    })
+
+    const google = fetch('https://google.com')
+    google.then(response => {
+        console.log(response.type) // aqui retorna vários erros
+    })
+
+    // no google não é permitido tentar o fetch, [requisição para servidor externo NÃO permitida]
+
+
+</script>
+
+</html>
