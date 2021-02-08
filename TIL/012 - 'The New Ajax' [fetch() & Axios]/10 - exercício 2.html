@@ -21,27 +21,31 @@
 <body>
 
     <div class="input-group">
-        <span class="input-group-addon" id="basic-addon1">₿</span>
-        <input type="text" id="btc" class="form-control" placeholder="Bitcoin" aria-describedby="basic-addon1">
+        <span class="input-group-addon" id="basic-addon1">Valor do Bitcoin em R$ [Reais]</span>
+        <input type="text" id="real" class="form-control" placeholder="real" aria-describedby="basic-addon1">
     </div>
 
     <div class="input-group">
-        <span class="input-group-addon" id="basic-addon1">$</span>
-        <input type="text" id="dollar" class="form-control" placeholder="Dollar" aria-describedby="basic-addon1">
+        <span class="input-group-addon" id="basic-addon1">Valor do Bitcoin em $ [Dollar]</span>
+        <input type="text" id="dollar" class="form-control" placeholder="dollar" aria-describedby="basic-addon1">
     </div>
 
-    <div class="teste"></div>
 </body>
 
 <script>
-    const moedas = fetch('https://blockchain.info/ticker')
-    moedas.then(response => {
-        response.text()
-            .then(textos => {
-                document.querySelector('.teste').innerHTML = textos
-                document.querySelector('#btc').innerHTML = textos
-            })
-    })
+    const fetchBtc = () => {
+        moedas = fetch('https://blockchain.info/ticker')
+        moedas.then(response => {
+            response.json()
+                .then(valores => {
+                    document.querySelector('#dollar').value = valores.USD.buy
+                    document.querySelector('#real').value = valores.BRL.buy
+                })
+        })
+    }
+
+    setInterval(fetchBtc, 500);
+
 </script>
 
 </html>

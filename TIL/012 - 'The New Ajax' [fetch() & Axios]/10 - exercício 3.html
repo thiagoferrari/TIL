@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    body {
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+</style>
+
+<body>
+
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">joke of day:</span>
+        <p type="text" id="joke" class="form-control" placeholder="joke"><p>
+    </div>
+
+</body>
+
+<script>
+    const fetchJoke = fetch('https://api.chucknorris.io/jokes/random')
+    fetchJoke.then(response => {
+        response.json()
+            .then(joke => {
+                document.querySelector('#joke').innerText = joke.value
+                //console.log('joke', joke.value)
+
+            })
+    })
+
+</script>
+
+</html>
