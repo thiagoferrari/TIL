@@ -22,7 +22,7 @@
        */
 
     // VAMOS USAR UMA API FAKE:
-    const url = 'https://jsonplaceholder.typicode.com/posts'
+    let url = 'https://jsonplaceholder.typicode.com/posts'
     const metodoGET = { method: 'GET' }
 
     // Usando GET:
@@ -30,29 +30,68 @@
         .then(response => {
             response.json()
                 .then(retorno => {
-                    console.log('****** Usando GET: ******')
+                    console.log('****** Retorno usando GET: ******')
                     console.log(retorno)
                 })
         })
 
 
+
     // Usando POST:
     const metodoPOST = {
         method: 'POST',
+        body: '{"title": "NOVO TEXTO"}',
         headers: {
-            "Content-Type": "application/json; charset=utf-8",
-        },
-        body: '{"titulo": "NOVO TEXTO"}'
+            "Content-Type": "application/json; charset=utf-8"
+        }
     }
 
     fetch(url, metodoPOST)
         .then(response => response.json()
             .then(retorno => {
-                console.log(`****** Usando POST: ******`)
+                console.log(`****** Retorno usando POST: ******`)
                 console.log(retorno)
             })
-        )
-                // veja que o id retornado pela API fake é sucessor do 100
+        ) // veja que o id retornado pela API fake é sucessor do 100
+
+
+
+    // Usando PUT:
+    url = 'https://jsonplaceholder.typicode.com/posts/1'
+    const metodoPUT = {
+        method: 'PUT',
+        body: '{"title": "TEXTO ATUALIZADO"}',
+        headers: {
+            "Content-Type": "application/json; charset=utf-8"
+        }
+    }
+
+    fetch(url, metodoPUT)
+        .then(response => {
+            response.json()
+                .then(retorno => {
+                    console.log('****** Retorno usando PUT: ******')
+                    console.log(retorno)
+                })
+        })
+
+
+
+    // Usando HEAD:
+    const metodoHEAD = { method: 'HEAD' }
+
+    fetch(url, metodoHEAD)
+        .then(response => {
+            console.log('****** Retorno usando HEAD: ******')
+            console.log('Content-Type', response.headers.get('Content-Type'))
+            console.log('Cache-Control', response.headers.get('Cache-Control'))
+        })
+        
+    /** Principais Headers:
+    * Cache-Control
+    * Content-Type
+    * ..existem varios Headers, só procurar na net
+    */
 
 
 </script>

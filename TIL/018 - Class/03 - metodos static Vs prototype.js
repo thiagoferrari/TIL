@@ -4,7 +4,7 @@ class RemoteControl {
         this.volume = 0
     }
 
-    // METODOS DE INSTÂNCIA:
+    // METODOS DE Prototype:
     up_volume() {
         this.volume += 2
     }
