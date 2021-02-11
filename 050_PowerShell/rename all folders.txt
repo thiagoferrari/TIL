@@ -1,0 +1,8 @@
+$folders = Get-ChildItem -Path C:\Users\2309\Documents\GitHub\TIL\TIL -Recurse -Directory
+foreach ($folder in $folders)
+{
+    if ($folder.Name.Contains(" "))
+    {
+        Rename-Item -Path $folder.FullName $folder.Name.Replace(" ","-")
+    }
+}
