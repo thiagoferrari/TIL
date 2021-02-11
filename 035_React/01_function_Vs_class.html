@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Load React, React DOM, Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app"></div>
+
+    <script type="text/babel">
+        // o babel converte todo JSX em React.createElement()..
+
+        // Exemplo de Function Component
+        let App = () => {
+            return (
+                <>
+                    <div>Hello World!</div>
+                    <Button />
+                </>)
+        } // <> usado porque é preciso ao menos uma tag pai
+
+
+        // Exemplo de class Component
+        class Button extends React.Component {
+            render() {
+                return <button>Botão criado com class</button>
+            }
+        } // Jogamos esse <Button /> para dentro do App
+
+        ReactDOM.render(<App />, document.querySelector('.app'))
+
+    </script>
+</body>
+
+</html>
