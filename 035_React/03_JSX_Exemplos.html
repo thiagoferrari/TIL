@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Load React, React DOM, Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app"></div>
+
+    <script type='text/babel'>
+        const meuNome = 'Thiago'
+
+        let boo = true //isso controla o className do <p>
+
+        let titulo = <h1>Página HTML + React</h1>
+
+        const App = () => {
+            return (<>
+                {titulo}
+
+                <p className={boo ? 'ativo' : 'falso'} >{meuNome}</p>
+
+                <div>{Math.random()}</div>
+
+                <div>{new Date().getFullYear()}</div>
+            </>)
+        }
+
+        ReactDOM.render(<App />, document.querySelector('.app'))
+    </script>
+</body>
+
+</html>
