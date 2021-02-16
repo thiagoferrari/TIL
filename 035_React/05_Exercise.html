@@ -23,19 +23,25 @@
             let Nome = dados.cliente
             let Idade = dados.idade
             let Situacao = dados.ativa
-
-            let Estilo = () => {
-                color: blue
-            }
+            let totalGasto = dados.compras.map(compra => +compra.preco.replace('R$ ', ''))
+            totalGasto = totalGasto.reduce((a, b) => a + b)
+            // acima fizemos um map, replace do R$, esse + para converter para number
 
             return (
                 <>
                     <div>Nome: {Nome}</div>
                     <div>Idade: {Idade}</div>
                     <div style={Situacao ? { color: 'green' } : { color: 'red' }}>
-                        Situação: {Situacao ? 'Ativa' : 'False'}
+                        Situação: {Situacao ? 'Ativa' : 'Inativa'}
                     </div>
+                    <div>total Gasto: {totalGasto}</div>
+                    {totalGasto > 10000 && <div>'Gastou muito'</div>}
                 </>
+                /*
+                 nessa última linha usamos o operador && (AND)
+                  * se alguma condição nele der false, ele para
+                  * ele para e nem polui a DOM se totalGasto < 10000
+                 */
             )
         }
 

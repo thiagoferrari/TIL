@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Load React, React DOM, Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div class="app"></div>
+</body>
+
+<script src="./07_Exercise.js"></script>
+
+<script type="text/babel">
+
+    let dadosDOM = produtos
+        .filter(({ preco }) => +preco.replace('R$ ', '') > 1500)
+        .map(({ nome, preco, cores }, index) => {
+            return (
+                <div key={index}>
+                    <h1 key={nome}>{nome}</h1>
+                    <p key={preco}>Preço: {preco}</p>
+                    {cores.map(cor => {
+                        return (
+                            <li key={cor} style={{ color: cor }}>
+                                {cor}
+                            </li>
+                        )
+                    })}
+                </div>
+            )
+        })
+
+    const App = () => {
+        return <>
+            {dadosDOM}
+        </>
+    }
+
+    ReactDOM.render(<App />, document.querySelector('.app'))
+</script>
+
+</html>

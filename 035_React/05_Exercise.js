@@ -7,6 +7,11 @@ const luana = {
         { nome: 'Smartphone', preco: 'R$ 1500' },
     ],
     ativa: true,
+    filmesPref: [
+        { nome: 'Endless Love', ano: 1996 },
+        { nome: 'Narnia', ano: 1998 },
+        { nome: 'Narnia 2', ano: 2005 }
+    ]
 };
 
 const mario = {
@@ -19,4 +24,9 @@ const mario = {
         { nome: 'Guitarra', preco: 'R$ 3500' },
     ],
     ativa: false,
+    filmesPref: [
+        { nome: 'Rambo', ano: 1996 },
+        { nome: 'Terminator 2', ano: 1998 },
+        { nome: 'MacGiver', ano: 2005 }
+    ]
 };
