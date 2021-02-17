@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Load React, React DOM, Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div class="app"></div>
+</body>
+
+<script type="text/babel">
+
+    // Também podemos trabalhar com o children:
+    // cada tag dentro do componente é um filho.
+    const Titulo = (props) => {
+        console.log('props :>> ', props);
+        return <h1>{props.children}</h1>
+    }
+
+    const App = () => {
+        return (
+            <>
+                <Titulo>
+                    Este é o filho 1
+                    <p>Este é o filho 2</p>
+                    <p>Este é o filho 3</p>
+                </Titulo>
+            </>
+        )
+    }
+
+    ReactDOM.render(<App />, document.querySelector('.app'))
+</script>
+
+</html>
