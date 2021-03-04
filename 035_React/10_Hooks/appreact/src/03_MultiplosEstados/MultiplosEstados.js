@@ -1,6 +1,8 @@
 import React from 'react'
 
-const Hooks = () => {
+const MultiplosEstados = () => {
+
+    /* AGORA VAMOS VER MAIS UM EXEMPLO COM O useState(): */
 
     const [ativo, setAtivo] = React.useState(true)
     /* aqui temos uma desestruturação:
@@ -9,9 +11,8 @@ const Hooks = () => {
     */
 
     return (<>
-        <h1>Hooks:</h1>
-        <p>Os Hooks são funções especiais do React que permitem controlarmos o <b>estado</b> e <b>lifecycle</b> de componentes.</p>
-        <p>Veja agora como fica o botão ativo/inativo utilizando os hooks:</p>
+        <h1>MultiplosEstados</h1>
+        <p></p>
 
         <fieldset>
             <div>Clique para mudar: (Ativo / Inativo)</div>
@@ -20,9 +21,8 @@ const Hooks = () => {
             </button>
         </fieldset>
 
-        <p>Acima estamos utilizando da função useState(), e ela é especial para controlar o estado de componentes. lembrando: O React possui vários hooks, veremos mais ao longo do tempo..</p>
 
     </>)
 }
 
-export default Hooks
+export default MultiplosEstados
