@@ -1,28 +1,48 @@
 import React from 'react'
 
-const MultiplosEstados = () => {
+const MúltiplosEstados = () => {
 
-    /* AGORA VAMOS VER MAIS UM EXEMPLO COM O useState(): */
+    /* códigos do exemplo 1: */
+    const [valor, setAdicao] = React.useState(0)
 
-    const [ativo, setAtivo] = React.useState(true)
-    /* aqui temos uma desestruturação:
-        * [ativo] é o estado controlado
-        * [setAtivo] a função capaz de setar/alterar os dados/estado de [ativo]
-    */
+
+    /* códigos do exemplo 2: */
+    const [dados, setDados] = React.useState({ nome: "Thiago", idade: "20" })
+    function handleClick() {
+        setDados({ ...dados, facul: 'Cursando' })
+    }
 
     return (<>
-        <h1>MultiplosEstados</h1>
-        <p></p>
+        <h1>Multiplos Estados</h1>
+        <p>É possível trabalhar com vários estados em um mesmo arquivo .js </p>
+        <p>Mostrarei aqui mais exemplos: </p>
 
         <fieldset>
-            <div>Clique para mudar: (Ativo / Inativo)</div>
-            <button onClick={() => setAtivo(!ativo)}>
-                Botão {ativo ? 'ativo' : 'inativo'}
+            <h4>1º: estado baseado neste botão, que controla a adição de +1 ao número:</h4>
+            <button onClick={() => setAdicao(valor + 1) /* nota no rodapé */}>
+                <a>Clique para a adição de +1:</a> <a>{valor}</a>
             </button>
         </fieldset>
 
+
+        <fieldset>
+            <h4>2º: Um botão que ao clicar mostra mais uma propridade de um objeto dentro do estado*:</h4>
+
+            <button onClick={handleClick /* nota no rodapé */} >
+                <a>Clique para mostrar +1 propriedade do objeto:</a>
+            </button>
+
+            <div>{dados.nome}</div>
+            <div>{dados.idade}</div>
+            <div>{dados.facul}</div>
+
+            <p>*por trás do código vamos trabalhar com o spread</p>
+        </fieldset>
 
     </>)
 }
 
 export default MultiplosEstados
+
+
+/* podemos usar arrow function direto aqui ou colocar na pilha do handleClick */
