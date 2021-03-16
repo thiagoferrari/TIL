@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MúltiplosEstados = () => {
+const MultiplosEstados = () => {
 
     /* códigos do exemplo 1: */
     const [valor, setAdicao] = React.useState(0)
@@ -36,7 +36,7 @@ const MúltiplosEstados = () => {
             <div>{dados.idade}</div>
             <div>{dados.facul}</div>
 
-            <p>*por trás do código vamos trabalhar com o spread</p>
+            <p>*por trás do código trabalhamos com o spread (para espalhar as propridades já existentes e adicionar uma nova)</p>
         </fieldset>
 
     </>)

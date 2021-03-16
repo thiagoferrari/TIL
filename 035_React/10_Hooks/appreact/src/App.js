@@ -4,6 +4,7 @@ import Paths from './Paths';
 import Component from './01_Estado/Estado'
 import Hooks from './02_Hooks/Hooks'
 import MultiplosEstados from './03_MultiplosEstados/MultiplosEstados';
+import PropsEstados from './04_Props+Estados/PropsEstados';
 
 function App() {
 
@@ -22,6 +23,9 @@ function App() {
     case '/03_MultiplosEstados':
       return <MultiplosEstados />
 
+    case '/04_Props+Estados':
+      return <PropsEstados />
+
     default: // pathname = '/'
       return (
         <>
@@ -31,6 +35,7 @@ function App() {
           <div><a href="01_Estado">01 - Estado</a></div>
           <div><a href="02_Hooks">02 - Hooks</a></div>
           <div><a href="03_MultiplosEstados">03 - MultiplosEstados</a></div>
+          <div><a href="04_Props+Estados">04 - Props+Estados</a></div>
 
         </>
       )
