@@ -16,22 +16,22 @@
 <body>
     <div class="app"></div>
 </body>
+<script src="./Fetch.js"></script>
 <script type="text/babel">
 
 
     const App = () => {
-        /* é possível passar uma função de callback dentro do set de um estado;
-                E nesta função, o seu parâmetro é o valor anterior do estado, veja:
-        */
 
-        const [boo, setBoo] = React.useState(true)
-
-        function handleClick() {
-            setBoo((anterior) => !anterior) //anterior recebe a variável que setBoo controla
-            console.log(boo)
+        const handleFetch = async (event) => {
+            produto = buscaAPI(event.target.innerHTML)
+            console.log(produto.id)
         }
 
-        return <button onClick={handleClick}>{boo}teste</button>
+        return (<>
+            <button onClick={handleFetch}>notebook</button>
+            <button onClick={handleFetch}>smartphone</button>
+            <button onClick={handleFetch}>tablet</button>
+        </>)
     }
 
     ReactDOM.render(<App />, document.querySelector('.app'))
