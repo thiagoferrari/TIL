@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Load React, React DOM, Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app"></div>
+
+
+</body>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+</style>
+
+<script type="text/babel">
+
+    /*
+        executando somente uma vez o useEffect:
+            se deixarmos o array de dependências em branco,
+                    podemos executar somente uma vez o seu conteúdo
+                                        (somente quando o componente é montado):
+    */
+
+    const App = () => {
+
+        const [contar, setContar] = React.useState(0)
+
+        console.log('Executou sem useEffect')
+
+        React.useEffect(() => { console.log('Executou uma vez COM useEffect') }, [])
+
+        return (<button onClick={() => setContar(contar + 1)}>{contar}</button>)
+
+    }
+
+    ReactDOM.render(<App />, document.querySelector('.app'))
+</script>
+
+</html>

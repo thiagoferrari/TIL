@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Load React, React DOM, Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app"></div>
+
+
+</body>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+</style>
+
+<script type="text/babel">
+
+    /*
+        aqui mostro mais sobre quando trabalhamos com o ARRAY DE DEPENDÊNCIAS:
+                analise:
+                    - precisamos fazer um fetch no servidor para trazer um produto;
+                    - ele precisa ser renderizado somente uma vez!
+    */
+
+    const App = () => {
+
+        const [contar, setContar] = React.useState(0)
+        const [dados, setDados] = React.useState(null)
+
+        React.useEffect(() => {
+            /* se o fetch estivesse fora do useEffect:
+                    - toda vez que o component atualizar ele seria novamente executado.*/
+
+            fetch('https://ranekapi.origamid.dev/json/api/produto/notebook')
+                .then((response) => response.json())
+                .then(produto => setDados(produto)) //aqui passo ao estado os dados do produto
+
+        }, [])
+
+
+        // outro useEffect:
+        React.useEffect(() => { document.title = `Total de prod. em carrinho: ${contar} ` }, [contar])
+
+        return (<>
+            {dados && //se houverem dados, continuar com o JSX:
+                <div>
+                    <h1>{dados.nome}</h1>
+                    <h2>Preço produto: {dados.preco}</h2>
+                    <h3>Total em carrinho: {dados.preco * contar}</h3>
+                </div>
+            }
+            <button onClick={() => setContar(contar + 1)}>Comprar! ({contar})</button>
+        </>)
+
+    }
+
+    ReactDOM.render(<App />, document.querySelector('.app'))
+</script>
+
+</html>
