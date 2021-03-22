@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Load React, React DOM, Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app"></div>
+
+    <script type="text/babel">
+
+        // Declarando componente com arrow function:
+        const FuncComponent = () => {
+            // declarando variável de estado 'contador' ele está iniciando com 1 [React.useState(1)]
+            const [contador, setarContador] = React.useState(1);
+
+            // função de incremento +1:
+            const add1 = () => {
+                setarContador(contador + 1);
+            };
+
+            // retorno da função em JSX
+            return (
+                <>
+                    <h2>{contador}</h2>
+                    <button onClick={add1}>Add</button>
+                </>
+            );
+        };
+
+        // Render do return dentro da função/componente 'FuncComponent':
+        ReactDOM.render(<FuncComponent />, document.querySelector(".app"));
+
+    </script>
+</body>
+
+</html>
