@@ -26,21 +26,28 @@
 
 <script type="text/babel">
 
-    /*ALERTA: CÓDIGO ERRADO (somente para demonstração, o próximo arquivo é a correção):
+    /* CÓDIGO CERTO, USANDO CLEAN NO useEffect()
         - Como você pode ver no chrome dev tools em:
-            Event Listeners > Scroll , vamos ter vários Event Listeners iniciados
-            Isso com o tempo pode travar seu app
-            Portanto para corrigir isso usamos o clean no useEffect (próximo arquivo)
+            Event Listeners > Scroll , não temos repetições de scroll!
     */
 
 
     // componente Produto:
     const Produto = () => {
-        function handleScroll(event) {
-            console.dir(event)
-        }
 
-        window.addEventListener('scroll', handleScroll)
+        React.useEffect(() => {
+            function handleScroll(event) {
+                console.log(event)
+            }
+
+            window.addEventListener('scroll', handleScroll)
+
+            /* o return ocorrerá quando o componente sair da DOM (desmontado) */
+            return () => {
+                window.removeEventListener('scroll', handleScroll)
+            }
+
+        }, [])
 
         return (
             <div style={{ height: '200vh' }}>
