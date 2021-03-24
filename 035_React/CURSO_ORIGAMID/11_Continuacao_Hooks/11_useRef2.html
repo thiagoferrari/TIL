@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Load React, React DOM, Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app"></div>
+</body>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    button,
+    input {
+        background-color: gray;
+    }
+</style>
+
+<script type="text/babel">
+
+    /* ERRO COMUM AO USAR useRef():
+            - não usar useRef() dentro de userEffect(), veja:
+    */
+
+    function CodigoErrado() {
+        const element = React.useRef()
+
+        console.log(element.current) // undefined: o código executa aqui antes do component ser montado
+
+        return <div ref={element}>Elemento dentro de código errado :(</div>
+    }
+
+    function CodigoCerto() {
+        const element = React.useRef()
+
+        // useEffect é executado depois que o componente é montado!
+        React.useEffect(() => { console.log(element) }) // aqui tenho acesso a div
+
+        return <div ref={element}>Elemento dentro de código certo :)</div>
+    }
+
+    const App = () => { return <><CodigoErrado /> <CodigoCerto /></> }
+
+    ReactDOM.render(<App />, document.querySelector('.app'))
+
+    /* PORTANTO PERCEBA QUE PARA useRef() PRECISAMOS FAZER:
+        1º declarar const variavel = React.useRef()
+        2º colocar seu código dentro de algo que executará depois da sua montagem.
+        3° colocar ref como prop dentro do elemento que quero referenciar no JSX
+    */
+</script>
+
+</html>
