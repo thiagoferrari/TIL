@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Load React, React DOM, Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app"></div>
+</body>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    button,
+    input {
+        background-color: gray;
+    }
+</style>
+
+<script type="text/babel">
+    /* useRef pode ser usado para várias coisas,
+        veja nesse App:
+
+        OBJETIVO: emitir uma mensagem a cada vez que o user add item no carro de Compras:
+        */
+
+    const App = () => {
+        const [carro, setCarro] = React.useState(0) //carro de Compras
+        const [notif, setNotif] = React.useState(null)
+
+        function handleClick() {
+            setCarro(carro + 1)
+            setNotif('item add ao carrinho com sucesso!')
+
+
+            /*
+            código não recomendado, pois ele cria a cada click um novo timeout e,
+                            isso pode travar o app, acima código certo^
+            setTimeout(() => {
+                setNotif(null)
+                onsole.log('setado')
+            }, 200)*/
+        }
+
+        // FALTA CONCLUIR !!
+
+        return (<>
+            <button onClick={handleClick}>Add ao carro de Compras!</button>
+            <div>itens carro: {carro}</div>
+        </>)
+    }
+
+    ReactDOM.render(<App />, document.querySelector('.app'))
+
+</script>
+
+</html>

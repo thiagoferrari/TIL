@@ -28,34 +28,15 @@
 </style>
 
 <script type="text/babel">
-    /* useRef pode ser usado para várias coisas,
-        veja nesse App:
-
-        OBJETIVO: emitir uma mensagem a cada vez que o user add item no carro de Compras:
-        */
-
     const App = () => {
-        const [carro, setCarro] = React.useState(0) //carro de Compras
-        const [notif, setNotif] = React.useState(null)
+        const [n, setN] = React.useState(1)
 
         function handleClick() {
-            setCarro(carro + 1)
-            setNotif('item add ao carrinho com sucesso!')
-
-
-            /*
-            código não recomendado, pois ele cria a cada click um novo timeout e,
-                            isso pode travar o app, acima código certo^
-            setTimeout(() => {
-                setNotif(null)
-                onsole.log('setado')
-            }, 200)*/
+            // veja que podemos acessar o valor old (anterior:)
+            setN(old => old + 1)
         }
 
-        return (<>
-            <button onClick={handleClick}>Add ao carro de Compras!</button>
-            <div>itens carro: {carro}</div>
-        </>)
+        return <button onClick={handleClick} > Add + 1 (total {n})</button>
     }
 
     ReactDOM.render(<App />, document.querySelector('.app'))
