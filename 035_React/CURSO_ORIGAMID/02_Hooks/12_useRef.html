@@ -48,9 +48,9 @@
             setNote([...notes, input]) // passando para dentro do estado notes o input
             setInput('') // esvaziando input
 
-            // aqui focaremos no input depois da função de click:
-            document.querySelector('input').focus()
-            //inputElement.current.focus();
+            // aqui focaremos no input depois da função de click (sem usar documentQuery..):
+            //document.querySelector('input').focus()
+            inputElement.current.focus();
         }
 
         return (

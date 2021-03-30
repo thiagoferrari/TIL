@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Load React, React DOM, Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    button,
+    input {
+        background-color: gray;
+    }
+</style>
+
+<script type="text/babel">
+
+    /*EXEMPLO DE APP:
+        - Palavra do dia (decora uma palavra digitada - com localStorage)
+        - se houver load/reaload na page e tiver palavra em memória, disparar alert (useEffect)
+        - usar preventDefault() na tag form, desligando o enviar da página
+        */
+
+    /* abreviando funções: */
+    const useState = (val) => { return React.useState(val) }
+    const useRef = () => { return React.useRef() }
+    const getItem = (val, varName) => { return window.localStorage.getItem(val, varName) }
+    const setItem = (val, varName) => { return window.localStorage.setItem(val, varName) }
+
+    /* montando componente: */
+    function PalavraDia() {
+        const [palavra, setPalavra] = useState(() => getItem('palavra') || null)
+        const inputRef = useRef() // criando inputRef
+
+        const handleSave = (event) => {
+            setPalavra(inputRef.current.value)
+
+            //setItem('palavra', event.target.value) /*Poderia ser tmb*/
+
+            // setando localStorage a partir do inputRef:
+            setItem('palavra', inputRef.current.value)
+
+        }
+
+        // useEffect + if ternário:
+        React.useEffect(() => { palavra ? alert('palavra do dia atualizada!') : null }, [palavra])
+
+        return (
+            <form onSubmit={() => event.preventDefault()}>
+                <div>
+                    <label htmlFor="input">Escreva uma palavra do dia: </label>
+                    <input id="input" ref={inputRef} type="text" />
+                </div>
+                <div>
+                    <label>Memória (localStorage): {palavra} </label>
+                </div>
+                <button onClick={handleSave}>Gravar!</button>
+            </form>)
+    }
+
+
+    ReactDOM.render(<PalavraDia />, document.getElementById('root'))
+</script>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Load React, React DOM, Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    button,
+    input {
+        background-color: gray;
+    }
+</style>
+
+<script type="text/babel">
+
+    //ESTE CÓDIGO PRECISA SER ANALISADO
+
+    // 🐨 accept `animal` and `onAnimalChange` props to this component
+    function FavoriteAnimal({ animal, onAnimalChange }) {
+        // 💣 delete this, it's now managed by the App
+        //const [animal, setAnimal] = React.useState('')
+        return (
+            <div>
+                <label htmlFor="animal">Favorite Animal: </label>
+                <input
+                    id="animal"
+                    value={animal}
+                    // onChange={event => setAnimal(event.target.value)}
+                    onChange={onAnimalChange}
+                />
+            </div>
+        )
+    }
+
+    function Display({ animal }) {
+        return <div>{`Your favorite animal is: ${animal}!`}</div>
+    }
+
+    function App() {
+        // 🐨 add a useState for the animal
+        const [animal, setAnimal] = React.useState('')
+        //const [name, setName] = React.useState('')
+        return (
+            <form>
+                {/* 🐨 pass the animal and onAnimalChange prop here (similar to the Name component above) */}
+                <FavoriteAnimal animal={animal} onAnimalChange={event => setAnimal(event.target.value)} />
+                {/* 🐨 pass the animal prop here */}
+                <Display animal={animal} />
+            </form>
+        )
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'))
+</script>
+
+</html>
