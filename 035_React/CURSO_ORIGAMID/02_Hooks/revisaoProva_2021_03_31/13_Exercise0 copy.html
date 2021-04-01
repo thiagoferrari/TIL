@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Load React, React DOM, Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    button,
+    input {
+        background-color: gray;
+    }
+</style>
+
+<script type="text/babel">
+
+    /*PEQUENO EXERCÍCIO SOBRE useRef + useState*/
+
+    /*
+      Usando os recursos do React (manupuladores de evento, useRef e useState),
+      escreva o nome completo da pessoa (EM MAIÚSCULAS) toda vez que houver 
+      alteração nos campos de nome ou sobrenome.
+      1) Criar dois useRef e associá-los aos inputs.
+      2) Criar um useState para armazenar o nome completo.
+      3) Criar uma função para manipular o evento onChange dos inputs. Nessa
+         função, deve-se ler os valores de ambos os inputs (com as refs), formar 
+         o nome completo em maiúsculas e guardá-lo na variável de estado.
+      4) Usar a variável de estado para atualizar o conteúdo da div do nome completo.
+      
+    */
+
+    function MeuForm(props) {
+
+        // 1) Criar dois useRef e associá-los aos inputs.
+        const inputNome = React.useRef()
+        const inputSbNome = React.useRef()
+
+        //2) Criar um useState para armazenar o nome completo.
+        const [nmCompleto, setNmCompleto] = React.useState('')
+
+        //3) Criar uma função para manipular o evento onChange dos inputs.
+        function handleChange() {
+            let parte1 = inputNome.current.value
+            let parte2 = inputSbNome.current.value
+
+            // template string:
+            setNmCompleto(`${parte1.toUpperCase()} ${parte2.toUpperCase()}`)
+        }
+
+        //4) Usar a variável de estado para atualizar o conteúdo da div do nome completo.
+        return (
+            <>
+                <div>
+                    <label htmlFor="nome">Nome</label>
+                    <input id='nome' onChange={handleChange} ref={inputNome} type="text" />
+                </div>
+                <div>
+                    <label htmlFor="sobre">SobreNome</label>
+                    <input id='sobre' onChange={handleChange} ref={inputSbNome} type="text" />
+                </div>
+                <div>{nmCompleto}</div>
+            </>
+        )
+    }
+
+    ReactDOM.render(<MeuForm />, document.getElementById('root'))
+</script>
+
+</html>

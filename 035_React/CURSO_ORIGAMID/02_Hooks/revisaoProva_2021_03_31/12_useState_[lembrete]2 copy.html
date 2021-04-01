@@ -29,18 +29,18 @@
 
 <script type="text/babel">
     const App = () => {
-        const [n, setN] = React.useState(1)
-
-        function handleClick() {
-            // veja que podemos acessar o valor old (anterior:)
-            setN(old => old + 1)
-        }
-
-        return <button onClick={handleClick} > Add + 1 (total {n})</button>
+        // no momento de declaração do estado, é possível passar uma função:
+        const [data, setData] = React.useState(() => window.location.host)
+        return <div>URL Utilizada: {data}</div>
     }
 
     ReactDOM.render(<App />, document.querySelector('.app'))
 
+    /*LEMBRANDO:
+    - Quando o useState recebe uma função em vez de um valor como estado inicial,
+            essa função é executada apenas durante a fase mount do componente, sem se
+            repetir na fase update (re-render)
+    */
 </script>
 
 </html>

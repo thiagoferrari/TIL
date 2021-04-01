@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Load React, React DOM, Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app"></div>
+
+    <script type="text/babel">
+
+        /* sempre usar chaves ao passar números dentro dos props */
+
+        const Soma = ({ n1, n2 }) => {
+            return <div>{n1 + n2}</div>
+        }
+
+        function App() {
+            return (<>
+                <Soma n1={100} n2={100} />
+                {Soma({ n1: 180, n2: 180 })}
+            </>)
+        }
+
+        ReactDOM.render(<App />, document.querySelector('.app'))
+    </script>
+</body>
+
+</html>
