@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Load React, React DOM, Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app"></div>
+</body>
+
+<script type="text/babel">
+    function Ninja(props) { // criando componente(função) Ninja com props
+        return <div>Nome do Ninja: {props.nome}</div>
+    }
+
+    function App() {
+        return <Ninja nome='Bruce Lee' />
+                   // nome vai para dentro do props da função Ninja (linha 20)
+    }
+
+    // Renderizando <App /> (dentro de <App /> retornamos <Ninja />)
+    ReactDOM.render(<App />, document.querySelector('.app'))
+</script>
+
+</html>

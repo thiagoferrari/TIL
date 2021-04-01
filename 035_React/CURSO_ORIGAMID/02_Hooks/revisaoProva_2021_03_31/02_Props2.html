@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Load React, React DOM, Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app"></div>
+</body>
+
+<script type="text/babel">
+    // desestruturando nome e tipoLuta de props:
+    function Ninja({ nome, tipoLuta }) {
+        return (
+            <div>
+                <div>{nome} é o Nome do Ninja</div>
+                <div>Tipo Luta: {tipoLuta}</div>
+            </div>
+        )
+    }
+
+    function App() {
+        return <Ninja nome='Bruce Lee' tipoLuta='karatê' />
+        // Os props nome e tipoLuta são passados para linha 21
+    }
+
+    // Renderizando <App /> (dentro de <App /> retornamos <Ninja />)
+    ReactDOM.render(<App />, document.querySelector('.app'))
+</script>
+
+</html>
