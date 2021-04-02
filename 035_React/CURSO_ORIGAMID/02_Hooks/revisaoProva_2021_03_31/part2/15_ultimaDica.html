@@ -12,34 +12,22 @@
     <title>Document</title>
 </head>
 
-<style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-</style>
-
 <body>
     <div class="app"></div>
 
     <script type="text/babel">
 
-        /*
-            ENTENDIMENTO INICIAL:
+        /* sempre usar chaves ao passar números dentro dos props */
 
-            todo componente tem lifecycle e os pricipais momentos sao:
-            renderizacao, atualizacao, destruicao do componente
-
-            com o React.useEffect() podemos definir um callback para disparar em determinados lifecycle:
-        */
+        const Soma = (props) => {
+            return <div>{props.n1 + props.n2}</div>
+        }
 
         function App() {
-
-            const [contar, setContar] = React.useState(0)
-
-            React.useEffect(() => { console.log('log quando <App /> renderiza ou atualizar') })
-
-            return (<button onClick={() => setContar(contar + 1)}>{contar}</button>)
-
+            return (<>
+                <Soma n1={100} n2={100} />
+                {Soma({ n1: 180, n2: 180 })}
+            </>)
         }
 
         ReactDOM.render(<App />, document.querySelector('.app'))

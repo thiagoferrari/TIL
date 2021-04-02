@@ -13,25 +13,25 @@
 </head>
 
 <body>
-    <div class="app"></div>
-
-    <script type="text/babel">
-
-        /* sempre usar chaves ao passar números dentro dos props */
-
-        const Soma = ({ n1, n2 }) => {
-            return <div>{n1 + n2}</div>
-        }
-
-        function App() {
-            return (<>
-                <Soma n1={100} n2={100} />
-                {Soma({ n1: 180, n2: 180 })}
-            </>)
-        }
-
-        ReactDOM.render(<App />, document.querySelector('.app'))
-    </script>
+    <div id="root"></div>
 </body>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    button,
+    input {
+        background-color: gray;
+    }
+</style>
+
+<script type="text/babel">
+
+
+
+    ReactDOM.render(<App />, document.getElementById('root'))
+</script>
 
 </html>

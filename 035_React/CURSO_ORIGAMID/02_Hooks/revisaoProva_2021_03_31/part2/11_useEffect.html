@@ -12,35 +12,38 @@
     <title>Document</title>
 </head>
 
-<body>
-    <div class="app"></div>
-</body>
-
 <style>
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    button,
-    input {
-        background-color: gray;
+    input,
+    button {
+        background-color: purple;
     }
 </style>
 
+<body>
+    <div class="app"></div>
+</body>
 <script type="text/babel">
-    const App = () => {
-        // no momento de declaração do estado, é possível passar uma função:
-        const [data, setData] = React.useState(() => window.location.host)
-        return <div>URL Utilizada: {data}</div>
+
+    function App() {
+        // declarando função:
+        const [contar, setContar] = React.useState(0)
+
+        // chamando useEffect, e passando um arrow(seta) function direta:
+        React.useEffect(() => console.log('useEffect foi disparado'));
+
+        return (
+            <div>
+                <div>Você clicou: {contar} vezes</div>
+                <button onClick={() => setContar(contar + 1)}>Clique aqui!</button>
+            </div>
+        )
     }
 
     ReactDOM.render(<App />, document.querySelector('.app'))
-
-    /*LEMBRANDO:
-    - Quando o useState recebe uma função em vez de um valor como estado inicial,
-            essa função é executada apenas durante a fase mount do componente, sem se
-            repetir na fase update (re-render)
-    */
 </script>
 
 </html>
