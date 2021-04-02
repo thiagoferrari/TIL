@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Load React, React DOM, Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    input {
+        background-color: purple;
+    }
+</style>
+
+<body>
+    <div>
+        <label for="HTML">[Feito com HTML] Insira um número: </label>
+        <input id="HTML" type="text" />
+    </div>
+    <div class="app"></div>
+</body>
+
+<script type="text/babel">
+
+
+    function App() {
+        return (
+            <div>
+                <label htmlFor="React">[Feito com React] Insira um número: </label>
+                <input id="React" type="text" />
+            </div>
+        )
+    }
+
+    ReactDOM.render(<App />, document.querySelector('.app'))
+</script>
+
+</html>
