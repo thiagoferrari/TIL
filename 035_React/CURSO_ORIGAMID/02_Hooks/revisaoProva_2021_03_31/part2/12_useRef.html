@@ -35,39 +35,37 @@
         - Em geral useRef é usado para referenciar a um elemento do DOM
                     (Substituindo 100% o document.querySelector())
 
-    PEQUENO APP DE 'NOTES' USANDO React.useRef():
+    PEQUENO APP DE 'notaS' USANDO React.useRef():
         useRef posso dizer que é um hook de referência de algo (variável, etc.),
     */
 
     function App() {
-        const [notes, setNote] = React.useState(['Lavar Carro', 'Banho Cachorro'])
+        const [notas, setNota] = React.useState([])
         const [input, setInput] = React.useState('')
-        const inputElement = React.useRef() // AQUI TEMOS A REFERÊNCIA DENTRO DO COMPONENTE
+        const inputNotas = React.useRef() // AQUI TEMOS A REFERÊNCIA DENTRO DO COMPONENTE
 
         function handleClick() { // função de click
-            setNote([...notes, input]) // passando para dentro do estado notes o input
+            setNota([notas, { input }]) // passando para dentro do estado notas o input
             setInput('') // esvaziando input
 
             // aqui focaremos no input depois da função de click (sem usar documentQuery..):
             //document.querySelector('input').focus()
-            inputElement.current.focus();
+            inputNotas.current.focus();
         }
 
         return (
             <div>
                 <ul>
-                    {notes.map((note) => (
-                        <li key={note}>{note}</li>
-                    ))}
+                    Minhas notas: {notas.join()}
                 </ul>
                 <input
                     type='text'
-                    value={input}
-                    onChange={({ target }) => setInput(target.value)}
-                    ref={inputElement} // AQUI TEMOS A REFERÊNCIA DENTRO DO COMPONENTE
+                    //value={input}
+                    //nChange={event => setInput(notas.push(event.target.value))}
+                    ref={inputNotas} // AQUI TEMOS A REFERÊNCIA DENTRO DO COMPONENTE
                 />
                 <br />
-                <button onClick={handleClick}>Gravar</button>
+                <button onClick={handleClick}>Gravar Nota!</button>
             </div>
         )
     }

@@ -14,34 +14,55 @@
 
 <style>
     body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: block !important;
+    }
+
+    button,
+    input {
+        background-color: purple;
     }
 </style>
 
 <body>
     <div class="app"></div>
-
-    <script type="text/babel">
-
-        /*
-            adicionando dependência com useEffect no react:
-                - com o useEffect é possível a cada vez que um estado atualizar renderizar o componente novamente:
-                                    [o estado precisa estar dentro do array de dependências],
-        */
-
-        function App() {
-
-            const [contar, setContar] = React.useState(0)
-
-            // a cada vez que contar mudar/renderizar, title receberá seu valor
-            React.useEffect(() => { document.title = 'Contador ' + contar }, [contar])
-            // o array de dependências é o segundo parâmetro do useEffect
-
-            return (<button onClick={() => setContar(contar + 1)}>{contar}</button>)
-        }
-
-        ReactDOM.render(<App />, document.querySelector('.app'))
-    </script>
 </body>
+
+<script type="text/babel">
+    function App() {
+        // estados que serão preenchidos nome e sobrenome:
+        const [nome, setNome] = React.useState(``)
+        const [sobrenome, setSobrenome] = React.useState(``)
+
+        // estado que contará a qtd. de alteracoes (letra digit./delet.)
+        const [alteracoes, setAlteracoes] = React.useState(0)
+
+        // useEffect vai disparar quando alguma letra mudar (digit./delet.):
+        React.useEffect(() => setAlteracoes(alteracoes + 1), [nome, sobrenome])
+
+        return (
+            <div>
+                <div>
+                    Insira um nome:
+                    <input
+                        type="text"
+                        onChange={event => setNome(event.target.value)}
+                    />
+                </div>
+                <div>
+                    Insira um Sobrenome:
+                    <input
+                        type="text"
+                        onChange={event => setSobrenome(event.target.value)}
+                    />
+                </div>
+                <div><b>Nome Completo: {nome} {sobrenome}</b></div>
+                <div>Disparos do useEffect (letras digit./delet.): {alteracoes}</div>
+            </div>
+        )
+    }
+
+    ReactDOM.render(<App />, document.querySelector('.app'))
+</script>
 
 </html>
