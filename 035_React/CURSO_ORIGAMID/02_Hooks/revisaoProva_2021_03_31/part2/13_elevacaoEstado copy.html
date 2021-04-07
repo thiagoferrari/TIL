@@ -29,47 +29,37 @@
 
 <script type="text/babel">
 
-    /*
-        ELEVAÇÃO DE ESTADO:
-            - como fazer para compartilhar o mesmo estado com dois ou mais components ?
-            - R.: Subindo este estado para o component pai !
-                (e assim passando como props este estados para os components que necessitam)
-
-
-            - OBJETIVO ABAIXO:
-            - Criar um <App /> que converta a temp. de ºC para ºF
-                - portanto o estado dentro do component <Celsius />
-                        precisa ser compartilhado com <Fahrenheit />
-                            (EU ELEVAREI AO PAI)
-    */
-
-    function Celsius({ tempC, onChangeTemp }) {
+    // Componente Celsius:
+    function Celsius({ tempC, onChangeTemp }) { // passando como prop (desestruturado)
         return (
             <>
                 <label htmlFor="C">Digite uma temp. em ºC:</label>
                 <input id="C" type="number" onChange={onChangeTemp} />
+                <div><b>confirmando temperatura inserida: Exatos {tempC}ºC</b></div>
             </>
         )
     }
 
-
-    function Fahrenheit({ tempC }) {  /* se temperatura for true, prosseguir*/
-        return <div>Temperatura convertida: {tempC && parseFloat(tempC) + 32}ºF</div>
+    // Componente Kelvin:
+    function Kelvin({ tempC }) { // passando como prop (desestruturado) a temp. em ºC
+        return <div>Temperatura convertida: {parseFloat(tempC) + 273.15}ºK</div>
     }
 
+    // Componente App:
     function App() {
+        // declarando estado aqui no pai App:
         const [celsius, setCelsius] = React.useState(0)
 
         return (
-            /* renderizando e já passando os params. vindos do pai: */
-            <>
+            /* renderizando filhos e já passando os props vindos do pai App: */
+            <div>
                 <Celsius
                     tempC={celsius} /*capturando temp. ºC (input é o target)*/
                     onChangeTemp={(ev) => { setCelsius(ev.target.value) }}
                 />
-
-                <Fahrenheit tempC={celsius} />
-            </>
+                <br />
+                <Kelvin tempC={celsius} />
+            </div>
         )
 
     }

@@ -24,10 +24,11 @@
         }
 
         function App() {
-            return (<>
-                <Soma n1={100} n2={100} />
-                {Soma({ n1: 180, n2: 180 })}
-            </>)
+            return (
+                <>
+                    <Soma n1={100} n2={100} />
+                    {Soma({ n1: 180, n2: 180 })}
+                </>)
         }
 
         ReactDOM.render(<App />, document.querySelector('.app'))

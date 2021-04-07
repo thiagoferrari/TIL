@@ -23,49 +23,35 @@
 
     button,
     input {
-        background-color: gray;
+        background-color: purple;
     }
 </style>
 
 <script type="text/babel">
-
-    /*
-    Definição useRef: Retorna um objeto com a propriedade 'current' e esse objeto: 
-        - Pode ser usado para guardar valores que irão persistir durante todo lifecycle do elemento;
-        - Em geral useRef é usado para referenciar a um elemento do DOM
-                    (Substituindo 100% o document.querySelector())
-
-    PEQUENO APP DE 'notaS' USANDO React.useRef():
-        useRef posso dizer que é um hook de referência de algo (variável, etc.),
-    */
-
     function App() {
-        const [notas, setNota] = React.useState([])
-        const [input, setInput] = React.useState('')
-        const inputNotas = React.useRef() // AQUI TEMOS A REFERÊNCIA DENTRO DO COMPONENTE
+        const [palavra, setPalavra] = React.useState('(Nada)')
+        const inputPalavra = React.useRef() // declarando referência
 
-        function handleClick() { // função de click
-            setNota([notas, { input }]) // passando para dentro do estado notas o input
-            setInput('') // esvaziando input
-
-            // aqui focaremos no input depois da função de click (sem usar documentQuery..):
-            //document.querySelector('input').focus()
-            inputNotas.current.focus();
+        function handleClick() {
+            /******* UTILIZANDO useRef: ******/
+            // capturando valor do input (useRef) e setando o estado:
+            let novaPalavra = inputPalavra.current.value
+            setPalavra(novaPalavra)
+            // limpando o input:
+            inputPalavra.current.value = ''
         }
 
         return (
             <div>
-                <ul>
-                    Minhas notas: {notas.join()}
-                </ul>
+                Insira a palavra:
                 <input
                     type='text'
-                    //value={input}
-                    //nChange={event => setInput(notas.push(event.target.value))}
-                    ref={inputNotas} // AQUI TEMOS A REFERÊNCIA DENTRO DO COMPONENTE
+                    ref={inputPalavra} // criando referência
                 />
-                <br />
-                <button onClick={handleClick}>Gravar Nota!</button>
+                <div>
+                    <button onClick={handleClick}>Gravar Palavra!</button>
+                    <div>Última uma palavra inserida: {palavra}</div>
+                </div>
             </div>
         )
     }
