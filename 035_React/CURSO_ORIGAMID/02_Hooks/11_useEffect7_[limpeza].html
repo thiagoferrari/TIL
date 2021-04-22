@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Load React, React DOM, Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app"></div>
+
+
+</body>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+</style>
+
+<script type="text/babel">
+    function App() {
+        const [mostra, setMostra] = React.useState(false)
+        const [count, setCount] = React.useState(0)
+
+        React.useEffect(() => {
+            console.log('useEffect');
+            const timer = setInterval(() => {
+                setCount(prev => prev + 1)
+            }, 1000)
+            return () => {
+                console.log('useEffect unmount')
+                clearInterval(timer)
+            }
+        })
+
+        return (
+            <>
+                {
+                    <button onClick={setMostra(!mostra)}>mostra exemplo</button>
+                    &&
+                    <p>useEffect (com clean): Contador: {count}</p>
+                }
+            </>
+        )
+    }
+
+    ReactDOM.render(<App />, document.querySelector('.app'))
+</script>
+
+</html>
