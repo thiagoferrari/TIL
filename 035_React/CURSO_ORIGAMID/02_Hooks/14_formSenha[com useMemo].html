@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Load React, React DOM, Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app"></div>
+</body>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    button,
+    input {
+        background-color: gray;
+    }
+</style>
+
+<script type="text/babel">
+
+    const rules = [
+        '8 characteres',
+        'lowercase word',
+        'uppercase word',
+    ];
+
+    // Lista de erros
+    const Errors = ({ active }) => {
+        return active && (
+            <ul>
+                {rules.map((value, index) => (
+                    <li key={index}>{value}</li>
+                ))}
+            </ul>
+        );
+    }
+
+    const CreateAccountForm = () => {
+        const [password, setPassword] = React.useState('');
+        const [showErrors, setShowErrors] = React.useState(false);
+
+        const checkPassword = event => {
+            const { value } = event.target;
+            setShowErrors(value.length < 8);
+            setPassword(value);
+        }
+
+        const memoizedErrors = React.useMemo(() => <Errors active={showErrors} />, [showErrors]);
+
+        return (
+            <form>
+                <h1>Login</h1>
+                <input placeholder="Email" />
+                <input type="password" placeholder="Password" value={password} onChange={checkPassword} />
+                {memoizedErrors}
+            </form>
+        );
+    };
+
+    ReactDOM.render(<CreateAccountForm />, document.querySelector('.app'))
+</script>
+
+</html>
