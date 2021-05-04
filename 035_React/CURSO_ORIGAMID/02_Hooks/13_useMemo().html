@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Load React, React DOM, Babel -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app"></div>
+</body>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    button,
+    input {
+        background-color: gray;
+    }
+</style>
+
+<script type="text/babel">
+    function App() {
+        /*
+            O useMemo() serve para otimizar o programa:
+            ele usa da técnica memoization, que consiste no seguinte:
+                 - guardar o valor de retorno de uma função a partir dos valores de entrada (Parâmetros).
+                   Ou seja, se uma função de soma recebe os parâmetros 2 e 3 e retorna 5,
+                        esses valores serão armazenados e, quando essa função for chamada
+                        com os mesmos parâmetros, ela não precisará refazer o cálculo para
+                        obter o valor de retorno, já que este estará armazenado.
+        */
+
+        // aqui temos uma operação lenta, e vamos otimizar seu uso com o useMemo().
+        function operacaoLenta() {
+            let a
+            for (let i = 0; i < 100000000; i++) {
+                a = i + i / 10
+            }
+            return a
+        }
+
+        // criando contador abaixo:
+        const [contar, setContar] = React.useState(0)
+
+        console.time();
+        const valor = React.useMemo(() => operacaoLenta(), [])
+        console.timeEnd();
+
+        // button abaixo para atualizar
+        return <button onClick={() => setContar(contar + 1)}>{contar}</button >
+    }
+
+    ReactDOM.render(<App />, document.querySelector('.app'))
+
+
+    /* NESTE EXEMPLO VEJA QUE O TEMPO DE EXECUÇÃO É ALTO NA 1ª EXECUÇÃO,
+        MAS DEPOIS BAIXO (DEVIDO AO MEMOIZATION DO useMemo())  */
+</script>
+
+</html>
