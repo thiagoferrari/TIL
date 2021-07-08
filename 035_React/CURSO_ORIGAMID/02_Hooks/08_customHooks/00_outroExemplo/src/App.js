@@ -20,6 +20,7 @@ function App() {
 
   //mostrar h2, se dentro do useFetch não passar por setLoading(false)
   if (loading) return <h2>Loading.....</h2>
+
   //se o fetch não tem nada, null, senão retorna a div:
   if (data)
     return (
